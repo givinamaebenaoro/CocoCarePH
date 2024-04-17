@@ -56,7 +56,7 @@
                   <div class="col-auto">
                     <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{\App\Models\Order::countActiveOrder()}}</div>
                   </div>
-                  
+
                 </div>
               </div>
               <div class="col-auto">
@@ -106,20 +106,20 @@
               <th>Action</th>
             </tr>
           </thead>
-          
+
           <tbody>
           @php
             $counter = 1;
         @endphp
             @if(count($orders)>0)
-              @foreach($orders as $order)   
+              @foreach($orders as $order)
                 <tr>
                     <td>{{$counter}}</td>
                     <td>{{$order->order_number}}</td>
                     <td>{{$order->first_name}} {{$order->last_name}}</td>
                     <td>{{$order->email}}</td>
                     <td>{{$order->quantity}}</td>
-                    <td>${{number_format($order->total_amount,2)}}</td>
+                    <td>₱{{number_format($order->total_amount,2)}}</td>
                     <td>
                         @if($order->status=='new')
                           <span class="badge badge-primary">NEW</span>
@@ -134,7 +134,7 @@
                     <td>
                         <a href="{{route('user.order.show',$order->id)}}" class="btn btn-warning btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="view" data-placement="bottom"><i class="fas fa-eye"></i></a>
                         <form method="POST" action="{{route('user.order.delete',[$order->id])}}">
-                          @csrf 
+                          @csrf
                           @method('delete')
                               <button class="btn btn-danger btn-sm dltBtn" data-id={{$order->id}} style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button>
                         </form>

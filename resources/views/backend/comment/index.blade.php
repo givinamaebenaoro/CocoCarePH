@@ -1,5 +1,5 @@
 @extends('backend.layouts.master')
-@section('title','Ecommerce Laravel || Comment Page')
+@section('title','Comment Page')
 @section('main-content')
  <!-- DataTales Example -->
  <div class="card shadow mb-4">

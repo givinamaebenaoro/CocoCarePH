@@ -1,5 +1,5 @@
 @extends('backend.layouts.master')
-@section('title','Ecommerce Laravel || All Notifications')
+@section('title','All Notifications')
 @section('main-content')
 <div class="card">
     <div class="row">

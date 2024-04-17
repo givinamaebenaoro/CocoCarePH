@@ -254,7 +254,7 @@ big {
 	content: "";
 	height: 2px;
 	width: 50px;
-	background: #8C52FF;
+	background: #024430;
 	left: 50%;
 	bottom: 0;
 	margin-left: -25px;
@@ -316,10 +316,10 @@ big {
 	display: inline-block;
 }
 .breadcrumbs ul li a:hover{
-	color:#8C52FF;
+	color:#024430;
 }
 /*=============================
-	Start Demos CSS 
+	Start Demos CSS
 ===============================*/
 .demo-section{
 	width: 100%;
@@ -458,7 +458,7 @@ big {
 	color:#755ce4;
 }
 /*=============================
-	/End Demos CSS 
+	/End Demos CSS
 ===============================*/
 
 /* Preloader Animaion */
@@ -493,7 +493,7 @@ big {
 	--uiPreloaderSize: var(--cpPreloaderSize, 80px);
 	font-size: 70px;
 }
-.cp-preloader-inner::after, 
+.cp-preloader-inner::after,
 .cp-preloader-inner::before {
 	content: "";
 	width: 7.5%;
@@ -1142,7 +1142,7 @@ object {
 .modal-dialog .modal-content .modal-header .close:hover {
   color: #fff;
   border-color:transparent;
-  background:#8C52FF;
+  background:#024430;
 }
 .modal-dialog .modal-content .modal-body {
 	padding: 0px;
@@ -1306,7 +1306,7 @@ object {
 	text-transform:lowercase;
 }
 .quickview-content .nice-select .list li:hover{
-	background:#8C52FF;
+	background:#024430;
 	color:#fff;
 }
 
@@ -1340,7 +1340,7 @@ object {
   width: 5px;
   height: 5px;
   border-radius: 100%;
-  background-color: #8C52FF;
+  background-color: #024430;
   content: "";
   left: 0;
   top: 50%;
@@ -1417,7 +1417,7 @@ object {
 }
 
 .quickview-content .quickview-action-wrap .quickview-cart a:hover {
-  background-color: #8C52FF;
+  background-color: #024430;
   color:#333;
 }
 
@@ -1450,10 +1450,10 @@ object {
   margin-left: 30px;
 }
 .quickview-content .quickview-action-wrap .quickview-wishlist a:hover{
-	color:#8C52FF;
+	color:#024430;
 }
 .quickview-content .quickview-action-wrap .quickview-compare a:hover {
-  color:#8C52FF;
+  color:#024430;
 }
 @media only screen and (max-width: 767px) {
   .quickview-content .quickview-action-wrap .quickview-compare {
@@ -1660,11 +1660,11 @@ object {
 }
 .modal .owl-carousel .owl-nav div:hover{
 	color:#fff;
-	background:#8C52FF;
+	background:#024430;
 }
 .modal .owl-carousel .owl-controls .owl-nav .owl-prev{
 	left:0;
-	
+
 }
 .modal .owl-carousel .owl-controls .owl-nav .owl-next{
 	right:0;
@@ -1703,7 +1703,7 @@ object {
 	border: none;
 }
 .quickview-content .quantity .button .btn:hover{
-	color:#8C52FF;
+	color:#024430;
 }
 .quickview-content .quantity .input-number {
 	border: 1px solid #eceded;
@@ -1733,7 +1733,7 @@ object {
 }
 .quickview-content .add-to-cart .btn:hover{
 	color:#fff;
-	background:#8C52FF;
+	background:#024430;
 }
 .quickview-content .add-to-cart .btn.min {
 	padding: 0 20px;
@@ -1791,10 +1791,10 @@ object {
 	/* display: block; */
 }
 .default-social ul li a i {
-  
+
 }
 .default-social ul li a:hover {
-  color: #8C52FF;
+  color: #024430;
 }
 /* End Modal Css */
 

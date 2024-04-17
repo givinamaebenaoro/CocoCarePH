@@ -1,6 +1,6 @@
 @extends('backend.layouts.master')
 
-@section('title','Ecommerce Laravel || Banner Create')
+@section('title','Banner Create')
 
 @section('main-content')
 
@@ -40,7 +40,7 @@
           <span class="text-danger">{{$message}}</span>
           @enderror
         </div>
-        
+
         <div class="form-group">
           <label for="status" class="col-form-label">Status <span class="text-danger">*</span></label>
           <select name="status" class="form-control">
