@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
-	@include('frontend.layouts.head')	
+	@include('frontend.layouts.head')
 </head>
 <body class="js">
-	
+    <link rel="icon" type="image/png" href="/images/trial3.png">
 	<!-- Preloader -->
 	<div class="preloader">
 		<div class="preloader-inner">
@@ -15,14 +15,20 @@
 		</div>
 	</div>
 	<!-- End Preloader -->
-	
+
 	@include('frontend.layouts.notification')
 	<!-- Header -->
 	@include('frontend.layouts.header')
 	<!--/ End Header -->
 	@yield('main-content')
-	
-	@include('frontend.layouts.footer')
 
+	@include('frontend.layouts.footer')
+    <script>
+        // JavaScript code to change the favicon
+        window.addEventListener('load', () => {
+          const favicon = document.getElementById('favicon');
+          favicon.href = '/images/new-favicon.png'; // Change this to the new favicon URL
+        });
+        </script>
 </body>
 </html>

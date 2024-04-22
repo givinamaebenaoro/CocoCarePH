@@ -1,5 +1,5 @@
 @extends('frontend.layouts.master')
-@section('title','HOME PAGE')
+@section('title','CocoCarePH')
 @section('main-content')
 <!-- Slider Area -->
 @if(count($banners)>0)

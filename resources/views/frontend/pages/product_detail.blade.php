@@ -14,7 +14,7 @@
 	<meta property="og:image" content="{{$product_detail->photo}}">
 	<meta property="og:description" content="{{$product_detail->description}}">
 @endsection
-@section('title','PRODUCT DETAIL')
+@section('title','Product Details')
 @section('main-content')
 
 		<!-- Breadcrumbs -->

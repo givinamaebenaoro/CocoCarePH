@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 
-@section('title','Order Track Page')
+@section('title','Order Track')
 
 @section('main-content')
     <!-- Breadcrumbs -->
