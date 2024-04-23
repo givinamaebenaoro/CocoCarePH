@@ -1585,6 +1585,69 @@ Version:1.0
 ========================================*/
 
 /*======================================
+   Start Voucher Banner CSS
+========================================*/
+.voucher-banner{
+	padding:30px 0;
+	padding-bottom:0;
+    display: flex;
+    justify-content: center;
+}
+.voucher-banner .single-banner {
+	overflow:hidden;
+	position:relative;
+    margin: 10px 5px;
+
+}
+.voucher-banner .single-banner img{
+	height:200px;
+	width:auto;
+	-webkit-transition:all 0.4s ease;
+	-moz-transition:all 0.4s ease;
+	transition:all 0.4s ease;
+}
+.voucher-banner .single-banner .content {
+	position: absolute;
+	left: 0;
+	top: 50%;
+	transform: translateY(-50%);
+	padding-left: 35px;
+}
+.voucher-banner .single-banner h3 {
+	font-size: 22px;
+	font-weight: 700;
+	text-transform: capitalize;
+	color: #333;
+}
+.voucher-banner .single-banner h3 span{
+	color:#024430;
+}
+.voucher-banner .single-banner p {
+	font-size: 14px;
+	color: #024430;
+	font-weight: 500;
+	margin-bottom: 5px;
+	text-transform: capitalize;
+}
+.voucher-banner .single-banner a {
+	color: #333;
+	margin-top: 22px;
+	display: block;
+	font-size: 12px;
+	font-weight:500;
+	display: inline-block;
+	text-transform:uppercase;
+	border-bottom:2px solid #333;
+}
+.voucher-banner .single-banner a:hover{
+	color:#024430;
+	border-color:#024430;
+}
+/*======================================
+   End Voucher Banner CSS
+========================================*/
+
+/*======================================
    Start Mid Banner CSS
 ========================================*/
 .midium-banner{

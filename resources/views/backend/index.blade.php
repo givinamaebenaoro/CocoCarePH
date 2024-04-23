@@ -4,7 +4,7 @@
 <div class="container-fluid">
     @include('backend.layouts.notification')
     <!-- Page Heading -->
-    <!-- Visit 'codeastro' for more projects -->
+
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
       <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
     </div>
@@ -318,7 +318,7 @@
                           padding: 10,
                           // Include a dollar sign in the ticks
                           callback: function(value, index, values) {
-                            return '$' + number_format(value);
+                            return '₱' + number_format(value);
                           }
                         },
                         gridLines: {
@@ -350,7 +350,7 @@
                       callbacks: {
                         label: function(tooltipItem, chart) {
                           var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-                          return datasetLabel + ': $' + number_format(tooltipItem.yLabel);
+                          return datasetLabel + ': ₱' + number_format(tooltipItem.yLabel);
                         }
                       }
                     }

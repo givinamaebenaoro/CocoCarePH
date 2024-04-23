@@ -68,6 +68,46 @@
 </section>
 <!-- End Small Banner -->
 
+<!-- Start Voucher Banner  -->
+
+<section class="voucher-banner section">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-title">
+                    <h2>Grab New Vouchers</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @php
+            $voucher_lists = DB::table('vouchers')->where('status', 'active')->limit(3)->get();
+            @endphp
+            @if($voucher_lists)
+                @foreach($voucher_lists as $cat)
+                    <!-- Voucher Banner -->
+                    <div class="col-12">
+                        <div class="single-banner">
+                            @if($cat->photo)
+                                <img src="{{$cat->photo}}" alt="{{$cat->photo}}">
+                            @else
+                                <img src="https://via.placeholder.com/300x370" alt="#">
+                            @endif
+                            <div class="content">
+                                <h3>{{$cat->title}}</h3>
+                                <a href="{{route('product-cat',$cat->slug)}}">Use Now</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /End Voucher Banner -->
+                @endforeach
+            @endif
+        </div>
+    </div>
+</section>
+
+<!-- End Voucher Banner -->
+
 <!-- Start Product Area -->
 <div class="product-area section">
         <div class="container">

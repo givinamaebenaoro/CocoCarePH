@@ -69,6 +69,22 @@
           </div>
         </div>
     </li>
+
+    <!-- Images | Vouchers -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#voucherCollapse" aria-expanded="true" aria-controls="voucherCollapse">
+          <i class="fas fa-ticket-alt"></i>
+          <span>Voucher</span>
+        </a>
+        <div id="voucherCollapse" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Voucher Options:</h6>
+            <a class="collapse-item" href="{{route('voucher.index')}}">Voucher</a>
+            <a class="collapse-item" href="{{route('voucher.create')}}">Add Voucher</a>
+          </div>
+        </div>
+    </li>
+
     {{-- Products --}}
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#productCollapse" aria-expanded="true" aria-controls="productCollapse">
@@ -204,6 +220,7 @@
           <i class="fas fa-table"></i>
           <span>Coupon</span></a>
     </li>
+
      <!-- Users -->
      <li class="nav-item">
         <a class="nav-link" href="{{route('users.index')}}">

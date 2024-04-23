@@ -111,6 +111,10 @@ Route::group(['prefix'=>'/admin','middleware'=>['auth','admin']],function(){
     Route::post('/profile/{id}','AdminController@profileUpdate')->name('profile-update');
     // Category
     Route::resource('/category','CategoryController');
+    // Voucher
+    Route::resource('/voucher','VoucherController');
+    // Ajax for sub category
+    Route::post('/voucher/{id}/child','VoucherController@getChildByParent');
     // Product
     Route::resource('/product','ProductController');
     // Ajax for sub category
