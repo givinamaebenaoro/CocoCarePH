@@ -389,7 +389,7 @@
                                             @if(session('coupon'))
                                                 <li class="last"  id="order_total_price">Total<span>₱{{number_format($total_amount,2)}}</span></li>
                                             @else
-                                                <li class="last"  id="order_total_price">Total<span>₱{{number_format($total_amount,2)}}</span></li>
+                                                <li class="last"  id="order_total_price">Total<span>{{number_format($total_amount,2)}}</span></li>
                                             @endif
                                         </ul>
                                     </div>

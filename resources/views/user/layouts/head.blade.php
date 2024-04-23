@@ -6,7 +6,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>DASHBOARD</title>
+    <title>CocoCarePH | User Dashboard</title>
+    <link rel="icon" type="image/png" href="/images/browser.png">
 
     <!-- Custom fonts for this template-->
     <link href="{{asset('backend/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">

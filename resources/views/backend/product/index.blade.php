@@ -43,10 +43,10 @@
               @endphp
                 <tr>
                     <td>{{$product->id}}</td>
-                    <td>{{$product->title}}</td>
-                    <td>{{$product->cat_info['title']}}
+                    <td>{{ isset($product) ? $product->title : '' }}</td>
+                    <td>{{ isset($product->cat_info['title']) ? $product->cat_info['title'] : '' }}</td>
                       <sub>
-                          {{$product->sub_cat_info->title ?? ''}}
+                        <td>{{ isset($product->sub_cat_info->title) ? $product->sub_cat_info->title : '' }}</td>
                       </sub>
                     </td>
                     <td>{{(($product->is_featured==1)? 'Yes': 'No')}}</td>
@@ -54,7 +54,7 @@
                     <td>  {{$product->discount}}%</td>
                     <td>{{$product->size}}</td>
                     <td>{{$product->condition}}</td>
-                    <td> {{ucfirst($product->brand->title)}}</td>
+                    <td>{{ isset($product->brand->title) ? ucfirst($product->brand->title) : '' }}</td>
                     <td>
                       @if($product->stock>0)
                       <span class="badge badge-primary">{{$product->stock}}</span>

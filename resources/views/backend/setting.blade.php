@@ -6,19 +6,19 @@
     <h5 class="card-header">Edit Post</h5>
     <div class="card-body">
     <form method="post" action="{{route('settings.update')}}">
-        @csrf 
+        @csrf
         {{-- @method('PATCH') --}}
         {{-- {{dd($data)}} --}}
         <div class="form-group">
           <label for="short_des" class="col-form-label">Short Description <span class="text-danger">*</span></label>
-          <textarea class="form-control" id="quote" name="short_des">{{$data->short_des}}</textarea>
+          <textarea class="form-control" id="quote" name="short_des">{!! isset($data) ? preg_replace('/<p[^>]*>(.*?)<\/p[^>]*>/i', '$1', $data->short_des) : '' !!}</textarea>
           @error('short_des')
           <span class="text-danger">{{$message}}</span>
           @enderror
         </div>
         <div class="form-group">
           <label for="description" class="col-form-label">Description <span class="text-danger">*</span></label>
-          <textarea class="form-control" id="description" name="description">{{$data->description}}</textarea>
+          <textarea class="form-control" id="description" name="description">{!! isset($data) ? $data->description : '' !!}</textarea>
           @error('description')
           <span class="text-danger">{{$message}}</span>
           @enderror
@@ -32,7 +32,7 @@
                   <i class="fa fa-picture-o"></i> Choose
                   </a>
               </span>
-          <input id="thumbnail1" class="form-control" type="text" name="logo" value="{{$data->logo}}">
+              <input id="thumbnail1" class="form-control" type="text" name="logo" value="{{ isset($data) ? $data->logo : '' }}">
         </div>
         <div id="holder1" style="margin-top:15px;max-height:100px;"></div>
 
@@ -49,7 +49,7 @@
                   <i class="fa fa-picture-o"></i> Choose
                   </a>
               </span>
-          <input id="thumbnail" class="form-control" type="text" name="photo" value="{{$data->photo}}">
+              <input id="thumbnail" class="form-control" type="text" name="photo" value="{{ $data->photo ?? '' }}">
         </div>
         <div id="holder" style="margin-top:15px;max-height:100px;"></div>
 
@@ -60,21 +60,21 @@
 
         <div class="form-group">
           <label for="address" class="col-form-label">Address <span class="text-danger">*</span></label>
-          <input type="text" class="form-control" name="address" required value="{{$data->address}}">
+          <input type="text" class="form-control" name="address" required value="{{ $data->address ?? '' }}">
           @error('address')
           <span class="text-danger">{{$message}}</span>
           @enderror
         </div>
         <div class="form-group">
           <label for="email" class="col-form-label">Email <span class="text-danger">*</span></label>
-          <input type="email" class="form-control" name="email" required value="{{$data->email}}">
+          <input type="email" class="form-control" name="email" required value="{{$data->email ?? '' }}">
           @error('email')
           <span class="text-danger">{{$message}}</span>
           @enderror
         </div>
         <div class="form-group">
           <label for="phone" class="col-form-label">Phone Number <span class="text-danger">*</span></label>
-          <input type="text" class="form-control" name="phone" required value="{{$data->phone}}">
+          <input type="text" class="form-control" name="phone" required value="{{$data->phone ?? '' }}">
           @error('phone')
           <span class="text-danger">{{$message}}</span>
           @enderror

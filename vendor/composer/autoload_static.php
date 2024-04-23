@@ -117,6 +117,7 @@ class ComposerStaticInit0fe02967618b6ee54572c79b43d09b09
         'M' => 
         array (
             'Monolog\\' => 8,
+            'MattDaneshvar\\Survey\\' => 21,
         ),
         'L' => 
         array (
@@ -378,6 +379,10 @@ class ComposerStaticInit0fe02967618b6ee54572c79b43d09b09
         'Monolog\\' => 
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
+        ),
+        'MattDaneshvar\\Survey\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/matt-daneshvar/laravel-survey/src',
         ),
         'League\\OAuth1\\Client\\' => 
         array (
@@ -3091,6 +3096,16 @@ class ComposerStaticInit0fe02967618b6ee54572c79b43d09b09
         'League\\OAuth1\\Client\\Signature\\RsaSha1Signature' => __DIR__ . '/..' . '/league/oauth1-client/src/Signature/RsaSha1Signature.php',
         'League\\OAuth1\\Client\\Signature\\Signature' => __DIR__ . '/..' . '/league/oauth1-client/src/Signature/Signature.php',
         'League\\OAuth1\\Client\\Signature\\SignatureInterface' => __DIR__ . '/..' . '/league/oauth1-client/src/Signature/SignatureInterface.php',
+        'MattDaneshvar\\Survey\\Exceptions\\GuestEntriesNotAllowedException' => __DIR__ . '/..' . '/matt-daneshvar/laravel-survey/src/Exceptions/GuestEntriesNotAllowedException.php',
+        'MattDaneshvar\\Survey\\Exceptions\\MaxEntriesPerUserLimitExceeded' => __DIR__ . '/..' . '/matt-daneshvar/laravel-survey/src/Exceptions/MaxEntriesPerUserLimitExceeded.php',
+        'MattDaneshvar\\Survey\\Http\\View\\Composers\\SurveyComposer' => __DIR__ . '/..' . '/matt-daneshvar/laravel-survey/src/Http/View/Composers/SurveyComposer.php',
+        'MattDaneshvar\\Survey\\Models\\Answer' => __DIR__ . '/..' . '/matt-daneshvar/laravel-survey/src/Models/Answer.php',
+        'MattDaneshvar\\Survey\\Models\\Entry' => __DIR__ . '/..' . '/matt-daneshvar/laravel-survey/src/Models/Entry.php',
+        'MattDaneshvar\\Survey\\Models\\Question' => __DIR__ . '/..' . '/matt-daneshvar/laravel-survey/src/Models/Question.php',
+        'MattDaneshvar\\Survey\\Models\\Section' => __DIR__ . '/..' . '/matt-daneshvar/laravel-survey/src/Models/Section.php',
+        'MattDaneshvar\\Survey\\Models\\Survey' => __DIR__ . '/..' . '/matt-daneshvar/laravel-survey/src/Models/Survey.php',
+        'MattDaneshvar\\Survey\\SurveyServiceProvider' => __DIR__ . '/..' . '/matt-daneshvar/laravel-survey/src/SurveyServiceProvider.php',
+        'MattDaneshvar\\Survey\\Utilities\\Summary' => __DIR__ . '/..' . '/matt-daneshvar/laravel-survey/src/Utilities/Summary.php',
         'Mockery' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery.php',
         'Mockery\\Adapter\\Phpunit\\Legacy\\TestListenerForV5' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/Legacy/TestListenerForV5.php',
         'Mockery\\Adapter\\Phpunit\\Legacy\\TestListenerForV6' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/Legacy/TestListenerForV6.php',
@@ -4597,6 +4612,7 @@ class ComposerStaticInit0fe02967618b6ee54572c79b43d09b09
         'Srmklive\\PayPal\\Traits\\PayPalTransactions' => __DIR__ . '/..' . '/srmklive/paypal/src/Traits/PayPalTransactions.php',
         'Srmklive\\PayPal\\Traits\\RecurringProfiles' => __DIR__ . '/..' . '/srmklive/paypal/src/Traits/RecurringProfiles.php',
         'Stringable' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
+        'SurveySeeder' => __DIR__ . '/../..' . '/database/seeds/SurveySeeder.php',
         'Svg\\DefaultStyle' => __DIR__ . '/..' . '/phenx/php-svg-lib/src/Svg/DefaultStyle.php',
         'Svg\\Document' => __DIR__ . '/..' . '/phenx/php-svg-lib/src/Svg/Document.php',
         'Svg\\Gradient\\Stop' => __DIR__ . '/..' . '/phenx/php-svg-lib/src/Svg/Gradient/Stop.php',
