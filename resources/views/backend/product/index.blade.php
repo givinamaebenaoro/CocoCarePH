@@ -98,7 +98,7 @@
         @endif
       </div>
     </div>
-</div><!-- Visit 'codeastro' for more projects -->
+</div>
 @endsection
 
 @push('styles')

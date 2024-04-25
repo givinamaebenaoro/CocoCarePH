@@ -206,7 +206,7 @@
       </div>
     </div>
     <!-- Content Row -->
-    <!-- Visit 'codeastro' for more projects -->
+
   </div>
 @endsection
 

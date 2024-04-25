@@ -40,7 +40,7 @@
                                             </span>
                                         </p>
                                         <a href="{{route('blog.detail',$post->slug)}}" class="title">{{$post->title}}</a>
-                                        <p>{!! html_entity_decode($post->summary) !!}</p>
+                                        <p>{!!($post->summary) !!}</p>
                                         <a href="{{route('blog.detail',$post->slug)}}" class="more-btn">Continue Reading</a>
                                     </div>
                                 </div>

@@ -408,7 +408,7 @@ class Request
 
         $queryString = '';
         if (isset($components['query'])) {
-            parse_str(html_entity_decode($components['query']), $qs);
+            parse_str( ($components['query']), $qs);
 
             if ($query) {
                 $query = array_replace($qs, $query);

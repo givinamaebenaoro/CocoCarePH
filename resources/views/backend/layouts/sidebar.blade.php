@@ -27,7 +27,7 @@
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
-    <!-- Visit 'codeastro' for more projects -->
+
     <!-- Nav Item - Charts -->
     <li class="nav-item">
         <a class="nav-link" href="{{route('file-manager')}}">
@@ -147,7 +147,6 @@
 
 
     <!-- Divider -->
-    <!-- Visit 'codeastro' for more projects -->
     <hr class="sidebar-divider">
 
     <!-- Heading -->

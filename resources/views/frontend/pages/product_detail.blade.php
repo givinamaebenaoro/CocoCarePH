@@ -163,7 +163,6 @@
 
 											</div>
 											<!--/ End Product Buy -->
-											<!-- Visit 'codeastro' for more projects -->
 										</div>
 									</div>
 								</div>
@@ -314,7 +313,7 @@
 					</div>
 		</section>
 		<!--/ End Shop Single -->
-		<!-- Visit 'codeastro' for more projects -->
+
 		<!-- Start Most Popular -->
 	<div class="product-area most-popular related-product section">
         <div class="container">

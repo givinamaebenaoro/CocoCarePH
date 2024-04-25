@@ -57,7 +57,7 @@
                     {{-- Delete Modal --}}
                     {{-- <div class="modal fade" id="delModal{{$user->id}}" tabindex="-1" role="dialog" aria-labelledby="#delModal{{$user->id}}Label" aria-hidden="true">
                         <div class="modal-dialog" role="document">
-                          <div class="modal-content"><!-- Visit 'codeastro' for more projects -->
+                          <div class="modal-content">
                             <div class="modal-header">
                               <h5 class="modal-title" id="#delModal{{$user->id}}Label">Delete user</h5>
                               <button type="button" class="close" data-dismiss="modal" aria-label="Close">

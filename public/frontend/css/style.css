@@ -1587,62 +1587,106 @@ Version:1.0
 /*======================================
    Start Voucher Banner CSS
 ========================================*/
-.voucher-banner{
-	padding:30px 0;
-	padding-bottom:0;
+.voucher-banner {
+    padding: 30px 0;
+    padding-bottom: 0;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
 }
-.voucher-banner .single-banner {
-	overflow:hidden;
-	position:relative;
-    margin: 10px 5px;
-
+/* Slider Nav */
+.voucher-banner .owl-nav{
+	margin: 0;
+    position: absolute;
+    top: 50%;
+    width: 100%;
+	margin-top:-25px;
 }
-.voucher-banner .single-banner img{
-	height:200px;
-	width:auto;
+.voucher-banner .owl-carousel .owl-nav div {
+	height: 60px;
+	width: 30px;
+	line-height: 58px;
+	background: #fff;
+	color: #333;
+	position: absolute;
+	margin: 0;
+	border-radius: 0;
+	font-size: 15px;
+	text-align: center;
 	-webkit-transition:all 0.4s ease;
 	-moz-transition:all 0.4s ease;
 	transition:all 0.4s ease;
+	box-shadow: 0px 0px 10px #3333331c;
 }
+.voucher-banner .owl-carousel .owl-nav div:hover{
+	color:#fff;
+	background:#024430;
+}
+.voucher-banner .owl-carousel .owl-controls .owl-nav .owl-prev{
+	left:0;
+}
+.voucher-banner .owl-carousel .owl-controls .owl-nav .owl-next{
+	right:0;
+}
+.voucher-banner .single-banner {
+    overflow: hidden;
+    position: relative;
+    margin: 0 5px;
+    flex: 1 0 calc(33.33% - 20px); /* Adjust width and margin as needed */
+}
+
+.voucher-banner .single-banner img {
+    height: 150px; /* Decreased height to make it smaller */
+    width: 100%;
+    -webkit-transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+    margin-bottom: 10px; /* Added gap at the bottom of the image */
+}
+
 .voucher-banner .single-banner .content {
-	position: absolute;
-	left: 0;
-	top: 50%;
-	transform: translateY(-50%);
-	padding-left: 35px;
+    position: absolute;
+    right: 0; /* Moved content to the right */
+    top: 50%;
+    transform: translateY(-50%);
+    padding-right: 80px; /* Adjusted padding for content */
+    width: 50%; /* Set content width */
+    text-align: right; /* Right align content */
 }
+
 .voucher-banner .single-banner h3 {
-	font-size: 22px;
-	font-weight: 700;
-	text-transform: capitalize;
-	color: #333;
+    font-size: 20px; /* Reduced font size for the heading */
+    font-weight: 700;
+    text-transform: capitalize;
+    color: #333;
+    margin-bottom: 5px; /* Reduced margin below heading */
 }
-.voucher-banner .single-banner h3 span{
-	color:#024430;
-}
+
 .voucher-banner .single-banner p {
-	font-size: 14px;
-	color: #024430;
-	font-weight: 500;
-	margin-bottom: 5px;
-	text-transform: capitalize;
+    font-size: 9px;
+    color: #024430;
+    font-weight: 500;
+    margin-bottom: 5px;
+    text-transform: capitalize;
 }
+
 .voucher-banner .single-banner a {
-	color: #333;
-	margin-top: 22px;
-	display: block;
-	font-size: 12px;
-	font-weight:500;
-	display: inline-block;
-	text-transform:uppercase;
-	border-bottom:2px solid #333;
+    color: #333;
+    margin-top: 10px; /* Reduced margin top for the link */
+    display: block;
+    font-size: 12px;
+    font-weight: 500;
+    display: inline-block;
+    text-transform: uppercase;
+    border-bottom: 2px solid #333;
 }
-.voucher-banner .single-banner a:hover{
-	color:#024430;
-	border-color:#024430;
+
+.voucher-banner .single-banner a:hover {
+    color: #024430;
+    border-color: #024430;
 }
+
 /*======================================
    End Voucher Banner CSS
 ========================================*/

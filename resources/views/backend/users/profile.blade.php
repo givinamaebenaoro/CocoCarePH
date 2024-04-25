@@ -86,7 +86,6 @@
         </div>
    </div>
 </div>
-<!-- Visit 'codeastro' for more projects -->
 @endsection
 
 <style>

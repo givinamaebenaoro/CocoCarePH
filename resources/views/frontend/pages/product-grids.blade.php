@@ -287,7 +287,7 @@
                                             @endphp
                                             <h3><small><del class="text-muted">₱{{number_format($product->price,2)}}</del></small>    ₱{{number_format($after_discount,2)}}  </h3>
                                             <div class="quickview-peragraph">
-                                                <p>{!! html_entity_decode($product->summary) !!}</p>
+                                                <p>{!! ($product->summary) !!}</p>
                                             </div>
                                             @if($product->size)
                                                 <div class="size">

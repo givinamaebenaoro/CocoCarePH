@@ -16,7 +16,7 @@
                     <img class="first-slide" src="{{$banner->photo}}" alt="First slide">
                     <div class="carousel-caption d-none d-md-block text-left">
                         <h1 class="wow fadeInDown">{{$banner->title}}</h1>
-                        <p>{!! html_entity_decode($banner->description) !!}</p>
+                        <p>{!! ($banner->description) !!}</p>
                         <a class="btn btn-lg ws-btn wow fadeInUpBig" href="{{route('product-grids')}}" role="button">Shop Now<i class="far fa-arrow-alt-circle-right"></i></i></a>
                     </div>
                 </div>
@@ -34,6 +34,49 @@
 @endif
 
 <!--/ End Slider Area -->
+
+<!-- Start Voucher Banner  -->
+
+<section class="voucher-banner section">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-title">
+                    <h2>Grab New Vouchers</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @php
+            $voucher_lists = DB::table('vouchers')->where('status', 'active')->limit(10)->get();
+            @endphp
+            @if($voucher_lists->isNotEmpty())
+                <div class="col-12">
+                    <div class="owl-carousel popular-slider">
+                        @foreach($voucher_lists as $cat)
+                            <!-- Voucher Banner -->
+                            <div class="single-banner">
+                                @if($cat->photo)
+                                    <img src="{{$cat->photo}}" alt="{{$cat->photo}}">
+                                @else
+                                    <img src="https://via.placeholder.com/300x370" alt="#">
+                                @endif
+                                <div class="content">
+                                    <h3>{{$cat->title}}</h3>
+                                    <a href="{{route('product-grids')}}">Use Code Now</a>
+                                </div>
+                            </div>
+                            <!-- /End Voucher Banner -->
+                        @endforeach
+                    </div>
+                </div>
+            @endif
+        </div>
+    </div>
+</section>
+
+
+<!-- End Voucher Banner -->
 
 <!-- Start Small Banner  -->
 <section class="small-banner section">
@@ -68,45 +111,7 @@
 </section>
 <!-- End Small Banner -->
 
-<!-- Start Voucher Banner  -->
 
-<section class="voucher-banner section">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12">
-                <div class="section-title">
-                    <h2>Grab New Vouchers</h2>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            @php
-            $voucher_lists = DB::table('vouchers')->where('status', 'active')->limit(3)->get();
-            @endphp
-            @if($voucher_lists)
-                @foreach($voucher_lists as $cat)
-                    <!-- Voucher Banner -->
-                    <div class="col-12">
-                        <div class="single-banner">
-                            @if($cat->photo)
-                                <img src="{{$cat->photo}}" alt="{{$cat->photo}}">
-                            @else
-                                <img src="https://via.placeholder.com/300x370" alt="#">
-                            @endif
-                            <div class="content">
-                                <h3>{{$cat->title}}</h3>
-                                <a href="{{route('product-cat',$cat->slug)}}">Use Now</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /End Voucher Banner -->
-                @endforeach
-            @endif
-        </div>
-    </div>
-</section>
-
-<!-- End Voucher Banner -->
 
 <!-- Start Product Area -->
 <div class="product-area section">
@@ -494,7 +499,7 @@
                                         @endphp
                                         <h3><small><del class="text-muted">₱{{number_format($product->price,2)}}</del></small>    ₱{{number_format($after_discount,2)}}  </h3>
                                         <div class="quickview-peragraph">
-                                            <p>{!! html_entity_decode($product->summary) !!}</p>
+                                            <p>{!!($product->summary) !!}</p>
                                         </div>
                                         @if($product->size)
                                             <div class="size">

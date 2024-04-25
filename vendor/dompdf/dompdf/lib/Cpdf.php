@@ -4809,7 +4809,7 @@ EOT;
             if (isset($this->fonts[$cf]) && $this->fonts[$cf]['isUnicode']) {
                 $text = $this->utf8toUtf16BE($text, $bom);
             } else {
-                //$text = html_entity_decode($text, ENT_QUOTES);
+                //$text =  ($text, ENT_QUOTES);
                 $text = mb_convert_encoding($text, self::$targetEncoding, 'UTF-8');
             }
         } else if ($bom) {

@@ -216,9 +216,9 @@
 																<del>₱{{number_format($product->price,2)}}</del>
 															</div>
 															<h3 class="title"><a href="{{route('product-detail',$product->slug)}}">{{$product->title}}</a></h3>
-														{{-- <p>{!! html_entity_decode($product->summary) !!}</p> --}}
+														{{-- <p>{!!  ($product->summary) !!}</p> --}}
 														</div>
-														<p class="des pt-2">{!! html_entity_decode($product->summary) !!}</p>
+														<p class="des pt-2">{!!  ($product->summary) !!}</p>
 														<a href="javascript:void(0)" class="btn cart" data-id="{{$product->id}}">Buy Now!</a>
 													</div>
 												</div>
@@ -253,21 +253,19 @@
 								<div class="modal-body">
 									<div class="row no-gutters">
 										<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-											<!-- Product Slider -->
-												<div class="product-gallery">
-													<div class="quickview-slider-active">
-														@php
-															$photo=explode(',',$product->photo);
-														// dd($photo);
-														@endphp
-														@foreach($photo as $data)
-															<div class="single-slider">
-																<img src="{{$data}}" alt="{{$data}}">
-															</div>
-														@endforeach
-													</div>
-												</div>
-											<!-- End Product slider -->
+											@if (!empty($photo))
+<!-- Product Slider -->
+<div class="product-gallery">
+    <div class="quickview-slider-active">
+        @foreach($photo as $data)
+        <div class="single-slider">
+            <img src="{{$data}}" alt="{{$data}}">
+        </div>
+        @endforeach
+    </div>
+</div>
+<!-- End Product slider -->
+@endif
 										</div>
 										<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
 											<div class="quickview-content">
@@ -305,9 +303,9 @@
 												@php
 													$after_discount=($product->price-($product->price*$product->discount)/100);
 												@endphp
-												<h3><small><del class="text-muted">${{number_format($product->price,2)}}</del></small>    ₱{{number_format($after_discount,2)}}  </h3>
+												<h3><small><del class="text-muted">₱{{number_format($product->price,2)}}</del></small>    ₱{{number_format($after_discount,2)}}  </h3>
 												<div class="quickview-peragraph">
-													<p>{!! html_entity_decode($product->summary) !!}</p>
+													<p>{!!  ($product->summary) !!}</p>
 												</div>
 												@if($product->size)
 													<div class="size">
