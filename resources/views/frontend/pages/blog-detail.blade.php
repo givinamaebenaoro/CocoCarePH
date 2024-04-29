@@ -179,21 +179,6 @@
                             </ul>
                         </div>
                         <!--/ End Single Widget -->
-                        <!-- Single Widget -->
-                        <div class="single-widget newsletter">
-                            <h3 class="title">Newslatter</h3>
-                            <div class="letter-inner">
-                                <h4>Subscribe & get news <br> latest updates.</h4>
-                                <form action="{{route('subscribe')}}" method="POST">
-                                    @csrf
-                                    <div class="form-inner">
-                                        <input type="email" name="email" placeholder="Enter your email">
-                                        <button type="submit" class="btn mt-2">Submit</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <!--/ End Single Widget -->
                     </div>
                 </div>
             </div>
