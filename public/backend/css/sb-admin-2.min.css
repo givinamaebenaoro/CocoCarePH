@@ -11097,8 +11097,8 @@ a:focus {
 
 .bg-gradient-info {
     background-color: #36b9cc;
-    background-image: linear-gradient(180deg, #0C5051 10%, #94FD6F 100%);
-    background-size: cover
+    background-image: linear-gradient(180deg, #159947 10%, #5A944D 100%);
+    background-size: cover;
 }
 
 .bg-gradient-warning {
@@ -11700,7 +11700,10 @@ a:focus {
 
     .sidebar .nav-item .nav-link span {
         font-size: .85rem;
-        display: inline
+        display: inline;
+        font-weight: bold;
+        color: #F0F0F0;
+
     }
 
     .sidebar .nav-item .nav-link[data-toggle=collapse]::after {
