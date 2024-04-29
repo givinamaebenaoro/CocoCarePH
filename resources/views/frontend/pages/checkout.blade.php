@@ -74,6 +74,7 @@
                                         <div class="form-group">
                                             <label>Country<span>*</span></label>
                                             <select name="country" id="country" required>
+                                                <option value="PH">Philippines</option>
                                                 <option value="AF">Afghanistan</option>
                                                 <option value="AX">Åland Islands</option>
                                                 <option value="AL">Albania</option>
@@ -404,22 +405,6 @@
         <form-group>
             <input name="payment_method"  type="radio" value="cod" required> <label> Cash On Delivery</label><br>
             <!-- <input name="payment_method"  type="radio" value="paypal"> <label> PayPal</label><br> -->
-            <input name="payment_method"  type="radio" value="cardpay" required> <label> Card Payment</label><br>
-
-            <!-- Credit Card Details -->
-            <div id="creditCardDetails" style="display: none;">
-                <label for="cardNumber">Card Number:</label>
-                <input type="text" id="cardNumber" name="card_number" maxlength="16"><br>
-
-                <label for="cardName">Name on Card:</label>
-                <input type="text" id="cardName" name="card_name"><br>
-
-                <label for="expirationDate">Expiration Date:</label>
-                <input type="text" id="expirationDate" name="expiration_date" maxlength="5"><br>
-
-                <label for="cvv">CVV:</label>
-                <input type="text" id="cvv" name="cvv" maxlength="3"><br>
-            </div>
         </form-group>
     </div>
 </div>
@@ -428,9 +413,6 @@
                                 <!--/ End Order Widget -->
                                 <!-- Payment Method Widget -->
                                 <div class="single-widget payement">
-                                    <div class="content">
-                                        <img src="{{('backend/img/payment-method.png')}}" alt="#">
-                                    </div>
                                 </div>
                                 <!--/ End Payment Method Widget -->
                                 <!-- Button Widget -->
@@ -589,7 +571,7 @@
 				let subtotal = parseFloat( $('.order_subtotal').data('price') );
 				let coupon = parseFloat( $('.coupon_price').data('price') ) || 0;
 				// alert(coupon);
-				$('#order_total_price span').text('$'+(subtotal + cost-coupon).toFixed(2));
+				$('#order_total_price span').text('₱'+(subtotal + cost-coupon).toFixed(2));
 			});
 
 		});
@@ -609,3 +591,4 @@
 </script>
 
 @endpush
+
