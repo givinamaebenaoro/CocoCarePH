@@ -469,7 +469,6 @@
         </div>
     </section>
     <!-- deal section end -->
-    @include('frontend.layouts.newsletter')
 
     <!-- Modal -->
     @if ($product_lists)
