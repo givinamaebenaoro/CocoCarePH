@@ -1,8 +1,112 @@
 /*======================================
    Start Big Banner CSS
 ========================================*/
+/* Banner Sliding */
+        #Gslider .carousel-inner {
+            padding: 0;
+            justify-content: center;
+            flex-wrap: wrap;
+            width: 100%;
 
+        }
 
+        #Gslider .carousel-inner {
+            width: 100%;
+        }
+
+        #Gslider .carousel-inner img {
+            width: 100% !important;
+
+        }
+
+        #Gslider .carousel-inner .carousel-caption {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            padding-left: 50px;
+            width: 50%;
+            text-align: left;
+        }
+
+        #Gslider .carousel-inner .carousel-caption h1 {
+            font-size: 50px;
+            font-weight: 700;
+            text-transform: capitalize;
+            color: #333;
+            margin-bottom: 5px;
+
+        }
+
+        #Gslider .carousel-inner .carousel-caption p {
+            font-size: 20px;
+            color: #024430;
+            font-weight: 500;
+            margin-bottom: 10px;
+            text-transform: capitalize;
+        }
+
+        @media only screen and  (max-width: 549px) {
+            /* Adjust text size for smaller devices */
+            #Gslider .carousel-inner .carousel-caption h1 {
+                margin-top: auto;
+                font-size: 15px !important; /* Add !important for increased specificity */
+                margin-bottom: 3px !important;
+            }
+
+            #Gslider .carousel-inner .carousel-caption p {
+                font-size: 8px !important;
+                margin-bottom: 5px !important;
+                color: #024430 !important;
+                font-weight: 500 !important;
+                text-transform: capitalize !important;
+            }
+
+            #Gslider .carousel-inner .carousel-caption a {
+                font-size: 8px !important;
+                margin-top: 5px !important;
+            }
+        }
+
+/* Media Query for tablets */
+@media only screen and (max-width: 719px) {
+    /* Adjust text size for tablets */
+
+    #Gslider .carousel-inner .carousel-caption h1 {
+        font-size: 20px;
+        margin-bottom: 4px;
+    }
+
+    #Gslider .carousel-inner .carousel-caption p {
+        font-size: 9px;
+        margin-bottom: 7px;
+    }
+
+    #Gslider .carousel-inner .carousel-caption a {
+        font-size: 8px;
+        margin-top: 7px;
+    }
+}
+
+/* Media Query for tablets */
+@media only screen and (min-width: 720px) and (max-width: 1024px) {
+    /* Adjust text size for tablets */
+
+    #Gslider .carousel-inner .carousel-caption h1 {
+        font-size: 30px;
+        margin-bottom: 4px;
+    }
+
+    #Gslider .carousel-inner .carousel-caption p {
+        font-size: 12px;
+        margin-bottom: 7px;
+    }
+
+    #Gslider .carousel-inner .carousel-caption a {
+        font-size: 10px;
+        margin-top: 7px;
+    }
+}
 /*======================================
    End Big Banner CSS
 ========================================*/
@@ -1585,9 +1689,6 @@
 	border-radius: 0;
 	font-size: 15px;
 	text-align: center;
-	-webkit-transition:all 0.4s ease;
-	-moz-transition:all 0.4s ease;
-	transition:all 0.4s ease;
 	box-shadow: 0px 0px 10px #3333331c;
 }
 .voucher-banner .owl-carousel .owl-nav div:hover{
@@ -1610,9 +1711,6 @@
 .voucher-banner .single-banner img {
     height: 150px; /* Decreased height to make it smaller */
     width: 100%;
-    -webkit-transition: all 0.4s ease;
-    -moz-transition: all 0.4s ease;
-    transition: all 0.4s ease;
     margin-bottom: 10px; /* Added gap at the bottom of the image */
 }
 

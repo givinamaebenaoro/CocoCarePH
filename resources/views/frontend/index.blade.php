@@ -1,42 +1,40 @@
 @extends('frontend.layouts.master')
 @section('title', 'CocoCarePH')
 @section('main-content')
-    <!-- Slider Area -->
+ <!-- Slider Area -->
 
-    <section class="big-banner section">
-        <div class="container-fluid">
-            <div class="row">
-                @php
-                $banners = DB::table('banners')->where('status', 'active')->limit(10)->get();
-                @endphp
-                @if($banners->isNotEmpty())
-                    <div class="col-12">
-                        <div class="slidershow">
-                            @foreach($banners as $banner)
-                                <!-- Voucher Banner -->
-                                <div class="single-banner">
-                                    @if($banner->photo) <!-- Changed $banners to $banner here -->
-                                        <img src="{{$banner->photo}}" alt="{{$banner->photo}}"> <!-- Changed $banners to $banner here -->
-                                    @else
-                                        <img src="https://via.placeholder.com/300x370" alt="#">
-                                    @endif
-                                    <div class="content">
-                                        <h3>{{$banner->title}}</h3> <!-- Changed $banners to $banner here -->
-                                        <p>{!! ($banner->description) !!}</p> <!-- Changed $banners to $banner here -->
-                                        <a class="btn btn-lg ws-btn wow fadeInUpBig" href="{{route('product-grids')}}" role="button">Shop Now<i class="far fa-arrow-alt-circle-right"></i></i></a>
-                                    </div>
-                                </div>
-                                <!-- /End Voucher Banner -->
-                            @endforeach
-                        </div>
+@if(count($banners)>0)
+    <section id="Gslider" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            @foreach($banners as $key=>$banner)
+        <li data-target="#Gslider" data-slide-to="{{$key}}" class="{{(($key==0)? 'active' : '')}}"></li>
+            @endforeach
+
+        </ol>
+        <div class="carousel-inner" role="listbox">
+                @foreach($banners as $key=>$banner)
+                <div class="carousel-item {{(($key==0)? 'active' : '')}}">
+                    <img class="first-slide" src="{{$banner->photo}}" alt="First slide">
+                    <div class="carousel-caption">
+                        <h1 class="wow fadeInDown">{{$banner->title}}</h1>
+                        <p>{!! ($banner->description) !!}</p>
+                        <a class="btn btn-lg ws-btn wow fadeInUpBig" href="{{route('product-grids')}}" role="button">Shop Now<i class="far fa-arrow-alt-circle-right"></i></i></a>
                     </div>
-                @endif
-            </div>
+                </div>
+            @endforeach
         </div>
+        <a class="carousel-control-prev" href="#Gslider" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#Gslider" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+        </a>
     </section>
+@endif
 
-
-    <!--/ End Slider Area -->
+<!--/ End Slider Area -->
 
     <!-- Start Voucher Banner  -->
 
@@ -469,7 +467,7 @@
         </div>
     </section>
     <!-- deal section end -->
-    @include('frontend.layouts.newsletter')
+
 
     <!-- Modal -->
     @if ($product_lists)
@@ -487,7 +485,8 @@
                                     <!-- Product Slider -->
                                     <div class="product-gallery">
                                         <div class="quickview-slider-active">
-                                            @php
+                                            <div>
+                                                @php
                                                 $photo = explode(',', $product->photo);
                                                 // dd($photo);
                                             @endphp
@@ -496,6 +495,8 @@
                                                     <img src="{{ $data }}" alt="{{ $data }}">
                                                 </div>
                                             @endforeach
+                                            </div>
+
                                         </div>
                                     </div>
                                     <!-- End Product slider -->
@@ -666,42 +667,7 @@
 
 @push('styles')
     <style>
-        /* Banner Sliding */
-        #Gslider .carousel-inner {
-            background: #000000;
-            color: black;
-        }
 
-        #Gslider .carousel-inner {
-            height: 550px;
-        }
-
-        #Gslider .carousel-inner img {
-            width: 100% !important;
-            opacity: .8;
-        }
-
-        #Gslider .carousel-inner .carousel-caption {
-            bottom: 60%;
-        }
-
-        #Gslider .carousel-inner .carousel-caption h1 {
-            font-size: calc(2vw + 1rem);
-            font-weight: bold;
-            line-height: 100%;
-            /* color: #F7941D; */
-            color: #1e1e1e;
-        }
-
-        #Gslider .carousel-inner .carousel-caption p {
-            font-size: calc(0.8vw + 0.8rem);
-            color: black;
-            margin: 1.6vw 0;
-        }
-
-        #Gslider .carousel-indicators {
-            bottom: 70px;
-        }
     </style>
 @endpush
 
@@ -782,7 +748,7 @@
         }
     </script>
     <script>
-        let countDate = new Date('April 30, 2024 00:00:00').getTime();
+        let countDate = new Date('May 30, 2024 00:00:00').getTime();
 
         function countDown() {
             let now = new Date().getTime();
@@ -808,4 +774,5 @@
             countDown();
         }, 1000);
     </script>
+
 @endpush
