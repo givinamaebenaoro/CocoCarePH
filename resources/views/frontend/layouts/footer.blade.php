@@ -72,16 +72,9 @@
 			<div class="container">
 				<div class="inner">
 					<div class="row">
-						<div class="col-lg-6 col-12">
-							<div class="left">
+							<div class="center">
 								<p>© {{date('Y')}} Developed By CocoCarePH | Technological University of the Philippines - Manila</p>
 							</div>
-						</div>
-						<div class="col-lg-6 col-12">
-							<div class="right">
-								<img src="{{asset('backend/img/payments.png')}}" alt="#">
-							</div>
-						</div>
 					</div>
 				</div>
 			</div>
