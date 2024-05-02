@@ -74,6 +74,10 @@ Route::post('/blog/filter','FrontendController@blogFilter')->name('blog.filter')
 Route::get('blog-cat/{slug}','FrontendController@blogByCategory')->name('blog.category');
 Route::get('blog-tag/{slug}','FrontendController@blogByTag')->name('blog.tag');
 
+// Blog
+Route::get('/eco-tracker','FrontendController@ecotracker')->name('eco-tracker');
+
+
 // NewsLetter
 Route::post('/subscribe','FrontendController@subscribe')->name('subscribe');
 

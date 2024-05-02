@@ -12,11 +12,12 @@
 
         #Gslider .carousel-inner {
             width: 100%;
+
         }
 
         #Gslider .carousel-inner img {
             width: 100% !important;
-
+            height: 550px;
         }
 
         #Gslider .carousel-inner .carousel-caption {
@@ -24,7 +25,7 @@
             left: 0;
             top: 50%;
             transform: translateY(-50%);
-            padding-left: 50px;
+            padding-left: 140px;
             width: 50%;
             text-align: left;
         }
@@ -47,6 +48,7 @@
         }
 
         @media only screen and  (max-width: 549px) {
+
             /* Adjust text size for smaller devices */
             #Gslider .carousel-inner .carousel-caption h1 {
                 margin-top: auto;
@@ -71,7 +73,19 @@
 /* Media Query for tablets */
 @media only screen and (max-width: 719px) {
     /* Adjust text size for tablets */
-
+    #Gslider .carousel-inner .carousel-caption {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        padding-left: 100px;
+        width: 50%;
+        text-align: left;
+    }
+    #Gslider .carousel-inner img {
+            width: 100% !important;
+            height: 350px;
+        }
     #Gslider .carousel-inner .carousel-caption h1 {
         font-size: 20px;
         margin-bottom: 4px;
@@ -91,7 +105,10 @@
 /* Media Query for tablets */
 @media only screen and (min-width: 720px) and (max-width: 1024px) {
     /* Adjust text size for tablets */
-
+    #Gslider .carousel-inner img {
+        width: 100% !important;
+        height: 350px;
+    }
     #Gslider .carousel-inner .carousel-caption h1 {
         font-size: 30px;
         margin-bottom: 4px;
