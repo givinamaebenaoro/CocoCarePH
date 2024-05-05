@@ -246,7 +246,7 @@
                                                 <option value="PG">Papua New Guinea</option>
                                                 <option value="PY">Paraguay</option>
                                                 <option value="PE">Peru</option>
-                                                <option value="PH">Philippines</option>
+                                                <option value="PH" selected>Philippines</option>
                                                 <option value="PN">Pitcairn Islands</option>
                                                 <option value="PL">Poland</option>
                                                 <option value="PT">Portugal</option>
@@ -306,7 +306,7 @@
                                                 <option value="UA">Ukraine</option>
                                                 <option value="AE">United Arab Emirates</option>
                                                 <option value="Uk">United Kingdom</option>
-                                                <option value="US" selected>United States</option>
+                                                <option value="US">United States</option>
                                                 <option value="UY">Uruguay</option>
                                                 <option value="UM">U.S. Minor Outlying Islands</option>
                                                 <option value="VI">U.S. Virgin Islands</option>
@@ -325,8 +325,8 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-12">
                                         <div class="form-group">
-                                            <label>Address Line 1<span>*</span></label>
-                                            <input type="text" name="address1" placeholder="" value="{{old('address1')}}">
+                                            <label>Complete Address<span>*</span></label>
+                                            <input type="text" name="address1" placeholder="St., Bldg. No., Entrance, Floor, Apt.,City, Prov., Country" value="{{old('address1')}}">
                                             @error('address1')
                                                 <span class='text-danger'>{{$message}}</span>
                                             @enderror
@@ -334,7 +334,7 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-12">
                                         <div class="form-group">
-                                            <label>Address Line 2</label>
+                                            <label>Additional Address Information</label>
                                             <input type="text" name="address2" placeholder="" value="{{old('address2')}}">
                                             @error('address2')
                                                 <span class='text-danger'>{{$message}}</span>
@@ -343,7 +343,7 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-12">
                                         <div class="form-group">
-                                            <label>Postal Code</label>
+                                            <label>Zip Code</label>
                                             <input type="text" name="post_code" placeholder="" value="{{old('post_code')}}">
                                             @error('post_code')
                                                 <span class='text-danger'>{{$message}}</span>
@@ -389,7 +389,7 @@
                                             @if(session('coupon'))
                                                 <li class="last"  id="order_total_price">Total<span>₱{{number_format($total_amount,2)}}</span></li>
                                             @else
-                                                <li class="last"  id="order_total_price">Total<span>{{number_format($total_amount,2)}}</span></li>
+                                                <li class="last"  id="order_total_price">Total<span>₱{{number_format($total_amount,2)}}</span></li>
                                             @endif
                                         </ul>
                                     </div>
@@ -404,22 +404,6 @@
         <form-group>
             <input name="payment_method"  type="radio" value="cod" required> <label> Cash On Delivery</label><br>
             <!-- <input name="payment_method"  type="radio" value="paypal"> <label> PayPal</label><br> -->
-            <input name="payment_method"  type="radio" value="cardpay" required> <label> Card Payment</label><br>
-
-            <!-- Credit Card Details -->
-            <div id="creditCardDetails" style="display: none;">
-                <label for="cardNumber">Card Number:</label>
-                <input type="text" id="cardNumber" name="card_number" maxlength="16"><br>
-
-                <label for="cardName">Name on Card:</label>
-                <input type="text" id="cardName" name="card_name"><br>
-
-                <label for="expirationDate">Expiration Date:</label>
-                <input type="text" id="expirationDate" name="expiration_date" maxlength="5"><br>
-
-                <label for="cvv">CVV:</label>
-                <input type="text" id="cvv" name="cvv" maxlength="3"><br>
-            </div>
         </form-group>
     </div>
 </div>
@@ -428,9 +412,6 @@
                                 <!--/ End Order Widget -->
                                 <!-- Payment Method Widget -->
                                 <div class="single-widget payement">
-                                    <div class="content">
-                                        <img src="{{('backend/img/payment-method.png')}}" alt="#">
-                                    </div>
                                 </div>
                                 <!--/ End Payment Method Widget -->
                                 <!-- Button Widget -->
@@ -495,28 +476,6 @@
     </section>
     <!-- End Shop Services -->
 
-    <!-- Start Shop Newsletter  -->
-    <section class="shop-newsletter section">
-        <div class="container">
-            <div class="inner-top">
-                <div class="row">
-                    <div class="col-lg-8 offset-lg-2 col-12">
-                        <!-- Start Newsletter Inner -->
-                        <div class="inner">
-                            <h4>Newsletter</h4>
-                            <p> Subscribe to our newsletter and get <span>10%</span> off your first purchase</p>
-                            <form action="mail/mail.php" method="get" target="_blank" class="newsletter-inner">
-                                <input name="EMAIL" placeholder="Your email address" required="" type="email">
-                                <button class="btn">Subscribe</button>
-                            </form>
-                        </div>
-                        <!-- End Newsletter Inner -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- End Shop Newsletter -->
 @endsection
 @push('styles')
 	<style>
@@ -589,7 +548,8 @@
 				let subtotal = parseFloat( $('.order_subtotal').data('price') );
 				let coupon = parseFloat( $('.coupon_price').data('price') ) || 0;
 				// alert(coupon);
-				$('#order_total_price span').text('$'+(subtotal + cost-coupon).toFixed(2));
+				$('#order_total_price span').text('₱'+(subtotal + cost-coupon).toFixed(2));
+				$('#order_total_price span').text('₱'+(subtotal + cost-coupon).toFixed(2));
 			});
 
 		});

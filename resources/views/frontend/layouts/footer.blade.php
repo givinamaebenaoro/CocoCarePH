@@ -25,7 +25,7 @@
 							<h4>Information</h4>
 							<ul>
 								<li><a href="{{route('about-us')}}">About Us</a></li>
-								<li><a href="#">Faq</a></li>
+								<li><a href="#">FAQs</a></li>
 								<li><a href="#">Terms & Conditions</a></li>
 								<li><a href="{{route('contact')}}">Contact Us</a></li>
 								<li><a href="#">Help</a></li>
@@ -59,10 +59,6 @@
 									<li>@foreach($settings as $data) {{$data->phone}} @endforeach</li>
 								</ul>
 							</div>
-							<!-- End Single Widget -->
-							<div class="sharethis-inline-follow-buttons"></div>
-						</div>
-						<!-- End Single Widget -->
 					</div>
 				</div>
 			</div>
@@ -72,16 +68,9 @@
 			<div class="container">
 				<div class="inner">
 					<div class="row">
-						<div class="col-lg-6 col-12">
-							<div class="left">
+							<div class="center">
 								<p>© {{date('Y')}} Developed By CocoCarePH | Technological University of the Philippines - Manila</p>
 							</div>
-						</div>
-						<div class="col-lg-6 col-12">
-							<div class="right">
-								<img src="{{asset('backend/img/payments.png')}}" alt="#">
-							</div>
-						</div>
 					</div>
 				</div>
 			</div>
