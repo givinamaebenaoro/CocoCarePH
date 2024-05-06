@@ -329,7 +329,7 @@
                                 <div class="col-lg-6 col-md-6 col-12 no-padding">
                                     <div class="content">
                                         <h4 class="title"><a href="{{route('product-detail',$product->slug)}}">{{$product->title}}</a></h4>
-                                        <p class="price with-discount">{{number_format($product->discount,2)}}% OFF</p>
+                                        <p class="price with-discount">{{ number_format(sprintf('%0.0f', $product->discount), 0) }}% OFF</p>
                                     </div>
                                 </div>
                                 </div>
@@ -725,7 +725,7 @@
         }
     </script>
 <script>
-    let countDate = new Date('April 30, 2024 00:00:00').getTime();
+    let countDate = new Date('June 30, 2024 00:00:00').getTime();
 
     function countDown() {
       let now = new Date().getTime();
