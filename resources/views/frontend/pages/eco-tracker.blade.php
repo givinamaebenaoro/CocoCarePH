@@ -1,174 +1,223 @@
 @extends('frontend.layouts.master')
-@section('title','Contact Us')
+@section('title','Eco-Tracker')
 @section('main-content')
-	<!-- Breadcrumbs -->
-	<div class="breadcrumbs">
-		<div class="container">
-			<div class="row">
-				<div class="col-12">
-					<div class="bread-inner">
-						<ul class="bread-list">
-							<li><a href="{{route('home')}}">Home<i class="ti-arrow-right"></i></a></li>
-							<li class="active"><a href="javascript:void(0);">Contact</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- End Breadcrumbs -->
 
-	<!-- Start Contact -->
-	<section id="contact-us" class="contact-us section">
-		<div class="container">
-				<div class="contact-head">
-					<div class="row">
-						<div class="col-lg-8 col-12">
-							<div class="form-main">
-								<div class="title">
-									@php
-										$settings=DB::table('settings')->get();
-									@endphp
-									<h4>Get in touch</h4>
-									<h3>Write us a message @auth @else<span style="font-size:12px;" class="text-danger">[You need to login first]</span>@endauth</h3>
-								</div>
-								<form class="form-contact form contact_form" method="post" action="{{route('contact.store')}}" id="contactForm" novalidate="novalidate">
-									@csrf
-									<div class="row">
-										<div class="col-lg-6 col-12">
-											<div class="form-group">
-												<label>Your Name<span>*</span></label>
-												<input name="name" id="name" type="text" placeholder="Enter your name">
-											</div>
-										</div>
-										<div class="col-lg-6 col-12">
-											<div class="form-group">
-												<label>Your Subjects<span>*</span></label>
-												<input name="subject" type="text" id="subject" placeholder="Enter Subject">
-											</div>
-										</div>
-										<div class="col-lg-6 col-12">
-											<div class="form-group">
-												<label>Your Email<span>*</span></label>
-												<input name="email" type="email" id="email" placeholder="Enter email address">
-											</div>
-										</div>
-										<div class="col-lg-6 col-12">
-											<div class="form-group">
-												<label>Your Phone<span>*</span></label>
-												<input id="phone" name="phone" type="number" placeholder="Enter your phone">
-											</div>
-										</div>
-										<div class="col-12">
-											<div class="form-group message">
-												<label>your message<span>*</span></label>
-												<textarea name="message" id="message" cols="30" rows="9" placeholder="Enter Message"></textarea>
-											</div>
-										</div>
-										<div class="col-12">
-											<div class="form-group button">
-												<button type="submit" class="btn ">Send Message</button>
-											</div>
-										</div>
-									</div>
-								</form>
+    <!-- Breadcrumbs -->
+    <div class="breadcrumbs">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="bread-inner">
+                        <ul class="bread-list">
+                            <li><a href="{{route('home')}}">Home<i class="ti-arrow-right"></i></a></li>
+                            <li class="active"><a href="javascript:void(0)">Eco-Tracker</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Breadcrumbs -->
+
+    <!-- Start Eco-Tracker -->
+    <section class="shop checkout section">
+        <div class="container">
+            <form class="form" method="POST" action="{{ route('cart.order') }}">
+                @csrf
+                <div class="row">
+                    <div class="col-lg-8 col-12">
+                        <div class="checkout-form">
+                            <div class="logo">
+								<a href="index.html"><img src="{{asset('backend/img/slider2.png')}}" alt="#"></a>
 							</div>
-						</div>
-						<div class="col-lg-4 col-12">
-							<div class="single-head">
-								<div class="single-info">
-									<i class="fa fa-phone"></i>
-									<h4 class="title">Call us Now:</h4>
-									<ul>
-										<li>@foreach($settings as $data) {{$data->phone}} @endforeach</li>
-									</ul>
-								</div>
-								<div class="single-info">
-									<i class="fa fa-envelope-open"></i>
-									<h4 class="title">Email:</h4>
-									<ul>
-										<li><a href="mailto:info@yourwebsite.com">@foreach($settings as $data) {{$data->email}} @endforeach</a></li>
-									</ul>
-								</div>
-								<div class="single-info">
-									<i class="fa fa-location-arrow"></i>
-									<h4 class="title">Our Address:</h4>
-									<ul>
-										<li>@foreach($settings as $data) {{$data->address}} @endforeach</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-	</section>
-	<!--/ End Contact -->
+                            <h1>Complete Your Daily Task</h1>
+                            <p>Just a few seconds to complete this!</p>
+                            <!-- Form -->
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="checkbox-label">
+                                    <input name="task" type="checkbox" value="task1" required>
+                                    <label>Use water wisely in the morning: Take shorter showers and turn off the faucet while brushing your teeth.</label><br>
+                                    <input name="task" type="checkbox" value="task2" required>
+                                    <label> Use alternative transportation methods: Take public transportation, carpool, or bike to work or school.</label><br>
+                                    <input name="task" type="checkbox" value="task3" required>
+                                    <label> Use energy-efficient appliances and lights at work or school: Turn off electronics when not in use.</label><br>
+                                    <input name="task" type="checkbox" value="task4" required>
+                                    <label> Use reusable containers and utensils for meals: Opt for locally sourced or plant-based food options.</label><br>
+                                    <input name="task" type="checkbox" value="task5" required>
+                                    <label> Use breaks to participate in community clean-ups: Help keep public spaces litter-free.</label><br>
+                                    <input name="task" type="checkbox" value="task6" required>
+                                    <label> Use separate bins for recycling and composting at home: Reduce waste and promote recycling.</label><br>
+                                    <input name="task" type="checkbox" value="task7" required>
+                                    <label> Use your evening to educate yourself and others: Watch documentaries or read articles on environmental issues.</label><br>
+                                    <input name="task" type="checkbox" value="task8" required>
+                                    <label> Use energy-saving habits before bed: Turn off lights, unplug devices, and adjust the thermostat for efficiency.</label><br>
+                                    <input name="task" type="checkbox" value="task9" required>
+                                    <label> Use reusable shopping bags and avoid single-use plastics: Bring your own bags when shopping to reduce plastic waste.</label><br>
+                                    <input name="task" type="checkbox" value="task10" required>
+                                    <label> Use water-saving techniques in the garden: Install drip irrigation systems and collect rainwater for watering plants.</label><br>
+                                </div>
+                                </div>
+                            </div>
+                            <!--/ End Form -->
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+    <!--/ End Checkout -->
 
-	<!-- Map Section -->
-	<div class="map-section">
-		<div id="myMap">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d61820.565746170905!2d120.95390732084617!3d14.439529772969403!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397ce0835972b6f%3A0xff33295d281774b!2sLas%20Pi%C3%B1as%2C%20Metro%20Manila!5e0!3m2!1sen!2sph!4v1713405410787!5m2!1sen!2sph" width="100%" height="100%" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-		</div>
-	</div>
-	<!--/ End Map Section -->
+    <!-- Start Shop Services Area  -->
+    <section class="shop-services section home">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-12">
+                    <!-- Start Single Service -->
+                    <div class="single-service">
+                        <i class="ti-rocket"></i>
+                        <h4>Free shiping</h4>
+                        <p>Orders over ₱100</p>
+                    </div>
+                    <!-- End Single Service -->
+                </div>
+                <div class="col-lg-3 col-md-6 col-12">
+                    <!-- Start Single Service -->
+                    <div class="single-service">
+                        <i class="ti-reload"></i>
+                        <h4>Free Return</h4>
+                        <p>Within 30 days returns</p>
+                    </div>
+                    <!-- End Single Service -->
+                </div>
+                <div class="col-lg-3 col-md-6 col-12">
+                    <!-- Start Single Service -->
+                    <div class="single-service">
+                        <i class="ti-lock"></i>
+                        <h4>Sucure Payment</h4>
+                        <p>100% secure payment</p>
+                    </div>
+                    <!-- End Single Service -->
+                </div>
+                <div class="col-lg-3 col-md-6 col-12">
+                    <!-- Start Single Service -->
+                    <div class="single-service">
+                        <i class="ti-tag"></i>
+                        <h4>Best Piece</h4>
+                        <p>Guaranteed price</p>
+                    </div>
+                    <!-- End Single Service -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Shop Services -->
 
-
-	<!--================Contact Success  =================-->
-	<div class="modal fade" id="success" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-		  <div class="modal-content">
-			<div class="modal-header">
-				<h2 class="text-success">Thank you!</h2>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<div class="modal-body">
-				<p class="text-success">Your message is successfully sent...</p>
-			</div>
-		  </div>
-		</div>
-	</div>
-
-	<!-- Modals error -->
-	<div class="modal fade" id="error" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-		  <div class="modal-content">
-			<div class="modal-header">
-				<h2 class="text-warning">Sorry!</h2>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<div class="modal-body">
-				<p class="text-warning">Something went wrong.</p>
-			</div>
-		  </div>
-		</div>
-	</div>
 @endsection
-
 @push('styles')
 <style>
-	.modal-dialog .modal-content .modal-header{
-		position:initial;
-		padding: 10px 20px;
-		border-bottom: 1px solid #e9ecef;
-	}
-	.modal-dialog .modal-content .modal-body{
-		height:100px;
-		padding:10px 20px;
-	}
-	.modal-dialog .modal-content {
-		width: 50%;
-		border-radius: 0;
-		margin: auto;
-	}
+    .checkbox-label {
+        margin-bottom: 10px; /* Add spacing between checkboxes */
+    }
+
+    .checkbox-label input[type="checkbox"] {
+        vertical-align: middle; /* Align checkboxes vertically */
+    }
+
+    .checkbox-label label {
+        vertical-align: middle; /* Align labels vertically */
+        margin-left: 5px; /* Add spacing between checkbox and label */
+        display: inline;
+    }
 </style>
+	<style>
+		li.shipping{
+			display: inline-flex;
+			width: 100%;
+			font-size: 14px;
+		}
+		li.shipping .input-group-icon {
+			width: 100%;
+			margin-left: 10px;
+		}
+		.input-group-icon .icon {
+			position: absolute;
+			left: 20px;
+			top: 0;
+			line-height: 40px;
+			z-index: 3;
+		}
+		.form-select {
+			height: 30px;
+			width: 100%;
+		}
+		.form-select .nice-select {
+			border: none;
+			border-radius: 0px;
+			height: 40px;
+			background: #f6f6f6 !important;
+			padding-left: 45px;
+			padding-right: 40px;
+			width: 100%;
+		}
+		.list li{
+			margin-bottom:0 !important;
+		}
+		.list li:hover{
+			background:#F7941D !important;
+			color:white !important;
+		}
+		.form-select .nice-select::after {
+			top: 14px;
+		}
+	</style>
 @endpush
 @push('scripts')
-<script src="{{ asset('frontend/js/jquery.form.js') }}"></script>
-<script src="{{ asset('frontend/js/jquery.validate.min.js') }}"></script>
-<script src="{{ asset('frontend/js/contact.js') }}"></script>
+	<script src="{{asset('frontend/js/nice-select/js/jquery.nice-select.min.js')}}"></script>
+	<script src="{{ asset('frontend/js/select2/js/select2.min.js') }}"></script>
+	<script>
+		$(document).ready(function() { $("select.select2").select2(); });
+  		$('select.nice-select').niceSelect();
+	</script>
+	<script>
+		function showMe(box){
+			var checkbox=document.getElementById('shipping').style.display;
+			// alert(checkbox);
+			var vis= 'none';
+			if(checkbox=="none"){
+				vis='block';
+			}
+			if(checkbox=="block"){
+				vis="none";
+			}
+			document.getElementById(box).style.display=vis;
+		}
+	</script>
+	<script>
+		$(document).ready(function(){
+			$('.shipping select[name=shipping]').change(function(){
+				let cost = parseFloat( $(this).find('option:selected').data('price') ) || 0;
+				let subtotal = parseFloat( $('.order_subtotal').data('price') );
+				let coupon = parseFloat( $('.coupon_price').data('price') ) || 0;
+				// alert(coupon);
+				$('#order_total_price span').text('₱'+(subtotal + cost-coupon).toFixed(2));
+				$('#order_total_price span').text('₱'+(subtotal + cost-coupon).toFixed(2));
+			});
+
+		});
+
+	</script>
+
+<script>
+    $(document).ready(function() {
+        $('input[name="payment_method"]').change(function() {
+            if ($(this).val() === 'cardpay') {
+                $('#creditCardDetails').show();
+            } else {
+                $('#creditCardDetails').hide();
+            }
+        });
+    });
+</script>
+
 @endpush

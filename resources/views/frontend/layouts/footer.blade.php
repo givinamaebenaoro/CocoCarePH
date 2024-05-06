@@ -59,10 +59,6 @@
 									<li>@foreach($settings as $data) {{$data->phone}} @endforeach</li>
 								</ul>
 							</div>
-							<!-- End Single Widget -->
-							<div class="sharethis-inline-follow-buttons"></div>
-						</div>
-						<!-- End Single Widget -->
 					</div>
 				</div>
 			</div>
