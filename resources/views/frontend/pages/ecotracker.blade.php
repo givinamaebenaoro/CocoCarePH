@@ -27,7 +27,7 @@
             <div class="row">
                 <div class="col-lg-8 col-12">
                     <div class="tracker-form">
-                        <!-- Your existing HTML code -->
+                        <!--HTML code -->
                         <!-- Form -->
                         <div class="row">
                             <div class="col-sm-12">
@@ -36,47 +36,70 @@
 										<div class="col-lg-6 col-12">
 											<div class="form-group">
 												<label>Name<span>*</span></label>
-												<input name="name" id="name" type="text" placeholder="Enter your name">
+												<input name="name" id="name" type="text">
 											</div>
 										</div>
 										<div class="col-lg-6 col-12">
 											<div class="form-group">
 												<label>Task Name<span>*</span></label>
-												<input name="task_name" type="text" id="tname" placeholder="Enter the Task Name: Ex. Day 1">
+												<input name="task_name" type="text" id="tname" placeholder="Ex. Day 1">
 											</div>
 										</div>
 										<div class="col-lg-6 col-12">
 											<div class="form-group">
 												<label>Task Description <span>*</span></label>
-												<input name="task_description" type="task_description" id="tdescription" placeholder="Enter the Task Name: Ex. Learning Recycling 101">
+												<input name="task_description" type="task_description" id="tdescription" placeholder="Ex. Learning Recycling 101">
 											</div>
 										</div>
 										<div class="col-lg-6 col-12">
 											<div class="form-group">
 												<label>Date<span>*</span></label>
-												<input id="data" name="date" type="date" placeholder="Enter the date today!">
+												<input id="data" name="date" type="date" placeholder="Date">
 											</div>
 										</div>
-                                    <input name="task[]" type="checkbox" value="task1">
-                                    <label>Use water wisely in the morning: Take shorter showers and turn off the faucet while brushing your teeth.</label><br>
-                                    <input name="task[]" type="checkbox" value="task2">
-                                    <label> Use alternative transportation methods: Take public transportation, carpool, or bike to work or school.</label><br>
-                                    <input name="task[]" type="checkbox" value="task3">
-                                    <label> Use energy-efficient appliances and lights at work or school: Turn off electronics when not in use.</label><br>
-                                    <input name="task[]" type="checkbox" value="task4">
-                                    <label> Use reusable containers and utensils for meals: Opt for locally sourced or plant-based food options.</label><br>
-                                    <input name="task[]" type="checkbox" value="task5">
-                                    <label> Use breaks to participate in community clean-ups: Help keep public spaces litter-free.</label><br>
-                                    <input name="task[]" type="checkbox" value="task6">
-                                    <label> Use separate bins for recycling and composting at home: Reduce waste and promote recycling.</label><br>
-                                    <input name="task[]" type="checkbox" value="task7">
-                                    <label> Use your evening to educate yourself and others: Watch documentaries or read articles on environmental issues.</label><br>
-                                    <input name="task[]" type="checkbox" value="task8">
-                                    <label> Use energy-saving habits before bed: Turn off lights, unplug devices, and adjust the thermostat for efficiency.</label><br>
-                                    <input name="task[]" type="checkbox" value="task9">
-                                    <label> Use reusable shopping bags and avoid single-use plastics: Bring your own bags when shopping to reduce plastic waste.</label><br>
-                                    <input name="task[]" type="checkbox" value="task10">
-                                    <label> Use water-saving techniques in the garden: Install drip irrigation systems and collect rainwater for watering plants.</label><br>
+
+                                        <div>
+                                            <label>
+                                                <input name="task[]" type="checkbox" value="task1">
+                                            Use water wisely in the morning: Take shorter showers and turn off the faucet while brushing your teeth. 
+                                            </label>
+                                            <label>
+                                                <input name="task[]" type="checkbox" value="task2">
+                                            Use alternative transportation methods: Take public transportation, carpool, or bike to work or school.
+                                            </label>
+                                            <label>
+                                                <input name="task[]" type="checkbox" value="task3">
+                                            Use energy-efficient appliances and lights at work or school: Turn off electronics when not in use.
+                                            </label>
+                                            <label>
+                                                <input name="task[]" type="checkbox" value="task4">
+                                            Use reusable containers and utensils for meals: Opt for locally sourced or plant-based food options.
+                                            </label>
+                                            <label>
+                                                <input name="task[]" type="checkbox" value="task5">
+                                            Use breaks to participate in community clean-ups: Help keep public spaces litter-free.
+                                            </label>
+                                            <label>
+                                                <input name="task[]" type="checkbox" value="task6">
+                                            Use separate bins for recycling and composting at home: Reduce waste and promote recycling.
+                                            </label>
+                                            <label>
+                                                <input name="task[]" type="checkbox" value="task7">
+                                            Use your evening to educate yourself and others: Watch documentaries or read articles on environmental issues.
+                                            </label> 
+                                            <label>
+                                                <input name="task[]" type="checkbox" value="task8">                            
+                                            Use energy-saving habits before bed: Turn off lights, unplug devices, and adjust the thermostat for efficiency.
+                                            </label>
+                                            <label>
+                                                <input name="task[]" type="checkbox" value="task9">
+                                             Use reusable shopping bags and avoid single-use plastics: Bring your own bags when shopping to reduce  plastic waste.                                                                     
+                                            </label>                                   
+                                            <label>
+                                                <input name="task[]" type="checkbox" value="task10">                                   
+                                            Use water-saving techniques in the garden: Install drip irrigation systems and collect rainwater for    watering plants.                              
+                                            </label>                                                                         
+                                        </div>
                                 </div>
                             </div>
                         </div>
@@ -108,7 +131,7 @@
                     <!-- Start Single Service -->
                     <div class="single-service">
                         <i class="ti-rocket"></i>
-                        <h4>Free shiping</h4>
+                        <h4>Free shipping</h4>
                         <p>Orders over ₱100</p>
                     </div>
                     <!-- End Single Service -->
@@ -118,7 +141,7 @@
                     <div class="single-service">
                         <i class="ti-reload"></i>
                         <h4>Free Return</h4>
-                        <p>Within 30 days returns</p>
+                        <p>Within 30 days Return</p>
                     </div>
                     <!-- End Single Service -->
                 </div>
@@ -126,8 +149,8 @@
                     <!-- Start Single Service -->
                     <div class="single-service">
                         <i class="ti-lock"></i>
-                        <h4>Sucure Payment</h4>
-                        <p>100% secure payment</p>
+                        <h4>Secure Payment</h4>
+                        <p>100% Secure Payment</p>
                     </div>
                     <!-- End Single Service -->
                 </div>
@@ -135,8 +158,8 @@
                     <!-- Start Single Service -->
                     <div class="single-service">
                         <i class="ti-tag"></i>
-                        <h4>Best Piece</h4>
-                        <p>Guaranteed price</p>
+                        <h4>Best Price</h4>
+                        <p>Guaranteed Price</p>
                     </div>
                     <!-- End Single Service -->
                 </div>
@@ -157,19 +180,20 @@
 	text-transform: uppercase;
 	color: #fff;
 }
-    .checkbox-label {
-        margin-bottom: 10px; /* Add spacing between checkboxes */
-    }
+    
+.checkbox-label {
+    display: flex;
+    flex-direction: column;
+}
 
-    .checkbox-label input[type="checkbox"] {
-        vertical-align: middle; /* Align checkboxes vertically */
-    }
+.checkbox-label input[type="checkbox"],
+.checkbox-label label {
+    display: inline-block;
+    vertical-align: middle;
+    margin-bottom: 4px;
+    margin-left: 20px;
+}
 
-    .checkbox-label label {
-        vertical-align: middle; /* Align labels vertically */
-        margin-left: 50px; /* Add spacing between checkbox and label */
-        display: inline;
-    }
 </style>
 	<style>
 		li.shipping{
