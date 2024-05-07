@@ -48,13 +48,9 @@ Route::post('cart-update','CartController@cartUpdate')->name('cart.update');
 
 // Eco-Track
 //TODAYYYYYYY
-Route::get('/ecotracker','FrontendController@ecotracker')->name('ecotracker');
-Route::post('/ecotracker/tracker','EcoController@store')->name('ecotracker.store');
-Route::post('/ecotracker/tracker', [EcoController::class, 'store'])->name('ecotracker.store');
+Route::post('/ecotracker/tracker','EcoController@store')->name('ecotracker.store')->middleware('user');
+Route::post('/ecotracker/tracker', [EcoController::class, 'store'])->name('ecotracker.store')->middleware('user');
 
-
-Route::post('/ecotracker', 'EcoController@store')->name('ecotracker.store');
-Route::get('/ecotracker', 'EcoController@ecoTrackerPage')->name('ecotracker.page');
 Route::post('/cart/order', 'CartController@completeTask')->name('cart.order');
 Route::get('/admin/dashboard', 'AdminController@dashboard')->name('admin.dashboard');
 Route::put('/admin/update-completion/{user}', 'AdminController@updateCompletion')->name('admin.update.completion');
@@ -88,7 +84,7 @@ Route::post('/blog/filter','FrontendController@blogFilter')->name('blog.filter')
 Route::get('blog-cat/{slug}','FrontendController@blogByCategory')->name('blog.category');
 Route::get('blog-tag/{slug}','FrontendController@blogByTag')->name('blog.tag');
 
-// Blog
+// EcoTracker
 Route::get('/ecotracker','FrontendController@ecotracker')->name('ecotracker');
 
 
@@ -122,6 +118,8 @@ Route::group(['prefix'=>'/admin','middleware'=>['auth','admin']],function(){
     Route::resource('users','UsersController');
     // Banner
     Route::resource('banner','BannerController');
+    //Track
+    Route::resource('/tracker','EcoController');
     // Brand
     Route::resource('brand','BrandController');
     // Profile
@@ -178,6 +176,7 @@ Route::group(['prefix'=>'/admin','middleware'=>['auth','admin']],function(){
 // User section start
 Route::group(['prefix'=>'/user','middleware'=>['user']],function(){
     Route::get('/','HomeController@index')->name('user');
+
      // Profile
      Route::get('/profile','HomeController@profile')->name('user-profile');
      Route::post('/profile/{id}','HomeController@profileUpdate')->name('user-profile-update');
@@ -185,6 +184,7 @@ Route::group(['prefix'=>'/user','middleware'=>['user']],function(){
     Route::get('/order',"HomeController@orderIndex")->name('user.order.index');
     Route::get('/order/show/{id}',"HomeController@orderShow")->name('user.order.show');
     Route::delete('/order/delete/{id}','HomeController@userOrderDelete')->name('user.order.delete');
+
     // Product Review
     Route::get('/user-review','HomeController@productReviewIndex')->name('user.productreview.index');
     Route::delete('/user-review/delete/{id}','HomeController@productReviewDelete')->name('user.productreview.delete');
