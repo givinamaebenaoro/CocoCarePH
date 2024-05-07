@@ -710,7 +710,7 @@ pre code {
     display: flex;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
-    margin-right: -75px;
+    margin-right: -15px;
     margin-left: -15px
 }
 
