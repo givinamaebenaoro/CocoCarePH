@@ -2,71 +2,103 @@
 @section('title','Eco-Tracker')
 @section('main-content')
 
-    <!-- Breadcrumbs -->
-    <div class="breadcrumbs">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="bread-inner">
-                        <ul class="bread-list">
-                            <li><a href="{{route('home')}}">Home<i class="ti-arrow-right"></i></a></li>
-                            <li class="active"><a href="javascript:void(0)">Eco-Tracker</a></li>
-                        </ul>
-                    </div>
+<!-- Breadcrumbs -->
+<div class="breadcrumbs">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="bread-inner">
+                    <ul class="bread-list">
+                        <li><a href="{{ route('home') }}">Home<i class="ti-arrow-right"></i></a></li>
+                        <li class="active"><a href="javascript:void(0)">Eco-Tracker</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
-    <!-- End Breadcrumbs -->
+</div>
+<!-- End Breadcrumbs -->
 
-    <!-- Start Eco-Tracker -->
-    <section class="shop checkout section">
-        <div class="container">
-            <form class="form" method="POST" action="{{ route('cart.order') }}">
-                @csrf
-                <div class="row">
-                    <div class="col-lg-8 col-12">
-                        <div class="checkout-form">
-                            <div class="logo">
-								<a href="index.html"><img src="{{asset('backend/img/slider2.png')}}" alt="#"></a>
-							</div>
-                            <h1>Complete Your Daily Task</h1>
-                            <p>Just a few seconds to complete this!</p>
-                            <!-- Form -->
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="checkbox-label">
-                                    <input name="task" type="checkbox" value="task1" required>
+<!-- Start Eco-Tracker -->
+<section class="tracker section">
+    <div class="container">
+        <form class="form" method="POST" action="{{ route('ecotracker.store') }}">
+            @csrf
+            <div class="row">
+                <div class="col-lg-8 col-12">
+                    <div class="tracker-form">
+                        <!-- Your existing HTML code -->
+                        <!-- Form -->
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="checkbox-label">
+                                    <div class="row">
+										<div class="col-lg-6 col-12">
+											<div class="form-group">
+												<label>Name<span>*</span></label>
+												<input name="name" id="name" type="text" placeholder="Enter your name">
+											</div>
+										</div>
+										<div class="col-lg-6 col-12">
+											<div class="form-group">
+												<label>Task Name<span>*</span></label>
+												<input name="task_name" type="text" id="tname" placeholder="Enter the Task Name: Ex. Day 1">
+											</div>
+										</div>
+										<div class="col-lg-6 col-12">
+											<div class="form-group">
+												<label>Task Description <span>*</span></label>
+												<input name="task_description" type="task_description" id="tdescription" placeholder="Enter the Task Name: Ex. Learning Recycling 101">
+											</div>
+										</div>
+										<div class="col-lg-6 col-12">
+											<div class="form-group">
+												<label>Date<span>*</span></label>
+												<input id="data" name="date" type="date" placeholder="Enter the date today!">
+											</div>
+										</div>
+                                    <input name="task[]" type="checkbox" value="task1">
                                     <label>Use water wisely in the morning: Take shorter showers and turn off the faucet while brushing your teeth.</label><br>
-                                    <input name="task" type="checkbox" value="task2" required>
+                                    <input name="task[]" type="checkbox" value="task2">
                                     <label> Use alternative transportation methods: Take public transportation, carpool, or bike to work or school.</label><br>
-                                    <input name="task" type="checkbox" value="task3" required>
+                                    <input name="task[]" type="checkbox" value="task3">
                                     <label> Use energy-efficient appliances and lights at work or school: Turn off electronics when not in use.</label><br>
-                                    <input name="task" type="checkbox" value="task4" required>
+                                    <input name="task[]" type="checkbox" value="task4">
                                     <label> Use reusable containers and utensils for meals: Opt for locally sourced or plant-based food options.</label><br>
-                                    <input name="task" type="checkbox" value="task5" required>
+                                    <input name="task[]" type="checkbox" value="task5">
                                     <label> Use breaks to participate in community clean-ups: Help keep public spaces litter-free.</label><br>
-                                    <input name="task" type="checkbox" value="task6" required>
+                                    <input name="task[]" type="checkbox" value="task6">
                                     <label> Use separate bins for recycling and composting at home: Reduce waste and promote recycling.</label><br>
-                                    <input name="task" type="checkbox" value="task7" required>
+                                    <input name="task[]" type="checkbox" value="task7">
                                     <label> Use your evening to educate yourself and others: Watch documentaries or read articles on environmental issues.</label><br>
-                                    <input name="task" type="checkbox" value="task8" required>
+                                    <input name="task[]" type="checkbox" value="task8">
                                     <label> Use energy-saving habits before bed: Turn off lights, unplug devices, and adjust the thermostat for efficiency.</label><br>
-                                    <input name="task" type="checkbox" value="task9" required>
+                                    <input name="task[]" type="checkbox" value="task9">
                                     <label> Use reusable shopping bags and avoid single-use plastics: Bring your own bags when shopping to reduce plastic waste.</label><br>
-                                    <input name="task" type="checkbox" value="task10" required>
+                                    <input name="task[]" type="checkbox" value="task10">
                                     <label> Use water-saving techniques in the garden: Install drip irrigation systems and collect rainwater for watering plants.</label><br>
                                 </div>
+                            </div>
+                        </div>
+                        <!-- Button Widget -->
+                        <div class="single-widget eco-button">
+                            <div class="content">
+                                <div class="button">
+                                    <button type="submit" class="btn" {{ session('form_submitted_today') ? 'disabled' : '' }}>Submit</button>
                                 </div>
                             </div>
-                            <!--/ End Form -->
                         </div>
+                        <!--/ End Button Widget -->
                     </div>
                 </div>
-            </form>
-        </div>
-    </section>
-    <!--/ End Checkout -->
+            </div>
+        </form>
+    </div>
+</section>
+<!--/ End Eco-Tracker -->
+
+
+
 
     <!-- Start Shop Services Area  -->
     <section class="shop-services section home">
@@ -116,6 +148,15 @@
 @endsection
 @push('styles')
 <style>
+    .shop.checkout .single-widget.eco-button .btn {
+	height: 46px;
+	width: 100%;
+	line-height: 19px;
+	text-align: center;
+	border-radius: 5px;
+	text-transform: uppercase;
+	color: #fff;
+}
     .checkbox-label {
         margin-bottom: 10px; /* Add spacing between checkboxes */
     }
@@ -126,7 +167,7 @@
 
     .checkbox-label label {
         vertical-align: middle; /* Align labels vertically */
-        margin-left: 5px; /* Add spacing between checkbox and label */
+        margin-left: 50px; /* Add spacing between checkbox and label */
         display: inline;
     }
 </style>

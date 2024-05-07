@@ -37,7 +37,7 @@
 
     <!--Eco-Tracker -->
     <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="{{route('tracker')}}">
             <i class="fas fa-chart-line"></i>
             <span>Eco-Tracker</span>
         </a>
