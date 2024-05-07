@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	@include('frontend.layouts.head')
 </head>
 <body class="js">

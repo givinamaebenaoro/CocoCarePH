@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EcoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +46,19 @@ Route::post('/add-to-cart','CartController@singleAddToCart')->name('single-add-t
 Route::get('cart-delete/{id}','CartController@cartDelete')->name('cart-delete');
 Route::post('cart-update','CartController@cartUpdate')->name('cart.update');
 
+// Eco-Track
+//TODAYYYYYYY
+Route::get('/ecotracker','FrontendController@ecotracker')->name('ecotracker');
+Route::post('/ecotracker/tracker','EcoController@store')->name('ecotracker.store');
+Route::post('/ecotracker/tracker', [EcoController::class, 'store'])->name('ecotracker.store');
+
+
+Route::post('/ecotracker', 'EcoController@store')->name('ecotracker.store');
+Route::get('/ecotracker', 'EcoController@ecoTrackerPage')->name('ecotracker.page');
+Route::post('/cart/order', 'CartController@completeTask')->name('cart.order');
+Route::get('/admin/dashboard', 'AdminController@dashboard')->name('admin.dashboard');
+Route::put('/admin/update-completion/{user}', 'AdminController@updateCompletion')->name('admin.update.completion');
+
 Route::get('/cart',function(){
     return view('frontend.pages.cart');
 })->name('cart');
@@ -73,6 +87,10 @@ Route::get('/blog/search','FrontendController@blogSearch')->name('blog.search');
 Route::post('/blog/filter','FrontendController@blogFilter')->name('blog.filter');
 Route::get('blog-cat/{slug}','FrontendController@blogByCategory')->name('blog.category');
 Route::get('blog-tag/{slug}','FrontendController@blogByTag')->name('blog.tag');
+
+// Blog
+Route::get('/ecotracker','FrontendController@ecotracker')->name('ecotracker');
+
 
 // NewsLetter
 Route::post('/subscribe','FrontendController@subscribe')->name('subscribe');

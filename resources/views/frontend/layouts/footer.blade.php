@@ -9,7 +9,7 @@
 						<!-- Single Widget -->
 						<div class="single-footer about">
 							<div class="logo">
-								<a href="index.html"><img src="{{asset('backend/img/avatar.png')}}" alt="#"></a>
+								<a href="{{route('home')}}"><img src="{{asset('backend/img/avatar.png')}}" alt="#"></a>
 							</div>
 							@php
 								$settings=DB::table('settings')->get();
@@ -25,7 +25,7 @@
 							<h4>Information</h4>
 							<ul>
 								<li><a href="{{route('about-us')}}">About Us</a></li>
-								<li><a href="#">Faq</a></li>
+								<li><a href="#">FAQs</a></li>
 								<li><a href="#">Terms & Conditions</a></li>
 								<li><a href="{{route('contact')}}">Contact Us</a></li>
 								<li><a href="#">Help</a></li>
@@ -59,10 +59,6 @@
 									<li>@foreach($settings as $data) {{$data->phone}} @endforeach</li>
 								</ul>
 							</div>
-							<!-- End Single Widget -->
-							<div class="sharethis-inline-follow-buttons"></div>
-						</div>
-						<!-- End Single Widget -->
 					</div>
 				</div>
 			</div>

@@ -35,6 +35,14 @@
             <span>Media Manager</span></a>
     </li>
 
+    <!--Eco-Tracker -->
+    <li class="nav-item">
+        <a class="nav-link" href="{{route('tracker')}}">
+            <i class="fas fa-chart-line"></i>
+            <span>Eco-Tracker</span>
+        </a>
+    </li>
+
     <li class="nav-item">
       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
         <i class="fas fa-image"></i>

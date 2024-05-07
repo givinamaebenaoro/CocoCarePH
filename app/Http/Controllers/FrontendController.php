@@ -45,7 +45,9 @@ class FrontendController extends Controller
     public function aboutUs(){
         return view('frontend.pages.about-us');
     }
-
+    public function ecotracker(){
+        return view('frontend.pages.ecotracker');
+    }
     public function contact(){
         return view('frontend.pages.contact');
     }

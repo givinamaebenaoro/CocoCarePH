@@ -1,7 +1,8 @@
 @extends('frontend.layouts.master')
 @section('title','CocoCarePH')
 @section('main-content')
-<!-- Slider Area -->
+ <!-- Slider Area -->
+
 @if(count($banners)>0)
     <section id="Gslider" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
@@ -14,7 +15,7 @@
                 @foreach($banners as $key=>$banner)
                 <div class="carousel-item {{(($key==0)? 'active' : '')}}">
                     <img class="first-slide" src="{{$banner->photo}}" alt="First slide">
-                    <div class="carousel-caption d-none d-md-block text-left">
+                    <div class="carousel-caption">
                         <h1 class="wow fadeInDown">{{$banner->title}}</h1>
                         <p>{!! ($banner->description) !!}</p>
                         <a class="btn btn-lg ws-btn wow fadeInUpBig" href="{{route('product-grids')}}" role="button">Shop Now<i class="far fa-arrow-alt-circle-right"></i></i></a>
@@ -428,9 +429,10 @@
                 </div>
             </div>
         </div>
-    </div>
-</section>
-<!-- deal section end -->
+        </div>
+    </section>
+    <!-- deal section end -->
+
 
 <!-- Modal -->
 @if($product_lists)
@@ -445,19 +447,22 @@
                             <div class="row no-gutters">
                                 <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                                     <!-- Product Slider -->
-                                        <div class="product-gallery">
-                                            <div class="quickview-slider-active">
+                                    <div class="product-gallery">
+                                        <div class="quickview-slider-active">
+                                            <div>
                                                 @php
-                                                    $photo=explode(',',$product->photo);
+                                                $photo = explode(',', $product->photo);
                                                 // dd($photo);
-                                                @endphp
-                                                @foreach($photo as $data)
-                                                    <div class="single-slider">
-                                                        <img src="{{$data}}" alt="{{$data}}">
-                                                    </div>
-                                                @endforeach
+                                            @endphp
+                                            @foreach ($photo as $data)
+                                                <div class="single-slider">
+                                                    <img src="{{ $data }}" alt="{{ $data }}">
+                                                </div>
+                                            @endforeach
                                             </div>
+
                                         </div>
+                                    </div>
                                     <!-- End Product slider -->
                                 </div>
                                 <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
@@ -613,41 +618,7 @@
 
 @push('styles')
     <style>
-        /* Banner Sliding */
-        #Gslider .carousel-inner {
-        background: #000000;
-        color:black;
-        }
 
-        #Gslider .carousel-inner{
-        height: 550px;
-        }
-        #Gslider .carousel-inner img{
-            width: 100% !important;
-            opacity: .8;
-        }
-
-        #Gslider .carousel-inner .carousel-caption {
-        bottom: 60%;
-        }
-
-        #Gslider .carousel-inner .carousel-caption h1 {
-        font-size: 50px;
-        font-weight: bold;
-        line-height: 100%;
-        /* color: #F7941D; */
-        color: #1e1e1e;
-        }
-
-        #Gslider .carousel-inner .carousel-caption p {
-        font-size: 18px;
-        color: black;
-        margin: 28px 0 28px 0;
-        }
-
-        #Gslider .carousel-indicators {
-        bottom: 70px;
-        }
     </style>
 @endpush
 
@@ -724,8 +695,13 @@
             return false
         }
     </script>
+<<<<<<< HEAD
 <script>
     let countDate = new Date('June 30, 2024 00:00:00').getTime();
+=======
+    <script>
+        let countDate = new Date('May 20, 2024 00:00:00').getTime();
+>>>>>>> 046816f3d1848d72eccd94b2b26859e314ecad8d
 
     function countDown() {
       let now = new Date().getTime();
@@ -747,8 +723,9 @@
       document.getElementById('second').innerText = s;
     }
 
-    setInterval(function () {
-      countDown();
-    }, 1000);
-  </script>
+        setInterval(function() {
+            countDown();
+        }, 1000);
+    </script>
+
 @endpush
