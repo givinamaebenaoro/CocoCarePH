@@ -548,6 +548,7 @@ class ComposerStaticInit0fe02967618b6ee54572c79b43d09b09
     );
 
     public static $classMap = array (
+        'App\\Console\\Commands\\ClearFormSubmittedFlag' => __DIR__ . '/../..' . '/app/Console/Commands/ClearFormSubmittedFlag.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Events\\MessageSent' => __DIR__ . '/../..' . '/app/Events/MessageSent.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
