@@ -16,7 +16,7 @@ class CreateEcoTrackerTable extends Migration
         Schema::create('eco_trackers', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->varchar('name');
+            $table->char('name');
             $table->string('task_name');
             $table->text('task_description'); // Changed to a TEXT field for task description
             $table->timestamps();

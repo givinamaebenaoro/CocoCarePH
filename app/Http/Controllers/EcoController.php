@@ -10,6 +10,13 @@ use Illuminate\Support\Facades\Session;
 
 class EcoController extends Controller
 {
+
+    public function index(){
+        $ecotrackers = Ecotrack::paginate(10);
+        return view('backend.tracker.index', compact('ecotrackers'));
+
+    }
+
     public function store(Request $request)
     {
         // Check if the user has already submitted today
@@ -64,5 +71,31 @@ class EcoController extends Controller
         }
 
         return redirect()->route('ecotracker')->with('success', 'Form submitted successfully!');
+    }
+
+    public function show(Request $request,$id)
+    {
+        $ecotrackers=Ecotrack::find($id);
+        if($ecotrackers){
+            $ecotrackers->read_at=\Carbon\Carbon::now();
+            $ecotrackers->save();
+            return view('backend.tracker.show', compact('ecotrackers'));
+        }
+        else{
+            return back();
+        }
+    }
+
+    public function destroy($id)
+    {
+        $ecotrackers=Ecotrack::find($id);
+        $status=$ecotrackers->delete();
+        if($status){
+            request()->session()->flash('success','Deleted Eco-track Data Successfully!');
+        }
+        else{
+            request()->session()->flash('error','Error occurred please try again.');
+        }
+        return back();
     }
 }

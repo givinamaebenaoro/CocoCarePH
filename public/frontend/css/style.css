@@ -269,10 +269,11 @@
 }
 /* End Preloader */
 
+
 .btn {
 	position: relative;
 	font-weight: 500;
-	font-size:14px;
+	font-size:15px;
 	color: #fff;
 	background: #333;
 	display: inline-block;
