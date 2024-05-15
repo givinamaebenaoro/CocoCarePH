@@ -263,5 +263,15 @@
     <!--/ End Header Inner -->
 </header>
 <style>
-
+<style>
+    /* Adjustments for smaller devices */
+    @media (max-width: 991px) {
+        .header .middle-inner .container .row .col-lg-2.col-md-3.col-6 {
+            flex-basis: auto !important;
+        }
+        .header .middle-inner .container .row .col-lg-2.col-md-3.col-12 {
+            flex-basis: 100% !important;
+        }
+    }
+</style>
 </style>
