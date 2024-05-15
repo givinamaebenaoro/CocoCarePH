@@ -51,6 +51,11 @@ class BannerController extends Controller
         }
         $data['slug']=$slug;
         // return $slug;
+        if ($request->hasFile('photo')) {
+            $data['photo'] = $request->file('photo')->store('photos/1', 'public');
+        }
+
+
         $status=Banner::create($data);
         if($status){
             request()->session()->flash('success','Banner has been added successfully');

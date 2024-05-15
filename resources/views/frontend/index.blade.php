@@ -3,6 +3,7 @@
 @section('main-content')
  <!-- Slider Area -->
 
+
 @if(count($banners)>0)
     <section id="Gslider" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">

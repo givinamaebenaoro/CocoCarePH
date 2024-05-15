@@ -17,6 +17,7 @@
           <th scope="col">Date</th>
           <th scope="col">Answer Count</th>
           <th scope="col">Last Answered Date</th>
+          <th scope="col">Status</th>
           <th scope="col">Action</th>
         </tr>
       </thead>
@@ -28,8 +29,10 @@
             <td>{{$ecotracker->created_at->format('F d, Y h:i A')}}</td>
             <td>{{$ecotracker->answer_count}}</td>
             <td>{{$ecotracker->last_answered_date}}</td>
+            <td>{{$ecotracker->status}}</td>
             <td>
-                <a href="{{route('tracker.show', $ecotracker->id)}}" class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="view" data-placement="bottom"><i class="fas fa-eye"></i></a>
+                <a href="{{route('tracker.edit',$ecotracker->id)}}" class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit" data-placement="bottom"><i class="fas fa-edit"></i></a>
+                <a href="{{route('tracker.show', $ecotracker->id)}}" class="btn btn-warning btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="view" data-placement="bottom"><i class="fas fa-eye"></i></a>
                 <form method="POST" action="{{route('tracker.destroy', [$ecotracker->id])}}">
                     @csrf
                     @method('delete')

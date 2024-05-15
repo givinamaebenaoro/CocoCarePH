@@ -18,6 +18,13 @@
         <span>Dashboard</span></a>
     </li>
 
+    <!-- Nav Item - Eco-Track -->
+    <li class="nav-item active">
+        <a class="nav-link" href="{{route('user.ecotrack.ecoindex')}}">
+        <i class="fas fa-chart-line"></i>
+          <span>Eco-Tracker</span></a>
+      </li>
+
     <!-- Divider -->
     <hr class="sidebar-divider">
 
