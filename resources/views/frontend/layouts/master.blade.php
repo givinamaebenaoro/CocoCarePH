@@ -7,14 +7,7 @@
 <body class="js">
     <link rel="icon" type="image/png" href="/images/trial3.png">
 	<!-- Preloader -->
-	<div class="preloader">
-		<div class="preloader-inner">
-			<div class="preloader-icon">
-				<span></span>
-				<span></span>
-			</div>
-		</div>
-	</div>
+
 	<!-- End Preloader -->
 
 	@include('frontend.layouts.notification')

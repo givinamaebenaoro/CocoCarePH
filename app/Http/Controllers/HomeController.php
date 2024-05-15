@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Hash;
 use App\User;
 use App\Models\Order;
-use App\Models\ProductReview;
+use App\Models\Ecotrack;
 use App\Models\PostComment;
+use Illuminate\Http\Request;
+use App\Models\ProductReview;
 use App\Rules\MatchOldPassword;
-use Hash;
 
 class HomeController extends Controller
 {
@@ -58,6 +59,47 @@ class HomeController extends Controller
         $orders=Order::orderBy('id','DESC')->where('user_id',auth()->user()->id)->paginate(10);
         return view('user.order.index')->with('orders',$orders);
     }
+
+    public function orderUpdate(Request $request, $id)
+{
+    $order = Order::find($id);
+
+    // Check if the order is already processed
+    if ($order->status == 'process' || $order->status == 'delivered' || $order->status == 'cancel') {
+        return redirect()->route('user.order.index')->with('error', 'Order has already been processed and cannot be updated.');
+    }
+
+    $this->validate($request, [
+        'status' => 'required|in:new,process,delivered,cancel'
+    ]);
+
+    $data = $request->all();
+
+    if ($request->status == 'delivered') {
+        foreach ($order->cart as $cart) {
+            $product = $cart->product;
+            $product->stock -= $cart->quantity;
+            $product->save();
+        }
+    }
+
+    $status = $order->fill($data)->save();
+
+    if ($status) {
+        request()->session()->flash('success', 'Successfully updated order');
+    } else {
+        request()->session()->flash('error', 'Error while updating order');
+    }
+
+    return redirect()->route('user.order.index');
+}
+
+    public function orderEdit($id)
+    {
+        $order=Order::find($id);
+        return view('user.order.edit')->with('order',$order);
+    }
+
     public function userOrderDelete($id)
     {
         $order=Order::find($id);
@@ -220,11 +262,22 @@ class HomeController extends Controller
             'new_password' => ['required'],
             'new_confirm_password' => ['same:new_password'],
         ]);
-   
+
         User::find(auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);
-   
+
         return redirect()->route('user')->with('success','Password changed successfully');
     }
+    public function ecoindex()
+    {
+        $ecotrackers = Ecotrack::orderBy('id','DESC')->where('user_id',auth()->user()->id)->paginate(10);
+        return view('user.ecotrack.index', compact('ecotrackers'));
+    }
 
-    
+    public function ecoshow($id)
+    {
+        $ecotrackers = Ecotrack::find($id);
+        // return $order;
+        return view('user.ecotrack.show', compact('ecotrackers'));
+    }
+
 }

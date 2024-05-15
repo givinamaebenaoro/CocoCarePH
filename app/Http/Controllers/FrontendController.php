@@ -361,7 +361,7 @@ class FrontendController extends Controller
             return redirect()->route('home');
         }
         else{
-            request()->session()->flash('error','Invalid email and password pleas try again!');
+            request()->session()->flash('error','Invalid email and password please try again!');
             return redirect()->back();
         }
     }
@@ -405,9 +405,14 @@ class FrontendController extends Controller
             ]);
     }
     // Reset password
-    public function showResetForm(){
-        return view('auth.passwords.old-reset');
+    public function showResetForm(Request $request)
+    {
+        $email = $request->email;
+        $token = $request->token;
+
+        return view('auth.passwords.reset', ['email' => $email, 'token' => $token]);
     }
+
 
     public function subscribe(Request $request){
         if(! Newsletter::isSubscribed($request->email)){

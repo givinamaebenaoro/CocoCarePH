@@ -15,6 +15,7 @@ class CreateEcotracksTable extends Migration
     {
         Schema::create('ecotracks', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id')->default(1);
             $table->string('name')->nullable();
             $table->string('task_name')->nullable()->default('No task name provided');
             $table->text('task_description')->nullable();
@@ -22,16 +23,10 @@ class CreateEcotracksTable extends Migration
             $table->text('tasks')->nullable();
             $table->integer('answer_count')->nullable()->default(0);
             $table->date('last_answered_date')->nullable();
+            $table->enum('status',['new','complete','failed','cancel'])->default('new');
             $table->timestamps();
         });
     }
-
-
-
-
-
-
-
 
     /**
      * Reverse the migrations.

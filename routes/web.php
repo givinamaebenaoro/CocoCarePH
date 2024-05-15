@@ -23,7 +23,7 @@ Route::get('user/logout','FrontendController@logout')->name('user.logout');
 Route::get('user/register','FrontendController@register')->name('register.form');
 Route::post('user/register','FrontendController@registerSubmit')->name('register.submit');
 // Reset password
-Route::post('password-reset', 'FrontendController@showResetForm')->name('password.reset');
+Route::get('password-reset', 'FrontendController@showResetForm')->name('password.reset');
 // Socialite
 Route::get('login/{provider}/', 'Auth\LoginController@redirect')->name('login.redirect');
 Route::get('login/{provider}/callback/', 'Auth\LoginController@Callback')->name('login.callback');
@@ -180,9 +180,17 @@ Route::group(['prefix'=>'/user','middleware'=>['user']],function(){
      // Profile
      Route::get('/profile','HomeController@profile')->name('user-profile');
      Route::post('/profile/{id}','HomeController@profileUpdate')->name('user-profile-update');
+
+    //Ecotrack
+     Route::get('/ecotrack/ecoindex', 'HomeController@ecoindex')->name('user.ecotrack.ecoindex');
+     Route::get('/ecotrack/ecoshow/{id}', 'HomeController@ecoshow')->name('user.ecotrack.ecoshow');
+
+
     //  Order
     Route::get('/order',"HomeController@orderIndex")->name('user.order.index');
     Route::get('/order/show/{id}',"HomeController@orderShow")->name('user.order.show');
+    Route::get('/order/edit/{id}',"HomeController@orderEdit")->name('user.order.edit');
+    Route::match(['get', 'patch'], '/order/update/{id}', "HomeController@orderUpdate")->name('user.order.update');
     Route::delete('/order/delete/{id}','HomeController@userOrderDelete')->name('user.order.delete');
 
     // Product Review

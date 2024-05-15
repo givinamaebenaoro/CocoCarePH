@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
-use App\Http\Controllers\Controller;
 use App\Models\Ecotrack;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class EcoController extends Controller
@@ -14,14 +15,65 @@ class EcoController extends Controller
     public function index(){
         $ecotrackers = Ecotrack::paginate(10);
         return view('backend.tracker.index', compact('ecotrackers'));
-
     }
+
+    public function edit($id)
+    {
+        $ecotrackers=Ecotrack::find($id);
+        return view('backend.tracker.edit', compact('ecotrackers'));
+    }
+
+    public function update(Request $request, $id)
+{
+    $ecotrackers = Ecotrack::find($id);
+    $this->validate($request, [
+        'status' => 'required|in:complete,failed'
+    ]);
+
+    // Assuming $order is supposed to be $ecotrackers, as it's not defined in your code snippet
+    $data = $request->all();
+
+    // Update the status
+    $ecotrackers->status = $request->status;
+
+    // Save the updated data
+    $status = $ecotrackers->save();
+
+    if ($status) {
+        if ($request->status == 'complete') {
+            // Flash the announcement message for the user's homepage
+            $announcement = 'Congratulations! You have successfully completed a task.';
+            session()->flash('announcement', $announcement);
+            dd(session('announcement'));
+        }
+        request()->session()->flash('success', 'Successfully updated task status');
+    } else {
+        request()->session()->flash('error', 'Error while updating task status');
+    }
+
+    return redirect()->route('tracker.index');
+}
+
 
     public function store(Request $request)
     {
         // Check if the user has already submitted today
         if (session('form_submitted_today')) {
-            return redirect()->back()->with('error', 'You have already submitted the form today.');
+            $existingSubmission = Ecotrack::where('name', $request->input('name'))
+                ->whereDate('created_at', Carbon::yesterday())
+                ->first();
+
+            if ($existingSubmission) {
+                // Update the data from yesterday to today
+                $existingSubmission->task_name = $request->input('task_name');
+                $existingSubmission->task_description = $request->input('task_description') ?? 'No task description provided';
+                $existingSubmission->date = $request->input('date');
+                $existingSubmission->tasks = json_encode($request->input('task'));
+
+                $existingSubmission->save();
+
+                return redirect()->route('ecotracker')->with('success', 'Form updated successfully!');
+            }
         }
 
         // Proceed with storing the submission
@@ -34,15 +86,8 @@ class EcoController extends Controller
             'task.*' => 'string',
         ]);
 
-        $existingSubmission = Ecotrack::where('name', $request->input('name'))
-            ->whereDate('created_at', Carbon::today())
-            ->first();
-
-        if ($existingSubmission) {
-            return redirect()->back()->with('error', 'You have already submitted the form today.');
-        }
-
         $ecotrackers = new Ecotrack();
+        $ecotrackers->user_id = Auth::id(); // Set the user_id
         $ecotrackers->name = $request->input('name');
         $ecotrackers->task_name = $request->input('task_name');
         $ecotrackers->task_description = $request->input('task_description') ?? 'No task description provided';
@@ -58,6 +103,7 @@ class EcoController extends Controller
         $user = Ecotrack::where('name', $request->input('name'))->first();
         if ($user) {
             // Update user's answer count and last answered date
+            $user->tasks;
             $user->answer_count++;
             $user->last_answered_date = Carbon::today();
             $user->save();
@@ -73,17 +119,13 @@ class EcoController extends Controller
         return redirect()->route('ecotracker')->with('success', 'Form submitted successfully!');
     }
 
+
+
     public function show(Request $request,$id)
     {
         $ecotrackers=Ecotrack::find($id);
-        if($ecotrackers){
-            $ecotrackers->read_at=\Carbon\Carbon::now();
-            $ecotrackers->save();
-            return view('backend.tracker.show', compact('ecotrackers'));
-        }
-        else{
-            return back();
-        }
+        // return $order;
+        return view('backend.tracker.show', compact('ecotrackers'));
     }
 
     public function destroy($id)

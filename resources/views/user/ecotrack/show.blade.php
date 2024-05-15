@@ -1,6 +1,4 @@
-@extends('backend.layouts.master')
-
-@section('title', 'Show Eco-Tracker')
+@extends('user.layouts.master')
 
 @section('main-content')
 <div class="card">
@@ -16,7 +14,6 @@
                     <th scope="col">Answer Count</th>
                     <th scope="col">Last Answered Date</th>
                     <th scope="col">Status</th>
-                    <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -27,14 +24,6 @@
                     <td>{{$ecotrackers->answer_count}}</td>
                     <td>{{$ecotrackers->last_answered_date}}</td>
                     <td>{{$ecotrackers->status}}</td>
-                    <td>
-                        <a href="{{route('tracker.show', $ecotrackers->id)}}" class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="view" data-placement="bottom"><i class="fas fa-eye"></i></a>
-                        <form method="POST" action="{{route('tracker.destroy', [$ecotrackers->id])}}">
-                            @csrf
-                            @method('delete')
-                            <button class="btn btn-danger btn-sm dltBtn" data-id="{{$ecotrackers->id}}" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button>
-                        </form>
-                    </td>
                 </tr>
             </tbody>
             <section class="confirmation_part section_padding">
