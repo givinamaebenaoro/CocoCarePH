@@ -51,6 +51,14 @@ Route::post('cart-update','CartController@cartUpdate')->name('cart.update');
 Route::post('/ecotracker/tracker','EcoController@store')->name('ecotracker.store')->middleware('user');
 Route::post('/ecotracker/tracker', [EcoController::class, 'store'])->name('ecotracker.store')->middleware('user');
 
+//Sales Report
+Route::get('/sales','SalesController@index')->name('sales');
+Route::get('sales/csv', 'SalesController@csv')->name('sales.csv');
+Route::get('/sales/csv', 'SalesController@generateCSV')->name('sales.csv');
+
+
+
+
 Route::post('/cart/order', 'CartController@completeTask')->name('cart.order');
 Route::get('/admin/dashboard', 'AdminController@dashboard')->name('admin.dashboard');
 Route::put('/admin/update-completion/{user}', 'AdminController@updateCompletion')->name('admin.update.completion');

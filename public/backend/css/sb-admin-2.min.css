@@ -2060,8 +2060,8 @@ pre code {
 
 .table .thead-dark th {
     color: #fff;
-    background-color: #5a5c69;
-    border-color: #6c6e7e
+    background-color: #066407;
+    border-color: #fdfdff
 }
 
 .table .thead-light th {
@@ -11411,7 +11411,6 @@ a:focus {
 }
 
 .topbar .dropdown .dropdown-menu {
-    width: calc(100% - 1.5rem);
     right: .75rem
 }
 

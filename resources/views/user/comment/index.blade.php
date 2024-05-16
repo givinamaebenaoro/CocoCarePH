@@ -26,17 +26,6 @@
               <th>Action</th>
             </tr>
           </thead>
-          <tfoot>
-            <tr>
-              <th>#</th>
-              <th>Author</th>
-              <th>Post Title</th>
-              <th>Message</th>
-              <th>Date</th>
-              <th>Status</th>
-              <th>Action</th>
-            </tr>
-          </tfoot>
           <tbody>
             @foreach($comments as $comment)
                 <tr>
