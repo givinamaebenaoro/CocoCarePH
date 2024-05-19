@@ -9,83 +9,107 @@
         @csrf
         {{-- @method('PATCH') --}}
         {{-- {{dd($data)}} --}}
-        <div class="form-group">
-          <label for="short_des" class="col-form-label">Short Description <span class="text-danger">*</span></label>
-          <textarea class="form-control" id="quote" name="short_des">{!! isset($data) ? preg_replace('/<p[^>]*>(.*?)<\/p[^>]*>/i', '$1', $data->short_des) : '' !!}</textarea>
-          @error('short_des')
-          <span class="text-danger">{{$message}}</span>
-          @enderror
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                  <label for="short_des" class="col-form-label">Short Description <span class="text-danger">*</span></label>
+                  <textarea class="form-control" id="quote" name="short_des">{!! isset($data) ? preg_replace('/<p[^>]*>(.*?)<\/p[^>]*>/i', '$1', $data->short_des) : '' !!}</textarea>
+                  @error('short_des')
+                  <span class="text-danger">{{$message}}</span>
+                  @enderror
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                  <label for="description" class="col-form-label">Description <span class="text-danger">*</span></label>
+                  <textarea class="form-control" id="description" name="description">{!! isset($data) ? $data->description : '' !!}</textarea>
+                  @error('description')
+                  <span class="text-danger">{{$message}}</span>
+                  @enderror
+                </div>
+            </div>
         </div>
-        <div class="form-group">
-          <label for="description" class="col-form-label">Description <span class="text-danger">*</span></label>
-          <textarea class="form-control" id="description" name="description">{!! isset($data) ? $data->description : '' !!}</textarea>
-          @error('description')
-          <span class="text-danger">{{$message}}</span>
-          @enderror
+        
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                  <label for="inputPhoto" class="col-form-label">Logo <span class="text-danger">*</span></label>
+                  <div class="input-group">
+                      <span class="input-group-btn">
+                          <a id="lfm1" data-input="thumbnail1" data-preview="holder1" class="btn btn-primary text-white">
+                          <i class="fa fa-picture-o"></i> Choose
+                          </a>
+                      </span>
+                      <input id="thumbnail1" class="form-control" type="text" name="logo" value="{{ isset($data) ? $data->logo : '' }}">
+                  </div>
+                  <div id="holder1" style="margin-top:15px;max-height:100px;"></div>
+
+                  @error('logo')
+                  <span class="text-danger">{{$message}}</span>
+                  @enderror
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                  <label for="inputPhoto" class="col-form-label">Photo <span class="text-danger">*</span></label>
+                  <div class="input-group">
+                      <span class="input-group-btn">
+                          <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary text-white">
+                          <i class="fa fa-picture-o"></i> Choose
+                          </a>
+                      </span>
+                      <input id="thumbnail" class="form-control" type="text" name="photo" value="{{ $data->photo ?? '' }}">
+                  </div>
+                  <div id="holder" style="margin-top:15px;max-height:100px;"></div>
+
+                  @error('photo')
+                  <span class="text-danger">{{$message}}</span>
+                  @enderror
+                </div>
+            </div>
         </div>
 
-        <div class="form-group">
-          <label for="inputPhoto" class="col-form-label">Logo <span class="text-danger">*</span></label>
-          <div class="input-group">
-              <span class="input-group-btn">
-                  <a id="lfm1" data-input="thumbnail1" data-preview="holder1" class="btn btn-primary text-white">
-                  <i class="fa fa-picture-o"></i> Choose
-                  </a>
-              </span>
-              <input id="thumbnail1" class="form-control" type="text" name="logo" value="{{ isset($data) ? $data->logo : '' }}">
-        </div>
-        <div id="holder1" style="margin-top:15px;max-height:100px;"></div>
-
-          @error('logo')
-          <span class="text-danger">{{$message}}</span>
-          @enderror
-        </div>
-
-        <div class="form-group">
-          <label for="inputPhoto" class="col-form-label">Photo <span class="text-danger">*</span></label>
-          <div class="input-group">
-              <span class="input-group-btn">
-                  <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-primary text-white">
-                  <i class="fa fa-picture-o"></i> Choose
-                  </a>
-              </span>
-              <input id="thumbnail" class="form-control" type="text" name="photo" value="{{ $data->photo ?? '' }}">
-        </div>
-        <div id="holder" style="margin-top:15px;max-height:100px;"></div>
-
-          @error('photo')
-          <span class="text-danger">{{$message}}</span>
-          @enderror
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                  <label for="address" class="col-form-label">Address <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" name="address" required value="{{ $data->address ?? '' }}">
+                  @error('address')
+                  <span class="text-danger">{{$message}}</span>
+                  @enderror
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                  <label for="email" class="col-form-label">Email <span class="text-danger">*</span></label>
+                  <input type="email" class="form-control" name="email" required value="{{$data->email ?? '' }}">
+                  @error('email')
+                  <span class="text-danger">{{$message}}</span>
+                  @enderror
+                </div>
+            </div>
         </div>
 
-        <div class="form-group">
-          <label for="address" class="col-form-label">Address <span class="text-danger">*</span></label>
-          <input type="text" class="form-control" name="address" required value="{{ $data->address ?? '' }}">
-          @error('address')
-          <span class="text-danger">{{$message}}</span>
-          @enderror
-        </div>
-        <div class="form-group">
-          <label for="email" class="col-form-label">Email <span class="text-danger">*</span></label>
-          <input type="email" class="form-control" name="email" required value="{{$data->email ?? '' }}">
-          @error('email')
-          <span class="text-danger">{{$message}}</span>
-          @enderror
-        </div>
-        <div class="form-group">
-          <label for="phone" class="col-form-label">Phone Number <span class="text-danger">*</span></label>
-          <input type="text" class="form-control" name="phone" required value="{{$data->phone ?? '' }}">
-          @error('phone')
-          <span class="text-danger">{{$message}}</span>
-          @enderror
-        </div>
-
-        <div class="form-group mb-3">
-           <button class="btn btn-success" type="submit">Update</button>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                  <label for="phone" class="col-form-label">Phone Number <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" name="phone" required value="{{$data->phone ?? '' }}">
+                  @error('phone')
+                  <span class="text-danger">{{$message}}</span>
+                  @enderror
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group mb-3">
+                   <button class="btn btn-success" type="submit" style="margin-top: 32px;">Update</button>
+                </div>
+            </div>
         </div>
       </form>
     </div>
 </div>
+
 @endsection
 
 @push('styles')
