@@ -27,7 +27,7 @@
                     <!--/ End Search Form -->
                     <div class="mobile-nav"></div>
                 </div>
-                <div class="col-lg-8 col-md-7 col-12">
+                <div class="col-lg-8 col-md-6 col-12">
                     <div class="search-bar-top">
                         <div class="search-bar">
                             <select>
