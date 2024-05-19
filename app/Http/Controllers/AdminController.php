@@ -120,4 +120,16 @@ class AdminController extends Controller
     //     $activity= Activity::all();
     //     return view('backend.layouts.activity')->with('activities',$activity);
     // }
+
+    public function dashboard()
+    {
+        $users = User::all();
+        return view('admin.dashboard', compact('users'));
+    }
+
+    public function updateCompletion(Request $request, User $user)
+    {
+        $user->update(['completed' => $request->input('completed')]);
+        return redirect()->back()->with('success', 'Completion status updated successfully.');
+    }
 }

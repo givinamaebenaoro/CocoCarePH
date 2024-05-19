@@ -1,5 +1,5 @@
 @extends('user.layouts.master')
-@section('title','E-SHOP || Comment Page')
+@section('title','CocoCarePH || Comment Page')
 @section('main-content')
  <!-- DataTales Example -->
  <div class="card shadow mb-4">
@@ -26,17 +26,6 @@
               <th>Action</th>
             </tr>
           </thead>
-          <tfoot>
-            <tr>
-              <th>#</th>
-              <th>Author</th>
-              <th>Post Title</th>
-              <th>Message</th>
-              <th>Date</th>
-              <th>Status</th>
-              <th>Action</th>
-            </tr>
-          </tfoot>
           <tbody>
             @foreach($comments as $comment)
                 <tr>

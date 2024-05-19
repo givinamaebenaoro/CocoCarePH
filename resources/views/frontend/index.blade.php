@@ -3,6 +3,7 @@
 @section('main-content')
  <!-- Slider Area -->
 
+
 @if(count($banners)>0)
     <section id="Gslider" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
@@ -330,7 +331,7 @@
                                 <div class="col-lg-6 col-md-6 col-12 no-padding">
                                     <div class="content">
                                         <h4 class="title"><a href="{{route('product-detail',$product->slug)}}">{{$product->title}}</a></h4>
-                                        <p class="price with-discount">{{number_format($product->discount,2)}}% OFF</p>
+                                        <p class="price with-discount">{{ number_format(sprintf('%0.0f', $product->discount), 0) }}% OFF</p>
                                     </div>
                                 </div>
                                 </div>
@@ -578,7 +579,7 @@
                 <!-- Start Single Service -->
                 <div class="single-service">
                     <i class="ti-rocket"></i>
-                    <h4>Free shipping</h4>
+                    <h4>Free Shipping</h4>
                     <p>Orders over ₱100</p>
                 </div>
                 <!-- End Single Service -->
@@ -605,7 +606,7 @@
                 <!-- Start Single Service -->
                 <div class="single-service">
                     <i class="ti-tag"></i>
-                    <h4>Best Piece</h4>
+                    <h4>Best Price</h4>
                     <p>Guaranteed price</p>
                 </div>
                 <!-- End Single Service -->
@@ -695,8 +696,13 @@
             return false
         }
     </script>
+<<<<<<< HEAD
+<script>
+    let countDate = new Date('June 30, 2024 00:00:00').getTime();
+=======
     <script>
-        let countDate = new Date('May 30, 2024 00:00:00').getTime();
+        let countDate = new Date('May 20, 2024 00:00:00').getTime();
+>>>>>>> 046816f3d1848d72eccd94b2b26859e314ecad8d
 
     function countDown() {
       let now = new Date().getTime();

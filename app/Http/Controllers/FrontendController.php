@@ -46,7 +46,7 @@ class FrontendController extends Controller
         return view('frontend.pages.about-us');
     }
     public function ecotracker(){
-        return view('frontend.pages.eco-tracker');
+        return view('frontend.pages.ecotracker');
     }
     public function contact(){
         return view('frontend.pages.contact');
@@ -196,7 +196,7 @@ class FrontendController extends Controller
             if(!empty($data['price_range'])){
                 $priceRangeURL .='&price='.$data['price_range'];
             }
-            if(request()->is('e-shop.loc/product-grids')){
+            if(request()->is('CocoCarePH.loc/product-grids')){
                 return redirect()->route('product-grids',$catURL.$brandURL.$priceRangeURL.$showURL.$sortByURL);
             }
             else{
@@ -218,7 +218,7 @@ class FrontendController extends Controller
     public function productBrand(Request $request){
         $products=Brand::getProductByBrand($request->slug);
         $recent_products=Product::where('status','active')->orderBy('id','DESC')->limit(3)->get();
-        if(request()->is('e-shop.loc/product-grids')){
+        if(request()->is('CocoCarePH.loc/product-grids')){
             return view('frontend.pages.product-grids')->with('products',$products->products)->with('recent_products',$recent_products);
         }
         else{
@@ -231,7 +231,7 @@ class FrontendController extends Controller
         // return $request->slug;
         $recent_products=Product::where('status','active')->orderBy('id','DESC')->limit(3)->get();
 
-        if(request()->is('e-shop.loc/product-grids')){
+        if(request()->is('CocoCarePH.loc/product-grids')){
             return view('frontend.pages.product-grids')->with('products',$products->products)->with('recent_products',$recent_products);
         }
         else{
@@ -244,7 +244,7 @@ class FrontendController extends Controller
         // return $products;
         $recent_products=Product::where('status','active')->orderBy('id','DESC')->limit(3)->get();
 
-        if(request()->is('e-shop.loc/product-grids')){
+        if(request()->is('CocoCarePH.loc/product-grids')){
             return view('frontend.pages.product-grids')->with('products',$products->sub_products)->with('recent_products',$recent_products);
         }
         else{
@@ -361,7 +361,7 @@ class FrontendController extends Controller
             return redirect()->route('home');
         }
         else{
-            request()->session()->flash('error','Invalid email and password pleas try again!');
+            request()->session()->flash('error','Invalid email and password please try again!');
             return redirect()->back();
         }
     }
@@ -405,9 +405,14 @@ class FrontendController extends Controller
             ]);
     }
     // Reset password
-    public function showResetForm(){
-        return view('auth.passwords.old-reset');
+    public function showResetForm(Request $request)
+    {
+        $email = $request->email;
+        $token = $request->token;
+
+        return view('auth.passwords.reset', ['email' => $email, 'token' => $token]);
     }
+
 
     public function subscribe(Request $request){
         if(! Newsletter::isSubscribed($request->email)){

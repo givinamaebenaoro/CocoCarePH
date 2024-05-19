@@ -19,7 +19,6 @@
             <th>Charge</th>
             <th>Total</th>
             <th>Status</th>
-            <th>Action</th>
         </tr>
       </thead>
       <tbody>
@@ -29,8 +28,8 @@
             <td>{{$order->first_name}} {{$order->last_name}}</td>
             <td>{{$order->email}}</td>
             <td>{{$order->quantity}}</td>
-            <td>${{$order->shipping->price}}</td>
-            <td>${{number_format($order->total_amount,2)}}</td>
+            <td>₱{{$order->shipping->price}}</td>
+            <td>₱{{number_format($order->total_amount,2)}}</td>
             <td>
                 @if($order->status=='new')
                   <span class="badge badge-primary">NEW</span>
@@ -42,14 +41,6 @@
                   <span class="badge badge-danger">{{$order->status}}</span>
                 @endif
             </td>
-            <td>
-                <form method="POST" action="{{route('order.destroy',[$order->id])}}">
-                  @csrf
-                  @method('delete')
-                      <button class="btn btn-danger btn-sm dltBtn" data-id={{$order->id}} style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button>
-                </form>
-            </td>
-
         </tr>
       </tbody>
     </table>
@@ -82,15 +73,15 @@
                           $shipping_charge=DB::table('shippings')->where('id',$order->shipping_id)->pluck('price');
                       @endphp
                         <td>Shipping Charge</td>
-                        <td> :${{$order->shipping->price}}</td>
+                        <td> :₱{{$order->shipping->price}}</td>
                     </tr>
                     <tr>
                         <td>Total Amount</td>
-                        <td> : $ {{number_format($order->total_amount,2)}}</td>
+                        <td> : ₱ {{number_format($order->total_amount,2)}}</td>
                     </tr>
                     <tr>
                       <td>Payment Method</td>
-                      <td> : 
+                      <td> :
                             @if($order->payment_method == 'cod')
                                 Cash on Delivery
                             @elseif($order->payment_method == 'paypal')
@@ -102,7 +93,7 @@
                     </tr>
                     <tr>
                         <td>Payment Status</td>
-                        <td> : 
+                        <td> :
                           @if($order->payment_status == 'paid')
                               <span class="badge badge-success">Paid</span>
                           @elseif($order->payment_status == 'unpaid')

@@ -1,0 +1,42 @@
+{
+    "name": "usmanhalalit/laracsv",
+    "description": "A Laravel package to easily generate CSV files from Eloquent model.",
+    "homepage": "https://github.com/usmanhalalit/laracsv",
+    "keywords": ["laravel", "csv", "eloquent", "export"],
+    "license": "MIT",
+    "authors":
+    [
+        {
+            "name": "Muhammad Usman",
+            "email": "hi@usman.it",
+            "role": "Developer"
+        }
+    ],
+
+    "require": {
+        "php": ">=7.1",
+        "illuminate/database": ">=5.2",
+        "league/csv": "^9.0"
+    },
+
+    "require-dev": {
+        "fzaninotto/faker": "^1.8",
+        "phpunit/phpunit": "^7.0"
+    },
+
+    "autoload":	{
+        "psr-4": {
+            "Laracsv\\": "src/Laracsv/"
+        }
+    },
+
+    "autoload-dev": {
+        "psr-4": {
+            "Laracsv\\": "tests/Laracsv/"
+        },
+
+        "classmap": [
+            "tests/TestCase.php"
+        ]
+    }
+}

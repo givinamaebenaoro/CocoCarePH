@@ -399,15 +399,14 @@
                                 <div class="single-widget">
                                     <h2>Payment Methods</h2>
                                     <div class="content">
-    <div class="checkbox">
-        {{-- <label class="checkbox-inline" for="1"><input name="updates" id="1" type="checkbox"> Check Payments</label> --}}
-        <form-group>
-            <input name="payment_method"  type="radio" value="cod" required> <label> Cash On Delivery</label><br>
-            <!-- <input name="payment_method"  type="radio" value="paypal"> <label> PayPal</label><br> -->
-        </form-group>
-    </div>
-</div>
-
+                                        <div class="checkbox">
+                                            {{-- <label class="checkbox-inline" for="1"><input name="updates" id="1" type="checkbox"> Check Payments</label> --}}
+                                            <form-group>
+                                                <input name="payment_method"  type="radio" value="cod" required> <label> Cash On Delivery</label><br>
+                                                <!-- <input name="payment_method"  type="radio" value="paypal"> <label> PayPal</label><br> -->
+                                            </form-group>
+                                        </div>
+                                    </div>
                                 </div>
                                 <!--/ End Order Widget -->
                                 <!-- Payment Method Widget -->

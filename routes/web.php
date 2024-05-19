@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\EcoController;
+use App\Http\Controllers\Auth\VerificationController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,10 +20,12 @@ Route::get('user/login','FrontendController@login')->name('login.form');
 Route::post('user/login','FrontendController@loginSubmit')->name('login.submit');
 Route::get('user/logout','FrontendController@logout')->name('user.logout');
 
+Route::get('verify/{token}', [VerificationController::class, 'verify'])->name('verify');
+
 Route::get('user/register','FrontendController@register')->name('register.form');
 Route::post('user/register','FrontendController@registerSubmit')->name('register.submit');
 // Reset password
-Route::post('password-reset', 'FrontendController@showResetForm')->name('password.reset');
+Route::get('password-reset', 'FrontendController@showResetForm')->name('password.reset');
 // Socialite
 Route::get('login/{provider}/', 'Auth\LoginController@redirect')->name('login.redirect');
 Route::get('login/{provider}/callback/', 'Auth\LoginController@Callback')->name('login.callback');
@@ -44,6 +47,23 @@ Route::get('/add-to-cart/{slug}','CartController@addToCart')->name('add-to-cart'
 Route::post('/add-to-cart','CartController@singleAddToCart')->name('single-add-to-cart')->middleware('user');
 Route::get('cart-delete/{id}','CartController@cartDelete')->name('cart-delete');
 Route::post('cart-update','CartController@cartUpdate')->name('cart.update');
+
+// Eco-Track
+//TODAYYYYYYY
+Route::post('/ecotracker/tracker','EcoController@store')->name('ecotracker.store')->middleware('user');
+Route::post('/ecotracker/tracker', [EcoController::class, 'store'])->name('ecotracker.store')->middleware('user');
+
+//Sales Report
+Route::get('/sales','SalesController@index')->name('sales');
+Route::get('sales/csv', 'SalesController@csv')->name('sales.csv');
+Route::get('/sales/csv', 'SalesController@generateCSV')->name('sales.csv');
+
+
+
+
+Route::post('/cart/order', 'CartController@completeTask')->name('cart.order');
+Route::get('/admin/dashboard', 'AdminController@dashboard')->name('admin.dashboard');
+Route::put('/admin/update-completion/{user}', 'AdminController@updateCompletion')->name('admin.update.completion');
 
 Route::get('/cart',function(){
     return view('frontend.pages.cart');
@@ -74,8 +94,8 @@ Route::post('/blog/filter','FrontendController@blogFilter')->name('blog.filter')
 Route::get('blog-cat/{slug}','FrontendController@blogByCategory')->name('blog.category');
 Route::get('blog-tag/{slug}','FrontendController@blogByTag')->name('blog.tag');
 
-// Blog
-Route::get('/eco-tracker','FrontendController@ecotracker')->name('eco-tracker');
+// EcoTracker
+Route::get('/ecotracker','FrontendController@ecotracker')->name('ecotracker');
 
 
 // NewsLetter
@@ -108,6 +128,8 @@ Route::group(['prefix'=>'/admin','middleware'=>['auth','admin']],function(){
     Route::resource('users','UsersController');
     // Banner
     Route::resource('banner','BannerController');
+    //Track
+    Route::resource('/tracker','EcoController');
     // Brand
     Route::resource('brand','BrandController');
     // Profile
@@ -164,13 +186,23 @@ Route::group(['prefix'=>'/admin','middleware'=>['auth','admin']],function(){
 // User section start
 Route::group(['prefix'=>'/user','middleware'=>['user']],function(){
     Route::get('/','HomeController@index')->name('user');
+
      // Profile
      Route::get('/profile','HomeController@profile')->name('user-profile');
      Route::post('/profile/{id}','HomeController@profileUpdate')->name('user-profile-update');
+
+    //Ecotrack
+     Route::get('/ecotrack/ecoindex', 'HomeController@ecoindex')->name('user.ecotrack.ecoindex');
+     Route::get('/ecotrack/ecoshow/{id}', 'HomeController@ecoshow')->name('user.ecotrack.ecoshow');
+
+
     //  Order
     Route::get('/order',"HomeController@orderIndex")->name('user.order.index');
     Route::get('/order/show/{id}',"HomeController@orderShow")->name('user.order.show');
+    Route::get('/order/edit/{id}',"HomeController@orderEdit")->name('user.order.edit');
+    Route::match(['get', 'patch'], '/order/update/{id}', "HomeController@orderUpdate")->name('user.order.update');
     Route::delete('/order/delete/{id}','HomeController@userOrderDelete')->name('user.order.delete');
+
     // Product Review
     Route::get('/user-review','HomeController@productReviewIndex')->name('user.productreview.index');
     Route::delete('/user-review/delete/{id}','HomeController@productReviewDelete')->name('user.productreview.delete');

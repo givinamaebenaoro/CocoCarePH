@@ -2060,8 +2060,8 @@ pre code {
 
 .table .thead-dark th {
     color: #fff;
-    background-color: #5a5c69;
-    border-color: #6c6e7e
+    background-color: #066407;
+    border-color: #fdfdff
 }
 
 .table .thead-light th {
@@ -2355,6 +2355,12 @@ textarea.form-control {
 
 .form-check-label {
     margin-bottom: 0
+    font-weight 100;
+    font-size: .80rem;
+    text-decoration: none
+
+
+
 }
 
 .form-check-inline {
@@ -2800,12 +2806,16 @@ fieldset:disabled a.btn {
 
 .btn-success {
     color: #fff;
+    font-weight: 500;
+    font-size: .80rem;
     background-color: #1cc88a;
     border-color: #1cc88a
+
 }
 
 .btn-success:hover {
-    color: #fff;
+    color: #000000;
+    font-weight: 500;
     background-color: #17a673;
     border-color: #169b6b
 }
@@ -3334,6 +3344,7 @@ fieldset:disabled a.btn {
 
 .btn-link {
     font-weight: 400;
+    font-size: .80rem;
     color: #123731;
     text-decoration: none
 }
@@ -3373,10 +3384,12 @@ fieldset:disabled a.btn {
 .btn-block {
     display: block;
     width: 100%
+
 }
 
 .btn-block+.btn-block {
     margin-top: .5rem
+
 }
 
 input[type=button].btn-block,
@@ -11398,7 +11411,6 @@ a:focus {
 }
 
 .topbar .dropdown .dropdown-menu {
-    width: calc(100% - 1.5rem);
     right: .75rem
 }
 
