@@ -25,10 +25,11 @@
             left: 0;
             top: 50%;
             transform: translateY(-50%);
-            padding-left: 140px;
-            width: 50%;
+            padding-left: 90px;
+            width: 90%;
             text-align: left;
-        }
+}
+
 
         #Gslider .carousel-inner .carousel-caption h1 {
             font-size: 50px;
@@ -5026,12 +5027,12 @@
 	background:#222;
 }
 .footer .about {
-	padding-right: 50px;
+	padding-right: 100px;
 }
 .footer .single-footer h4 {
 	font-size: 17px;
 	font-weight: 600;
-	color: #fff;
+	color: #85BA46;
 	text-transform: capitalize;
 	margin-bottom: 30px;
 }
@@ -5045,14 +5046,14 @@
 }
 .footer .about .call {
 	color: #fff;
-	margin-top: 15px;
+	margin-top: 25px;
 	font-weight: 400;
 }
 .footer .about .call span{
 	display: block;
 }
 .footer .about .call a {
-	color: #024430;
+	color: #85BA46;
 	font-size: 20px;
 	font-weight: 600;
 }
@@ -5108,7 +5109,7 @@
 }
 .footer .copyright .inner{
 	border-top:1px solid #eeeeee3d;
-	padding:20px 0;
+	padding: 20px 0;
 }
 .footer .copyright .left{}
 .footer .copyright .right{
