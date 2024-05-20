@@ -40,9 +40,10 @@ return [
         'redirect' => 'https://cococareph.store/login/google/callback',
      ],
      'facebook' => [
-        'client_id' => '1765623050514944', //Facebook API
-        'client_secret' => 'b28ce6bb62c2d33e44acba786e4bb49a', //Facebook Secret
-        'redirect' => 'https://cococareph.store/login/facebook/callback',
-     ],
+        'client_id' => env('FACEBOOK_CLIENT_ID'),
+        'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
+        'redirect' => env('FACEBOOK_REDIRECT'),
+    ],
+
 
 ];

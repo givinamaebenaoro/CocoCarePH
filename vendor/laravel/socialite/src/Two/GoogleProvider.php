@@ -2,6 +2,7 @@
 
 namespace Laravel\Socialite\Two;
 
+use GuzzleHttp\RequestOptions;
 use Illuminate\Support\Arr;
 
 class GoogleProvider extends AbstractProvider implements ProviderInterface
@@ -41,34 +42,36 @@ class GoogleProvider extends AbstractProvider implements ProviderInterface
     }
 
     /**
-     * Get the POST fields for the token request.
-     *
-     * @param  string  $code
-     * @return array
-     */
-    protected function getTokenFields($code)
-    {
-        return Arr::add(
-            parent::getTokenFields($code), 'grant_type', 'authorization_code'
-        );
-    }
-
-    /**
      * {@inheritdoc}
      */
     protected function getUserByToken($token)
     {
         $response = $this->getHttpClient()->get('https://www.googleapis.com/oauth2/v3/userinfo', [
-            'query' => [
+            RequestOptions::QUERY => [
                 'prettyPrint' => 'false',
             ],
-            'headers' => [
+            RequestOptions::HEADERS => [
                 'Accept' => 'application/json',
                 'Authorization' => 'Bearer '.$token,
             ],
         ]);
 
-        return json_decode($response->getBody(), true);
+        return json_decode((string) $response->getBody(), true);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function refreshToken($refreshToken)
+    {
+        $response = $this->getRefreshTokenResponse($refreshToken);
+
+        return new Token(
+            Arr::get($response, 'access_token'),
+            Arr::get($response, 'refresh_token', $refreshToken),
+            Arr::get($response, 'expires_in'),
+            explode($this->scopeSeparator, Arr::get($response, 'scope', ''))
+        );
     }
 
     /**
