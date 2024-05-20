@@ -2806,16 +2806,21 @@ fieldset:disabled a.btn {
 
 .btn-success {
     color: #fff;
+<<<<<<< HEAD
     font-weight: 700;
+=======
+    font-weight: 800;
+>>>>>>> 03f49b1f2d599f9d4c0fcf5c025297b65973e252
     font-size: 1rem;
     background-color: #1cc88a;
     border-color: #1cc88a
+    position relative;
 
 }
 
 .btn-success:hover {
     color: #000000;
-    font-weight: 500;
+    font-weight: 800;
     background-color: #17a673;
     border-color: #169b6b
 }

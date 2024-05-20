@@ -1350,6 +1350,7 @@ pre code {
         flex: 0 0 16.666667%;
         max-width: 11%
     }
+    
     .col-lg-3 {
         -ms-flex: 0 0 25%;
         flex: 0 0 25%;
@@ -1393,7 +1394,7 @@ pre code {
     .col-lg-11 {
         -ms-flex: 0 0 91.666667%;
         flex: 0 0 91.666667%;
-        max-width: 91.666667%
+        max-width: 19%
     }
     .col-lg-12 {
         -ms-flex: 0 0 100%;
@@ -3705,8 +3706,8 @@ tbody.collapse.show {
 
 .nav-tabs .nav-link {
     border: 1px solid transparent;
-    border-top-left-radius: .25rem;
-    border-top-right-radius: .25rem
+    border-top-left-radius: .50rem;
+    border-top-right-radius: .50rem
 }
 
 .nav-tabs .nav-link:focus,
@@ -5776,7 +5777,7 @@ button.close {
     align-items: center;
     -ms-flex-pack: center;
     justify-content: center;
-    width: 15%;
+    width: 5%;
     color: #fff;
     text-align: center;
     opacity: .5

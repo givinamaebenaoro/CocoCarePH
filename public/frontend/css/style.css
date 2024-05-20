@@ -25,10 +25,11 @@
             left: 0;
             top: 50%;
             transform: translateY(-50%);
-            padding-left: 140px;
-            width: 50%;
+            padding-left: 90px;
+            width: 90%;
             text-align: left;
-        }
+}
+
 
         #Gslider .carousel-inner .carousel-caption h1 {
             font-size: 50px;
@@ -796,7 +797,7 @@
 }
 .header.shop .search-bar form {
 	display: inline-block;
-	float: left;
+	float: center;
 	width: 260px;
 }
 .header.shop .search-bar input {
@@ -5026,14 +5027,15 @@
 	background:#222;
 }
 .footer .about {
-	padding-right: 50px;
+	padding-right: 20px;
 }
 .footer .single-footer h4 {
 	font-size: 17px;
 	font-weight: 600;
-	color: #fff;
+	color: #85BA46;
 	text-transform: capitalize;
-	margin-bottom: 30px;
+	margin-bottom: 50px;
+	width: 200px;
 }
 .footer .about .logo{
 	margin-bottom:20px;
@@ -5045,15 +5047,15 @@
 }
 .footer .about .call {
 	color: #fff;
-	margin-top: 15px;
+	margin-top: 25px;
 	font-weight: 400;
 }
 .footer .about .call span{
 	display: block;
 }
 .footer .about .call a {
-	color: #024430;
-	font-size: 20px;
+	color: #32B87D;
+	font-size: 15px;
 	font-weight: 600;
 }
 .footer .links ul{}
@@ -5108,7 +5110,7 @@
 }
 .footer .copyright .inner{
 	border-top:1px solid #eeeeee3d;
-	padding:20px 0;
+	padding: 20px 0;
 }
 .footer .copyright .left{}
 .footer .copyright .right{
@@ -5174,44 +5176,3 @@
     border: 0.1rem solid rgba(0, 0, 0, 0.3);
     animation: moveUpDown 2s infinite alternate;
   }
-
-  /* Media query for tablet screens */
-  @media (max-width: 768px) {
-    .deal .row .container .count-down {
-      flex-wrap: wrap; /* Allow flex items to wrap */
-    }
-    .deal .row .container .count-down .box {
-      flex: 1 0 40%; /* Adjust width for tablet screens */
-      margin-bottom: 1rem; /* Add margin between boxes */
-    }
-  }
-
-  /* Media query for phone screens */
-  @media (max-width: 480px) {
-    .deal .row .container .count-down .box {
-      flex: 1 0 80%; /* Adjust width for phone screens */
-    }
-  }
-
-  @keyframes moveUpDown {
-    0% {
-      transform: translateY(0);
-    }
-    100% {
-      transform: translateY(-10%);
-    }
-  }
-
-  .deal .row .container .count-down .box h3 {
-    font-size: 5rem;
-    color: #333;
-  }
-
-  .deal .row .container .count-down .box span {
-    font-size: 1.7rem;
-    color: #fff;
-    display: block;
-    background: rgb(2, 69, 5);
-    padding: 0.5rem;
-  }
-
