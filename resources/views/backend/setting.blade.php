@@ -29,7 +29,7 @@
                 </div>
             </div>
         </div>
-
+        
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
@@ -44,7 +44,7 @@
                   </div>
                   <div id="holder1" style="margin-top:15px;max-height:100px;"></div>
 
-          @error('logo')
+                  @error('logo')
                   <span class="text-danger">{{$message}}</span>
                   @enderror
                 </div>
@@ -62,33 +62,32 @@
                   </div>
                   <div id="holder" style="margin-top:15px;max-height:100px;"></div>
 
-          @error('photo')
+                  @error('photo')
                   <span class="text-danger">{{$message}}</span>
                   @enderror
                 </div>
-                </div>
-                </div>
+            </div>
+        </div>
 
-        <div class="form-group">
-          <label for="address" class="col-form-label">Address <span class="text-danger">*</span></label>
-          <input type="text" class="form-control" name="address" required value="{{ $data->address ?? '' }}">
-          @error('address')
-          <span class="text-danger">{{$message}}</span>
-          @enderror
-        </div>
-        <div class="form-group">
-          <label for="email" class="col-form-label">Email <span class="text-danger">*</span></label>
-          <input type="email" class="form-control" name="email" required value="{{$data->email ?? '' }}">
-          @error('email')
-          <span class="text-danger">{{$message}}</span>
-          @enderror
-        </div>
-        <div class="form-group">
-          <label for="phone" class="col-form-label">Phone Number <span class="text-danger">*</span></label>
-          <input type="text" class="form-control" name="phone" required value="{{$data->phone ?? '' }}">
-          @error('phone')
-          <span class="text-danger">{{$message}}</span>
-          @enderror
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                  <label for="address" class="col-form-label">Address <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" name="address" required value="{{ $data->address ?? '' }}">
+                  @error('address')
+                  <span class="text-danger">{{$message}}</span>
+                  @enderror
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                  <label for="email" class="col-form-label">Email <span class="text-danger">*</span></label>
+                  <input type="email" class="form-control" name="email" required value="{{$data->email ?? '' }}">
+                  @error('email')
+                  <span class="text-danger">{{$message}}</span>
+                  @enderror
+                </div>
+            </div>
         </div>
 
         <div class="row">
@@ -101,12 +100,16 @@
                   @enderror
                 </div>
             </div>
-            <div class="col-md-6">
+         </div>
+
+           <div class="row">
+              <div class="col-md-6">
                 <div class="form-group mb-3">
                    <button class="btn btn-success" type="submit" style="margin-top: 40px;">Update</button>
                 </div>
+              </div>
             </div>
-        </div>
+        
       </form>
     </div>
 </div>
@@ -143,7 +146,7 @@
     });
     $(document).ready(function() {
       $('#description').summernote({
-        placeholder: "Write detail description.....",
+        placeholder: "Write detailed description.....",
           tabsize: 2,
           height: 150
       });
