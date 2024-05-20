@@ -352,7 +352,7 @@ class FrontendController extends Controller
         return view('frontend.pages.blog')->with('posts',$post)->with('recent_posts',$rcnt_post);
     }
 
-    // Login
+    // Login//
     public function login(){
         return view('frontend.pages.login');
     }
