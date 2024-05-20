@@ -25,9 +25,9 @@
             left: 0;
             top: 50%;
             transform: translateY(-50%);
-            padding-left: 90px;
-            width: 90%;
-            text-align: left;
+            padding-left: 50px;
+            width: 97%;
+            text-align: center;
 }
 
 
@@ -41,14 +41,21 @@
         }
 
         #Gslider .carousel-inner .carousel-caption p {
+			position: relative;
             font-size: 20px;
             color: #024430;
             font-weight: 500;
-            margin-bottom: 10px;
+			transform: translateY(-5%);
+			left: 0;
+            margin-bottom: 20px;
+			width: 97%;
+			padding-left: 250px;
+			padding-right: 250px;
             text-transform: capitalize;
+			text-align: center; 
         }
 
-        @media only screen and  (max-width: 549px) {
+        @media only screen and  (max-width: 200px) {
 
             /* Adjust text size for smaller devices */
             #Gslider .carousel-inner .carousel-caption h1 {
@@ -58,21 +65,23 @@
             }
 
             #Gslider .carousel-inner .carousel-caption p {
-                font-size: 8px !important;
+                font-size: 10px !important;
                 margin-bottom: 5px !important;
                 color: #024430 !important;
                 font-weight: 500 !important;
                 text-transform: capitalize !important;
+				padding-left: 20px;
+			    padding-right: 20px;
             }
 
             #Gslider .carousel-inner .carousel-caption a {
-                font-size: 8px !important;
+                font-size: 5px !important;
                 margin-top: 5px !important;
             }
         }
 
 /* Media Query for tablets */
-@media only screen and (max-width: 719px) {
+@media only screen and (max-width: 200px) {
     /* Adjust text size for tablets */
     #Gslider .carousel-inner .carousel-caption {
         position: absolute;
@@ -93,35 +102,39 @@
     }
 
     #Gslider .carousel-inner .carousel-caption p {
-        font-size: 9px;
+        font-size:10px;
         margin-bottom: 7px;
+		padding-left: 20px;
+		padding-right: 20px;
     }
 
     #Gslider .carousel-inner .carousel-caption a {
-        font-size: 8px;
+        font-size: 5px;
         margin-top: 7px;
     }
 }
 
 /* Media Query for tablets */
-@media only screen and (min-width: 720px) and (max-width: 1024px) {
+@media only screen and (min-width: 200px) and (max-width: 1024px) {
     /* Adjust text size for tablets */
     #Gslider .carousel-inner img {
         width: 100% !important;
         height: 350px;
     }
     #Gslider .carousel-inner .carousel-caption h1 {
-        font-size: 30px;
+        font-size: 20px;
         margin-bottom: 4px;
     }
 
     #Gslider .carousel-inner .carousel-caption p {
-        font-size: 12px;
-        margin-bottom: 7px;
+        font-size: 10px;
+        margin-bottom: 10px;
+		padding-left: 20px;
+		padding-right: 20px;
     }
 
     #Gslider .carousel-inner .carousel-caption a {
-        font-size: 10px;
+        font-size: 5px;
         margin-top: 7px;
     }
 }
@@ -180,7 +193,7 @@
 	border-radius: 0;
 	cursor: pointer;
 	display: inline-block;
-	margin-right: 3px;
+	margin-right: 1px;
 }
 .color-plate span:hover{
 	cursor:pointer;

@@ -62,6 +62,7 @@
       .thanks h4 {
         color: rgb(2, 21, 2);
         font-size: 18px;
+        color: green;
         text-align: center;
         font-weight: bolder;
         font-family: serif;
@@ -100,7 +101,7 @@
       </div>
       <div class="invoice-right-top float-right text-right">
         <h3>Invoice #{{$order->order_number}}</h3>
-        <p>{{ $order->created_at->format('D d m Y') }}</p>
+        <p>{{ $order->created_at->format('D / m-d-Y') }}</p>
         {{-- <img class="img-responsive" src="data:image/png;base64, {{ base64_encode(QrCode::format('png')->size(150)->generate(route('admin.product.order.show', $order->id )))}}"> --}}
       </div>
       <div class="clearfix"></div>
@@ -179,7 +180,7 @@
     <h5 class="text-danger">Invalid</h5>
     @endif
     <div class="thanks mt-3">
-        <h4>THANK YOU FOR PURCHASING. HAVE A ECO-LASTIC LIFE!</h4>
+        <h4>THANK YOU FOR PURCHASING. <br> HAVE A ECO-LASTIC LIFE!</h4> </br>
       </div>
 </body>
 </html>
