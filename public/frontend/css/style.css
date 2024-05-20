@@ -5027,14 +5027,15 @@
 	background:#222;
 }
 .footer .about {
-	padding-right: 100px;
+	padding-right: 20px;
 }
 .footer .single-footer h4 {
 	font-size: 17px;
 	font-weight: 600;
 	color: #85BA46;
 	text-transform: capitalize;
-	margin-bottom: 30px;
+	margin-bottom: 50px;
+	width: 200px;
 }
 .footer .about .logo{
 	margin-bottom:20px;
@@ -5053,8 +5054,8 @@
 	display: block;
 }
 .footer .about .call a {
-	color: #85BA46;
-	font-size: 20px;
+	color: #32B87D;
+	font-size: 15px;
 	font-weight: 600;
 }
 .footer .links ul{}
