@@ -5,7 +5,7 @@
 		<div class="footer-top section">
 			<div class="container">
 				<div class="row">
-					<div class="col-lg-6 col-md-6 col-10">
+					<div class="col-lg-5 col-md-6 col-10">
 						<!-- Single Widget -->
 						<div class="single-footer about">
 							<div class="logo">
@@ -19,7 +19,7 @@
 						</div>
 						<!-- End Single Widget -->
 					</div>
-					<div class="col-lg-2 col-md-6 col-12">
+					<div class="col-lg-2 col-md-6 col-10">
 						<!-- Single Widget -->
 						<div class="single-footer links">
 							<h4>Information</h4>
@@ -47,7 +47,7 @@
 						</div>
 						<!-- End Single Widget -->
 					</div>
-					<div class="col-lg-2 col-md-6 col-12">
+					<div class="col-lg-2 col-md-6 col-10">
 						<!-- Single Widget -->
 						<div class="single-footer social">
 							<h4>Get In Touch</h4>
