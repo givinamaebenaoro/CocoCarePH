@@ -696,13 +696,8 @@
             return false
         }
     </script>
-<<<<<<< HEAD
 <script>
     let countDate = new Date('June 30, 2024 00:00:00').getTime();
-=======
-    <script>
-        let countDate = new Date('May 20, 2024 00:00:00').getTime();
->>>>>>> 046816f3d1848d72eccd94b2b26859e314ecad8d
 
     function countDown() {
       let now = new Date().getTime();

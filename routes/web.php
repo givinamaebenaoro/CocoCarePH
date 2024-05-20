@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EcoController;
+use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\Auth\VerificationController;
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,7 @@ Route::get('/','FrontendController@home')->name('home');
 
 // Frontend Routes
 Route::get('/home', 'FrontendController@index');
+Route::get('/policy', [FrontendController::class, 'policy'])->name('policy');
 Route::get('/about-us','FrontendController@aboutUs')->name('about-us');
 Route::get('/contact','FrontendController@contact')->name('contact');
 Route::post('/contact/message','MessageController@store')->name('contact.store');
