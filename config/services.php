@@ -40,9 +40,9 @@ return [
         'redirect' => 'http://localhost:8000/login/google/callback',
      ],
      'facebook' => [
-        'client_id' => '968449331673081', //Facebook API
-        'client_secret' => '65e04223c7192963911d43b4bbecddbe', //Facebook Secret
-        'redirect' => 'http://localhost:8000/login/facebook/callback',
+        'client_id' => '1765623050514944', //Facebook API
+        'client_secret' => 'b28ce6bb62c2d33e44acba786e4bb49a', //Facebook Secret
+        'redirect' => 'https://cococareph.store/login/facebook/callback',
      ],
 
 ];
