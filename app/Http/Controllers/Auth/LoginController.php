@@ -6,59 +6,68 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
-use Laravel\Socialite\Facades\Socialite;
-use App\Models\User;
-use Illuminate\Support\Facades\Auth;
-
+use Socialite;
+use App\User;
+use Auth;
 class LoginController extends Controller
 {
+    /*
+    |--------------------------------------------------------------------------
+    | Login Controller
+    |--------------------------------------------------------------------------
+    |
+    | This controller handles authenticating users for the application and
+    | redirecting them to your home screen. The controller uses a trait
+    | to conveniently provide its functionality to your applications.
+    |
+    */
+
     use AuthenticatesUsers;
 
+    /**
+     * Where to redirect users after login.
+     *
+     * @var string
+     */
     protected $redirectTo = RouteServiceProvider::HOME;
 
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+
+    public function credentials(Request $request){
+        return ['email'=>$request->email,'password'=>$request->password,'status'=>'active','role'=>'admin'];
+    }
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
     }
 
-    public function credentials(Request $request)
+    public function redirect($provider)
     {
-        return [
-            'email' => $request->email,
-            'password' => $request->password,
-            'status' => 'active',
-            'role' => 'admin'
-        ];
+        // dd($provider);
+     return Socialite::driver($provider)->redirect();
     }
 
-    public function redirectToProvider($provider)
+    public function Callback($provider)
     {
-        return Socialite::driver($provider)->redirect();
-    }
-
-    public function handleProviderCallback($provider)
-    {
-        try {
-            $userSocial = Socialite::driver($provider)->stateless()->user();
-        } catch (\Exception $e) {
-            return redirect('/login')->with('error', 'Unable to login using ' . $provider . '. Please try again.');
-        }
-
-        $user = User::where('email', $userSocial->getEmail())->first();
-
-        if ($user) {
-            Auth::login($user);
-            return redirect($this->redirectTo)->with('success', 'You are logged in from ' . $provider);
-        } else {
+        $userSocial =   Socialite::driver($provider)->stateless()->user();
+        $users      =   User::where(['email' => $userSocial->getEmail()])->first();
+        // dd($users);
+        if($users){
+            Auth::login($users);
+            return redirect('/')->with('success','You are login from '.$provider);
+        }else{
             $user = User::create([
-                'name' => $userSocial->getName(),
-                'email' => $userSocial->getEmail(),
-                'avatar' => $userSocial->getAvatar(),
-                'provider_id' => $userSocial->getId(),
-                'provider' => $provider,
+                'name'          => $userSocial->getName(),
+                'email'         => $userSocial->getEmail(),
+                'image'         => $userSocial->getAvatar(),
+                'provider_id'   => $userSocial->getId(),
+                'provider'      => $provider,
             ]);
-            Auth::login($user);
-            return redirect($this->redirectTo)->with('success', 'You are logged in from ' . $provider);
+         return redirect()->route('home');
         }
     }
 }
