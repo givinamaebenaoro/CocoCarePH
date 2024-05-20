@@ -30,9 +30,9 @@ Route::post('user/register','FrontendController@registerSubmit')->name('register
 // Reset password
 Route::get('password-reset', 'FrontendController@showResetForm')->name('password.reset');
 // Socialite
-Route::get('login/{provider}/', 'Auth\LoginController@redirect')->name('login.redirect');
+Route::get('login/{provider}/', 'Auth\LoginController@redirectToProvider')->name('login.redirect');
 Route::get('login/{provider}/callback/', 'Auth\LoginController@Callback')->name('login.callback');
-Route::get('/redirect', 'LoginController@redirect')->name('login.redirect');
+Route::get('/redirect', 'LoginController@redirectToProvider')->name('login.redirect');
 
 Route::get('/','FrontendController@home')->name('home');
 
