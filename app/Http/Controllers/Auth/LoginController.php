@@ -53,29 +53,21 @@ class LoginController extends Controller
 
     public function Callback($provider)
     {
-        $userSocial = Socialite::driver($provider)->stateless()->user();
-        $user = User::where('email', $userSocial->getEmail())->first();
-
-        if ($user) {
-            // User exists in the database, authenticate the user
-            Auth::login($user);
-            // Log the authentication status
-            \Log::info('User authenticated successfully: ' . $user->email);
-            return redirect('/')->with('success', 'You are logged in via ' . $provider);
-        } else {
-            // User does not exist, create a new user
-            $newUser = User::create([
-                'name' => $userSocial->getName(),
-                'email' => $userSocial->getEmail(),
-                'image' => $userSocial->getAvatar(),
-                'provider_id' => $userSocial->getId(),
-                'provider' => $provider,
+        $userSocial =   Socialite::driver($provider)->stateless()->user();
+        $users      =   User::where(['email' => $userSocial->getEmail()])->first();
+        // dd($users);
+        if($users){
+            Auth::login($users);
+            return redirect('/')->with('success','You are login from '.$provider);
+        }else{
+            $user = User::create([
+                'name'          => $userSocial->getName(),
+                'email'         => $userSocial->getEmail(),
+                'image'         => $userSocial->getAvatar(),
+                'provider_id'   => $userSocial->getId(),
+                'provider'      => $provider,
             ]);
-            // Log the creation of a new user
-            \Log::info('New user created: ' . $newUser->email);
-            Auth::login($newUser);
-            return redirect()->route('home');
+         return redirect()->route('home');
         }
     }
-
 }
