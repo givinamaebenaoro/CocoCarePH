@@ -26,9 +26,14 @@
             <div class="row">
                 <div class="col-lg-6 offset-lg-3 col-12">
                     <div class="login-form">
-                        <h2>Register</h2>
+                        <h2>Create Account</h2>
+
                         <!-- Form -->
                         <form class="form" method="post" action="{{route('register.submit')}}">
+                            <div class="col-12 social-login-buttons">
+                                <a href="{{route('login.redirect','facebook')}}" class="btn btn-facebook"><i class="ti-facebook"></i></a>
+                                <a href="{{ route('login.redirect', 'google') }}" class="btn btn-google"><i class="ti-google"></i></a>
+                            </div>
                             @csrf
                             <div class="row">
                                 <div class="col-12">
@@ -71,9 +76,6 @@
                                     <div class="form-group login-btn">
                                         <button class="btn" type="submit">Register</button>
                                         <a href="{{route('login.form')}}" class="btn btn-google">Back to Login</a>
-                                        <a href="{{route('login.redirect','facebook')}}" class="btn btn-facebook"><i class="ti-facebook"></i></a>
-                                        <a href="{{route('login.redirect','github')}}" class="btn btn-github"><i class="ti-github"></i></a>
-                                        <a href="{{route('login.redirect','google')}}" class="btn btn-google"><i class="ti-google"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -89,6 +91,37 @@
 
 @push('styles')
 <style>
+.social-login-buttons {
+    display: flex;
+    justify-content: space-between; /* Ensure buttons are spaced out */
+    margin-bottom: 20px; /* Adjust as needed for spacing between buttons and input */
+    margin-left: 5px;
+}
+
+.social-login-buttons .btn {
+    flex: 1; /* Make buttons take equal width */
+    text-align: center; /* Center text inside the buttons */
+    border-radius: 25px; /* Adjust for rounded corners */
+}
+
+.social-login-buttons .btn:last-child {
+    margin-right: 10%; /* Remove margin from the last button */
+}
+
+.social-login-buttons .btn-facebook {
+    margin-right: 10px; /* Space to the right of the Facebook button */
+}
+.social-login-buttons .btn-google {
+    margin-left: 10px; /* Space to the left of the Google button */
+}
+    .btn {
+        margin-right: 10px; /* Space between the social buttons */
+    }
+
+    .btn:last-child {
+        margin-right: 0; /* Remove right margin from the last button */
+    }
+
     .shop.login .form .btn{
         margin-right:0;
     }
@@ -107,7 +140,7 @@
     }
     .btn-google{
         background:#ea4335;
-        color:white;
+        color:rgb(255, 255, 255);
     }
     .btn-google:hover{
         background:rgb(243, 26, 26) !important;
