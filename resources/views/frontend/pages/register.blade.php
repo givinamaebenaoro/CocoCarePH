@@ -31,8 +31,8 @@
                         <!-- Form -->
                         <form class="form" method="post" action="{{route('register.submit')}}">
                             <div class="col-12 social-login-buttons">
-                                <a href="{{route('login.redirect','facebook')}}" class="btn btn-facebook"><i class="ti-facebook"></i></a>
-                                <a href="{{ route('login.redirect', 'google') }}" class="btn btn-google"><i class="ti-google"></i></a>
+                                <a href="{{route('login.redirect','facebook')}}" class="btn btn-facebook"><i class="ti-facebook"></i>   Facebook</a>
+                                <a href="{{ route('login.redirect', 'google') }}" class="btn btn-google"><i class="ti-google"></i>   Google</a>
                             </div>
                             @csrf
                             <div class="row">

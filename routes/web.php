@@ -33,6 +33,18 @@ Route::get('login/{provider}/callback/', 'Auth\LoginController@Callback')->name(
 
 Route::get('/','FrontendController@home')->name('home');
 
+//Facebook Login URL
+Route::prefix('facebook')->name('facebook.')->group(function(){
+    Route::get('auth', 'FacebookController@loginUsingFacebook')->name('login');
+    Route::get('callback', 'FacebookController@callbackFromFacebook')->name('callback');
+});
+
+//Google Login URL
+Route::prefix('google')->name('google.')->group(function(){
+    Route::get('auth', 'GoogleController@loginWithGoogle')->name('login');
+    Route::get('callback', 'GoogleController@callbackFromGoogle')->name('callback');
+});
+
 // Frontend Routes
 Route::get('/home', 'FrontendController@index');
 Route::get('/policy', [FrontendController::class, 'policy'])->name('policy');
