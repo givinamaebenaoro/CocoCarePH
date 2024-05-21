@@ -29,6 +29,7 @@
 							<tr class="main-hading">
 								<th>PRODUCT</th>
 								<th>NAME</th>
+                                <th>SIZE</th>
 								<th class="text-center">UNIT PRICE</th>
 								<th class="text-center">QUANTITY</th>
 								<th class="text-center">TOTAL</th>
@@ -49,7 +50,8 @@
 												<p class="product-name"><a href="{{route('product-detail',$cart->product['slug'])}}" target="_blank">{{$cart->product['title']}}</a></p>
 												<p class="product-des">{!!($cart['summary']) !!}</p>
 											</td>
-											<td class="price" data-title="Price"><span>₱{{number_format($cart['amount'],2)}}</span></td>
+                                            <td class="size" data-title="Size">{{$cart->size}}</td>
+											<td class="price" data-title="Price"><span>₱{{number_format($cart['price'],2)}}</span></td>
 											<td class="qty" data-title="Qty"><!-- Input Order -->
 												<div class="input-group">
 													<div class="button minus">
@@ -67,7 +69,7 @@
 												</div>
 												<!--/ End Input Order -->
 											</td>
-											<td class="total-amount cart_single_price" data-title="Total"><span class="money">₱{{$cart['price']}}</span></td>
+											<td class="total-amount cart_single_price" data-title="Total"><span class="money">₱{{$cart['amount']}}</span></td>
 
 											<td class="action" data-title="Remove"><a href="{{route('cart-delete',$cart->id)}}"><i class="ti-trash remove-icon"></i></a></td>
 										</tr>
@@ -154,54 +156,30 @@
 	</div>
 	<!--/ End Shopping Cart -->
 
-	<!-- Start Shop Services Area  -->
-	<section class="shop-services section home">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-6 col-12">
-                    <!-- Start Single Service -->
-                    <div class="single-service">
-                        <i class="ti-rocket"></i>
-                        <h4>Free shipping</h4>
-                        <p>Orders over ₱100</p>
-                    </div>
-                    <!-- End Single Service -->
-                </div>
-                <div class="col-lg-3 col-md-6 col-12">
-                    <!-- Start Single Service -->
-                    <div class="single-service">
-                        <i class="ti-reload"></i>
-                        <h4>Free Return</h4>
-                        <p>Within 30 days Return</p>
-                    </div>
-                    <!-- End Single Service -->
-                </div>
-                <div class="col-lg-3 col-md-6 col-12">
-                    <!-- Start Single Service -->
-                    <div class="single-service">
-                        <i class="ti-lock"></i>
-                        <h4>Secure Payment</h4>
-                        <p>100% Secure Payment</p>
-                    </div>
-                    <!-- End Single Service -->
-                </div>
-                <div class="col-lg-3 col-md-6 col-12">
-                    <!-- Start Single Service -->
-                    <div class="single-service">
-                        <i class="ti-tag"></i>
-                        <h4>Best Price</h4>
-                        <p>Guaranteed Price</p>
-                    </div>
-                    <!-- End Single Service -->
-                </div>
-            </div>
-        </div>
-    </section>
-	<!-- End Shop Newsletter -->
-
-
 
 @endsection
+@push('scripts')
+	<script src="{{asset('frontend/js/nice-select/js/jquery.nice-select.min.js')}}"></script>
+	<script src="{{ asset('frontend/js/select2/js/select2.min.js') }}"></script>
+	<script>
+		$(document).ready(function() { $("select.select2").select2(); });
+  		$('select.nice-select').niceSelect();
+	</script>
+	<script>
+		$(document).ready(function(){
+			$('.shipping select[name=shipping]').change(function(){
+				let cost = parseFloat( $(this).find('option:selected').data('price') ) || 0;
+				let subtotal = parseFloat( $('.order_subtotal').data('price') );
+				let coupon = parseFloat( $('.coupon_price').data('price') ) || 0;
+				// alert(coupon);
+				$('#order_total_price span').text('$'+(subtotal + cost-coupon).toFixed(2));
+			});
+
+		});
+
+	</script>
+
+
 @push('styles')
 	<style>
 		li.shipping{
@@ -245,25 +223,6 @@
 		}
 	</style>
 @endpush
-@push('scripts')
-	<script src="{{asset('frontend/js/nice-select/js/jquery.nice-select.min.js')}}"></script>
-	<script src="{{ asset('frontend/js/select2/js/select2.min.js') }}"></script>
-	<script>
-		$(document).ready(function() { $("select.select2").select2(); });
-  		$('select.nice-select').niceSelect();
-	</script>
-	<script>
-		$(document).ready(function(){
-			$('.shipping select[name=shipping]').change(function(){
-				let cost = parseFloat( $(this).find('option:selected').data('price') ) || 0;
-				let subtotal = parseFloat( $('.order_subtotal').data('price') );
-				let coupon = parseFloat( $('.coupon_price').data('price') ) || 0;
-				// alert(coupon);
-				$('#order_total_price span').text('$'+(subtotal + cost-coupon).toFixed(2));
-			});
 
-		});
-
-	</script>
 
 @endpush
