@@ -3,75 +3,85 @@
 ========================================*/
 /* Banner Sliding */
 #Gslider .carousel-inner {
-    padding: 0;
-    justify-content: center;
-    flex-wrap: wrap;
-    width: 100%;
+	padding: 0;
+	justify-content: center;
+	flex-wrap: wrap;
+	width: 100%;
 
 }
 
 #Gslider .carousel-inner {
-    width: 100%;
+	width: 100%;
 
 }
 
 #Gslider .carousel-inner img {
-    width: 100% !important;
-    height: 550px;
+	width: 100% !important;
+	height: 550px;
 }
 
 #Gslider .carousel-inner .carousel-caption {
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    padding-left: 140px;
-    width: 50%;
-    text-align: left;
+	position: absolute;
+	left: 0;
+	top: 50%;
+	transform: translateY(-50%);
+	padding-left: 50px;
+	width: 97%;
+	text-align: center;
 }
 
+
 #Gslider .carousel-inner .carousel-caption h1 {
-    font-size: 50px;
-    font-weight: 700;
-    text-transform: capitalize;
-    color: #333;
-    margin-bottom: 5px;
+	font-size: 50px;
+	font-weight: 700;
+	text-transform: capitalize;
+	color: #333;
+	margin-bottom: 5px;
 
 }
 
 #Gslider .carousel-inner .carousel-caption p {
-    font-size: 20px;
-    color: #024430;
-    font-weight: 500;
-    margin-bottom: 10px;
-    text-transform: capitalize;
+	position: relative;
+	font-size: 20px;
+	color: #024430;
+	font-weight: 500;
+	transform: translateY(-5%);
+	left: 0;
+	margin-bottom: 20px;
+	width: 97%;
+	padding-left: 250px;
+	padding-right: 250px;
+	text-transform: capitalize;
+	text-align: center;
 }
 
-@media only screen and  (max-width: 549px) {
+@media only screen and  (max-width: 200px) {
 
-    /* Adjust text size for smaller devices */
-    #Gslider .carousel-inner .carousel-caption h1 {
-        margin-top: auto;
-        font-size: 15px !important; /* Add !important for increased specificity */
-        margin-bottom: 3px !important;
-    }
+	/* Adjust text size for smaller devices */
+	#Gslider .carousel-inner .carousel-caption h1 {
+		margin-top: auto;
+		font-size: 20px !important; /* Add !important for increased specificity */
+		margin-bottom: 3px !important;
+	}
 
-    #Gslider .carousel-inner .carousel-caption p {
-        font-size: 8px !important;
-        margin-bottom: 5px !important;
-        color: #024430 !important;
-        font-weight: 500 !important;
-        text-transform: capitalize !important;
-    }
+	#Gslider .carousel-inner .carousel-caption p {
+		font-size: 15px !important;
+		margin-bottom: 5px !important;
+		color: #024430 !important;
+		font-weight: 500 !important;
+		text-transform: capitalize !important;
+		padding-left: 20px;
+		padding-right: 20px;
+	}
 
-    #Gslider .carousel-inner .carousel-caption a {
-        font-size: 8px !important;
-        margin-top: 5px !important;
-    }
+	#Gslider .carousel-inner .carousel-caption a {
+		font-size: 5px !important;
+		margin-top: 5px !important;
+	}
 }
 
 /* Media Query for tablets */
-@media only screen and (max-width: 719px) {
+@media only screen and (max-width: 200px) {
 /* Adjust text size for tablets */
 #Gslider .carousel-inner .carousel-caption {
 position: absolute;
@@ -83,8 +93,8 @@ width: 50%;
 text-align: left;
 }
 #Gslider .carousel-inner img {
-    width: 100% !important;
-    height: 350px;
+	width: 100% !important;
+	height: 350px;
 }
 #Gslider .carousel-inner .carousel-caption h1 {
 font-size: 20px;
@@ -92,35 +102,39 @@ margin-bottom: 4px;
 }
 
 #Gslider .carousel-inner .carousel-caption p {
-font-size: 9px;
+font-size:15px;
 margin-bottom: 7px;
+padding-left: 20px;
+padding-right: 20px;
 }
 
 #Gslider .carousel-inner .carousel-caption a {
-font-size: 8px;
+font-size: 5px;
 margin-top: 7px;
 }
 }
 
 /* Media Query for tablets */
-@media only screen and (min-width: 720px) and (max-width: 1024px) {
+@media only screen and (min-width: 200px) and (max-width: 1024px) {
 /* Adjust text size for tablets */
 #Gslider .carousel-inner img {
 width: 100% !important;
 height: 350px;
 }
 #Gslider .carousel-inner .carousel-caption h1 {
-font-size: 30px;
+font-size: 25px;
 margin-bottom: 4px;
 }
 
 #Gslider .carousel-inner .carousel-caption p {
-font-size: 12px;
-margin-bottom: 7px;
+font-size: 15px;
+margin-bottom: 10px;
+padding-left: 20px;
+padding-right: 20px;
 }
 
 #Gslider .carousel-inner .carousel-caption a {
-font-size: 10px;
+font-size: 5px;
 margin-top: 7px;
 }
 }
@@ -179,7 +193,7 @@ height: 35px;
 border-radius: 0;
 cursor: pointer;
 display: inline-block;
-margin-right: 3px;
+margin-right: 1px;
 }
 .color-plate span:hover{
 cursor:pointer;
@@ -796,7 +810,7 @@ color:#fff;
 }
 .header.shop .search-bar form {
 display: inline-block;
-float: left;
+float: center;
 width: 260px;
 }
 .header.shop .search-bar input {
@@ -5026,14 +5040,15 @@ border-color:transparent;
 background:#222;
 }
 .footer .about {
-padding-right: 50px;
+padding-right: 20px;
 }
 .footer .single-footer h4 {
 font-size: 17px;
 font-weight: 600;
-color: #fff;
+color: black;
 text-transform: capitalize;
-margin-bottom: 30px;
+margin-bottom: 50px;
+width: 200px;
 }
 .footer .about .logo{
 margin-bottom:20px;
@@ -5045,15 +5060,15 @@ font-weight: 400;
 }
 .footer .about .call {
 color: #fff;
-margin-top: 15px;
+margin-top: 25px;
 font-weight: 400;
 }
 .footer .about .call span{
 display: block;
 }
 .footer .about .call a {
-color: #024430;
-font-size: 20px;
+color: #32B87D;
+font-size: 15px;
 font-weight: 600;
 }
 .footer .links ul{}
@@ -5108,7 +5123,7 @@ color:#024430;
 }
 .footer .copyright .inner{
 border-top:1px solid #eeeeee3d;
-padding:20px 0;
+padding: 20px 0;
 }
 .footer .copyright .left{}
 .footer .copyright .right{
@@ -5174,44 +5189,3 @@ text-align: center;
 border: 0.1rem solid rgba(0, 0, 0, 0.3);
 animation: moveUpDown 2s infinite alternate;
 }
-
-/* Media query for tablet screens */
-@media (max-width: 768px) {
-.deal .row .container .count-down {
-flex-wrap: wrap; /* Allow flex items to wrap */
-}
-.deal .row .container .count-down .box {
-flex: 1 0 40%; /* Adjust width for tablet screens */
-margin-bottom: 1rem; /* Add margin between boxes */
-}
-}
-
-/* Media query for phone screens */
-@media (max-width: 480px) {
-.deal .row .container .count-down .box {
-flex: 1 0 80%; /* Adjust width for phone screens */
-}
-}
-
-@keyframes moveUpDown {
-0% {
-transform: translateY(0);
-}
-100% {
-transform: translateY(-10%);
-}
-}
-
-.deal .row .container .count-down .box h3 {
-font-size: 5rem;
-color: #333;
-}
-
-.deal .row .container .count-down .box span {
-font-size: 1.7rem;
-color: #fff;
-display: block;
-background: rgb(2, 69, 5);
-padding: 0.5rem;
-}
-
