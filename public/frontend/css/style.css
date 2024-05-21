@@ -52,7 +52,7 @@
 			padding-left: 250px;
 			padding-right: 250px;
             text-transform: capitalize;
-			text-align: center; 
+			text-align: center;
         }
 
         @media only screen and  (max-width: 200px) {
@@ -5045,7 +5045,7 @@
 .footer .single-footer h4 {
 	font-size: 17px;
 	font-weight: 600;
-	color: #85BA46;
+	color: #85ba46;
 	text-transform: capitalize;
 	margin-bottom: 50px;
 	width: 200px;
