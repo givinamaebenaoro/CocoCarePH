@@ -5182,4 +5182,10 @@ gap: 1.5rem;
 justify-content: center; /* Center the boxes horizontally */
 }
 
-
+.deal .row .container .count-down .box {
+position: relative;
+width: 8rem;
+text-align: center;
+border: 0.1rem solid rgba(0, 0, 0, 0.3);
+animation: moveUpDown 2s infinite alternate;
+}
