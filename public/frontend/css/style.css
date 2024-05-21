@@ -60,12 +60,12 @@
 	/* Adjust text size for smaller devices */
 	#Gslider .carousel-inner .carousel-caption h1 {
 		margin-top: auto;
-		font-size: 15px !important; /* Add !important for increased specificity */
+		font-size: 20px !important; /* Add !important for increased specificity */
 		margin-bottom: 3px !important;
 	}
 
 	#Gslider .carousel-inner .carousel-caption p {
-		font-size: 10px !important;
+		font-size: 15px !important;
 		margin-bottom: 5px !important;
 		color: #024430 !important;
 		font-weight: 500 !important;
@@ -102,7 +102,7 @@ margin-bottom: 4px;
 }
 
 #Gslider .carousel-inner .carousel-caption p {
-font-size:10px;
+font-size:15px;
 margin-bottom: 7px;
 padding-left: 20px;
 padding-right: 20px;
@@ -122,12 +122,12 @@ width: 100% !important;
 height: 350px;
 }
 #Gslider .carousel-inner .carousel-caption h1 {
-font-size: 20px;
+font-size: 25px;
 margin-bottom: 4px;
 }
 
 #Gslider .carousel-inner .carousel-caption p {
-font-size: 10px;
+font-size: 15px;
 margin-bottom: 10px;
 padding-left: 20px;
 padding-right: 20px;
