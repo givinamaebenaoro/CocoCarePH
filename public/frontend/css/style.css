@@ -41,18 +41,7 @@
 }
 
 #Gslider .carousel-inner .carousel-caption p {
-	position: relative;
-	font-size: 20px;
-	color: #024430;
-	font-weight: 500;
-	transform: translateY(-5%);
-	left: 0;
-	margin-bottom: 20px;
-	width: 97%;
-	padding-left: 250px;
-	padding-right: 250px;
-	text-transform: capitalize;
-	text-align: center;
+
 }
 
 @media only screen and  (max-width: 200px) {
