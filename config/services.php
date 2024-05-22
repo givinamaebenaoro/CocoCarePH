@@ -35,8 +35,8 @@ return [
         'redirect' => 'http://localhost:8000/login/github/callback',
      ],
      'google' => [
-        'client_id' => '151590199424-3sa90svohrm1gfd6ll44na8fgnnad0k6.apps.googleusercontent.com', //Google API
-        'client_secret' => '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', //Google Secret
+        'client_id' => '767464693989-mqb1d1g3ka8cjhmkai42sephans0aqqt.apps.googleusercontent.com', //Google API
+        'client_secret' => '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', //Google Secret
         'redirect' => 'https://cococareph.store/login/google/callback',
      ],
      'facebook' => [
