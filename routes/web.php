@@ -30,23 +30,23 @@ Route::post('user/register','FrontendController@registerSubmit')->name('register
 // Reset password
 Route::get('password-reset', 'FrontendController@showResetForm')->name('password.reset');
 // Socialite
-// Route::get('login/{provider}/', 'Auth\LoginController@redirect')->name('login.redirect');
-// Route::get('login/{provider}/callback/', 'Auth\LoginController@Callback')->name('login.callback');
+Route::get('login/{provider}/', 'Auth\LoginController@redirect')->name('login.redirect');
+Route::get('login/{provider}/callback/', 'Auth\LoginController@Callback')->name('login.callback');
 
 Route::get('/','FrontendController@home')->name('home');
 
-//Facebook Login URL
-Route::prefix('facebook')->name('facebook.')->group(function(){
-    Route::get('auth', [FacebookController::class, 'getAccessToken'])->name('login');
-    Route::get('callback', [FacebookController::class, 'callback'])->name('callback');
-    Route::get('auth', [FacebookController::class, 'loginWithFacebook'])->name('login');
-});
+// //Facebook Login URL
+// Route::prefix('facebook')->name('facebook.')->group(function(){
+//     Route::get('auth', [FacebookController::class, 'getAccessToken'])->name('login');
+//     Route::get('callback', [FacebookController::class, 'callback'])->name('callback');
+//     Route::get('auth', [FacebookController::class, 'loginWithFacebook'])->name('login');
+// });
 
-//Google Login URL
-Route::prefix('google')->name('google.')->group(function(){
-    Route::get('auth', [GoogleController::class, 'loginWithGoogle'])->name('login');
-    Route::get('callback', [GoogleController::class, 'callbackFromGoogle'])->name('callback');
-});
+// //Google Login URL
+// Route::prefix('google')->name('google.')->group(function(){
+//     Route::get('auth', [GoogleController::class, 'loginWithGoogle'])->name('login');
+//     Route::get('callback', [GoogleController::class, 'callbackFromGoogle'])->name('callback');
+// });
 
 // Frontend Routes
 Route::get('/home', 'FrontendController@index');
