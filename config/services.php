@@ -50,7 +50,7 @@ return [
      'facebook' => [
         'client_id' => env('FACEBOOK_APP_ID'),
                     'client_secret' => env('FACEBOOK_APP_SECRET'),
-                    'redirect_uri' => env('FACEBOOK_REDIRECT_URL'),
+                    'redirect' => env('FACEBOOK_REDIRECT_URL'),
         // 'client_id' => '1765623050514944        ', //Facebook API
         // 'client_secret' => 'b28ce6bb62c2d33e44acba786e4bb49a', //Facebook Secret
         // 'redirect' => 'https://cococareph.store/login/facebook/callback',
