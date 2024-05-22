@@ -51,7 +51,7 @@
 	width: 97%;
 	padding-left: 250px;
 	padding-right: 250px;
-	text-transform: capitalize;
+	text-transform: math-auto;
 	text-align: center; 
 }
 
