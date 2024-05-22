@@ -17,27 +17,23 @@ use App\Http\Controllers\Auth\VerificationController;
 |
 */
 
-Route::group(['middleware' => ['web']], function () {
-    Auth::routes(['register' => false]);
+Auth::routes(['verify'=>true]);
 
-    Route::get('user/login', 'FrontendController@login')->name('login.form');
-    Route::post('user/login', 'FrontendController@loginSubmit')->name('login.submit');
-    Route::get('user/logout', 'FrontendController@logout')->name('user.logout');
+Route::get('user/login','FrontendController@login')->name('login.form');
+Route::post('user/login','FrontendController@loginSubmit')->name('login.submit');
+Route::get('user/logout','FrontendController@logout')->name('user.logout');
 
-    Route::get('verify/{token}', [VerificationController::class, 'verify'])->name('verify');
+Route::get('verify/{token}', [VerificationController::class, 'verify'])->name('verify');
 
-    Route::get('user/register', 'FrontendController@register')->name('register.form');
-    Route::post('user/register', 'FrontendController@registerSubmit')->name('register.submit');
+Route::get('user/register','FrontendController@register')->name('register.form');
+Route::post('user/register','FrontendController@registerSubmit')->name('register.submit');
+// Reset password
+Route::get('password-reset', 'FrontendController@showResetForm')->name('password.reset');
+// Socialite
+Route::get('login/{provider}/', 'Auth\LoginController@redirect')->name('login.redirect');
+Route::get('login/{provider}/callback/', 'Auth\LoginController@Callback')->name('login.callback');
 
-    // Reset password
-    Route::get('password-reset', 'FrontendController@showResetForm')->name('password.reset');
-
-    // Socialite
-    Route::get('login/{provider}/', 'Auth\LoginController@redirect')->name('login.redirect');
-    Route::get('login/{provider}/callback/', 'Auth\LoginController@Callback')->name('login.callback');
-
-    Route::get('/', 'FrontendController@home')->name('home');
-});
+Route::get('/','FrontendController@home')->name('home');
 
 // //Facebook Login URL
 // Route::prefix('facebook')->name('facebook.')->group(function(){

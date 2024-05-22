@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Auth;
-use App\User;
-use Socialite;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
+use Illuminate\Http\Request;
+use Socialite;
+use App\User;
+use Auth;
 class LoginController extends Controller
 {
     /*
@@ -50,39 +48,26 @@ class LoginController extends Controller
     public function redirect($provider)
     {
         // dd($provider);
-        return Socialite::driver($provider)->stateless()->redirect();
+     return Socialite::driver($provider)->redirect();
     }
 
     public function Callback($provider)
     {
-        try {
-            $userSocial = Socialite::driver($provider)->stateless()->user();
-            Log::info('User social data: ', ['user' => $userSocial]);
-        } catch (\Exception $e) {
-            Log::error('Socialite error: ', ['error' => $e->getMessage()]);
-            return redirect('/login')->with('error', 'Something went wrong or you denied the request.');
-        }
-
-        $users = User::where('email', $userSocial->getEmail())->first();
-
-        if ($users) {
+        $userSocial =   Socialite::driver($provider)->stateless()->user();
+        $users      =   User::where(['email' => $userSocial->getEmail()])->first();
+        // dd($users);
+        if($users){
             Auth::login($users);
-            Log::info('User logged in: ', ['user' => $users]);
-            return redirect('/')->with('success', 'You are logged in from ' . $provider);
-        } else {
+            return redirect('/')->with('success','You are login from '.$provider);
+        }else{
             $user = User::create([
-                'name' => $userSocial->getName(),
-                'email' => $userSocial->getEmail(),
-                'image' => $userSocial->getAvatar(),
-                'provider_id' => $userSocial->getId(),
-                'provider' => $provider,
+                'name'          => $userSocial->getName(),
+                'email'         => $userSocial->getEmail(),
+                'image'         => $userSocial->getAvatar(),
+                'provider_id'   => $userSocial->getId(),
+                'provider'      => $provider,
             ]);
-
-            Log::info('New user created: ', ['user' => $user]);
-
-            Auth::login($user);
-            Log::info('New user logged in: ', ['user' => $user]);
-            return redirect()->route('home');
+         return redirect()->route('home');
         }
     }
 }
