@@ -76,8 +76,10 @@ class LoginController extends Controller
                 'provider' => $provider,
             ]);
 
+            Log::info('New user created: ', ['user' => $user]);
+
             Auth::login($user);
-            Log::info('New user created and logged in: ', ['user' => $user]);
+            Log::info('New user logged in: ', ['user' => $user]);
             return redirect()->route('home');
         }
     }
