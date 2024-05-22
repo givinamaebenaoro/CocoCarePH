@@ -35,10 +35,16 @@ return [
         'redirect' => 'http://localhost:8000/login/github/callback',
      ],
      'google' => [
-        'client_id' => '767464693989-mqb1d1g3ka8cjhmkai42sephans0aqqt.apps.googleusercontent.com', //Google API
-        'client_secret' => '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', //Google Secret
-        'redirect' => 'https://cococareph.store/login/google/callback',
-     ],
+        'client_id' => env('GOOGLE_CLIENT_ID'), //Google API
+        'client_secret' => env('GOOGLE_CLIENT_SECRET'), //Google Secret
+        'redirect' => env('GOOGLE_REDIRECT_URL'), // Redirect URL
+    ],
+
+    //  'google' => [
+    //     'client_id' => '767464693989-mqb1d1g3ka8cjhmkai42sephans0aqqt.apps.googleusercontent.com', //Google API
+    //     'client_secret' => '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', //Google Secret
+    //     'redirect' => 'https://cococareph.store/login/google/callback',
+    //  ],
      'facebook' => [
         'client_id' => '1765623050514944', //Facebook API
         'client_secret' => 'b28ce6bb62c2d33e44acba786e4bb49a', //Facebook Secret
