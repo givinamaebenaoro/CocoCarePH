@@ -52,4 +52,16 @@ class FacebookController extends Controller
             return null;
         }
     }
+
+    public function loginWithFacebook()
+    {
+        $facebookUrl = 'https://www.facebook.com/v3.3/dialog/oauth?' . http_build_query([
+            'client_id' => env('FACEBOOK_APP_ID'),
+            'redirect_uri' => env('FACEBOOK_REDIRECT_URI'),
+            'response_type' => 'code',
+            'scope' => 'email', // Add other scopes as needed
+        ]);
+
+        return redirect()->away($facebookUrl);
+    }
 }

@@ -39,6 +39,7 @@ Route::get('/','FrontendController@home')->name('home');
 Route::prefix('facebook')->name('facebook.')->group(function(){
     Route::get('auth', [FacebookController::class, 'getAccessToken'])->name('login');
     Route::get('callback', [FacebookController::class, 'callback'])->name('callback');
+    Route::get('auth', [FacebookController::class, 'loginWithFacebook'])->name('login');
 });
 
 //Google Login URL
