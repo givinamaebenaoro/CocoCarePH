@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EcoController;
 use App\Http\Controllers\GoogleController;
+use App\Http\Controllers\FacebookController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\Auth\VerificationController;
 /*
@@ -36,8 +37,8 @@ Route::get('/','FrontendController@home')->name('home');
 
 //Facebook Login URL
 Route::prefix('facebook')->name('facebook.')->group(function(){
-    Route::get('auth', 'FacebookController@loginUsingFacebook')->name('login');
-    Route::get('callback', 'FacebookController@callbackFromFacebook')->name('callback');
+    Route::get('auth', [FacebookController::class, 'getAccessToken'])->name('login');
+    Route::get('callback', [FacebookController::class, 'callback'])->name('callback');
 });
 
 //Google Login URL
@@ -45,7 +46,6 @@ Route::prefix('google')->name('google.')->group(function(){
     Route::get('auth', [GoogleController::class, 'loginWithGoogle'])->name('login');
     Route::get('callback', [GoogleController::class, 'callbackFromGoogle'])->name('callback');
 });
-
 
 // Frontend Routes
 Route::get('/home', 'FrontendController@index');

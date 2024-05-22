@@ -2,40 +2,54 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
-use Throwable;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Laravel\Socialite\Facades\Socialite;
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ClientException;
 
 class FacebookController extends Controller
 {
-   //Login Using Facebook
-
-   public function loginUsingFacebook()
-   {
-       return Socialite::driver('facebook')->redirect();
-   }
-
-   public function callbackFromFacebook()
+    public function callback(Request $request)
     {
-        try{
-            $user = Socialite::driver('facebook')->user;
+        $authorizationCode = $request->query('code');
 
-            $saveUser = User::updateOrCreate([
-                'facebook_id' => $user->getId(),
-            ],[
-                'name' => $user->getName(),
-                'email' => $user->getEmail(),
-                'password' => Hash::make($user->getName().'@'.$user->getId())
+        if ($authorizationCode) {
+            $accessToken = $this->getAccessToken($authorizationCode);
+            if ($accessToken) {
+                // Proceed with using the access token
+                return response()->json(['access_token' => $accessToken]);
+            } else {
+                // Handle error in obtaining access token
+                return response()->json(['error' => 'Failed to get access token.'], 500);
+            }
+        } else {
+            // Handle missing authorization code
+            return response()->json(['error' => 'Authorization code is missing.'], 400);
+        }
+    }
+
+    private function getAccessToken($authorizationCode)
+    {
+        $client = new Client();
+
+        try {
+            $response = $client->post('https://graph.facebook.com/v3.3/oauth/access_token', [
+                'form_params' => [
+                    'client_id' => env('FACEBOOK_APP_ID'),
+                    'client_secret' => env('FACEBOOK_APP_SECRET'),
+                    'redirect_uri' => env('FACEBOOK_REDIRECT_URI'),
+                    'code' => $authorizationCode
+                ]
             ]);
 
-            Auth::loginUsingId($saveUser->id);
+            $data = json_decode($response->getBody(), true);
+            return $data['access_token'];
+        } catch (ClientException $e) {
+            $response = $e->getResponse();
+            $responseBody = json_decode($response->getBody(), true);
 
-            return redirect()->route('home');
-        } catch (Throwable $th) {
-            throw $th;
+            // Log or handle the error appropriately
+            error_log('Facebook OAuth error: ' . $responseBody['error']['message']);
+            return null;
         }
     }
 }
