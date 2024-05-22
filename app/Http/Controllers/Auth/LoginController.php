@@ -48,26 +48,37 @@ class LoginController extends Controller
     public function redirect($provider)
     {
         // dd($provider);
-     return Socialite::driver($provider)->redirect();
+        return Socialite::driver($provider)->stateless()->redirect();
     }
 
     public function Callback($provider)
     {
-        $userSocial =   Socialite::driver($provider)->stateless()->user();
-        $users      =   User::where(['email' => $userSocial->getEmail()])->first();
-        // dd($users);
-        if($users){
+        try {
+            $userSocial = Socialite::driver($provider)->stateless()->user();
+            Log::info('User social data: ', ['user' => $userSocial]);
+        } catch (\Exception $e) {
+            Log::error('Socialite error: ', ['error' => $e->getMessage()]);
+            return redirect('/login')->with('error', 'Something went wrong or you denied the request.');
+        }
+
+        $users = User::where('email', $userSocial->getEmail())->first();
+
+        if ($users) {
             Auth::login($users);
-            return redirect('/')->with('success','You are login from '.$provider);
-        }else{
+            Log::info('User logged in: ', ['user' => $users]);
+            return redirect('/')->with('success', 'You are logged in from ' . $provider);
+        } else {
             $user = User::create([
-                'name'          => $userSocial->getName(),
-                'email'         => $userSocial->getEmail(),
-                'image'         => $userSocial->getAvatar(),
-                'provider_id'   => $userSocial->getId(),
-                'provider'      => $provider,
+                'name' => $userSocial->getName(),
+                'email' => $userSocial->getEmail(),
+                'image' => $userSocial->getAvatar(),
+                'provider_id' => $userSocial->getId(),
+                'provider' => $provider,
             ]);
-         return redirect()->route('home');
+
+            Auth::login($user);
+            Log::info('New user created and logged in: ', ['user' => $user]);
+            return redirect()->route('home');
         }
     }
 }
