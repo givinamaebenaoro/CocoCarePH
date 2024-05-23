@@ -442,7 +442,7 @@ class FrontendController extends Controller
         // Send the verification email with the token
         $user->sendEmailVerificationNotification($token);
 
-        request()->session()->flash('success', 'Registered successfully. Please check your email to verify your account.');
+        request()->session()->flash('success', 'Registered successfully. Please check your email to verify your account.  Please wait for minutes to recieve the verification link.');
         return redirect()->route('login.form');
     } else {
         request()->session()->flash('error', 'Please try again!');
