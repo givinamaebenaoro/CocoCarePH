@@ -6,6 +6,7 @@ use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\FacebookController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\Auth\VerificationController;
+use App\Http\Controllers\VerificationTokenController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,12 +30,17 @@ Route::get('user/register','FrontendController@register')->name('register.form')
 Route::post('user/register','FrontendController@registerSubmit')->name('register.submit');
 // Reset password
 Route::get('password-reset', 'FrontendController@showResetForm')->name('password.reset');
+Route::post('password-reset', 'FrontendController@updatePassword')->name('password.reset');
 // Socialite
 Route::get('login/{provider}/', 'Auth\LoginController@redirect')->name('login.redirect');
 Route::get('login/{provider}/callback/', 'Auth\LoginController@Callback')->name('login.callback');
+Route::get('/email/verify/{id}/{hash}', 'FrontendController@verify')->name('verification.verify');
+
+//Route::get('/verify-email/{token}', 'VerificationController@verifyEmail')->name('verify.email');
 
 Route::get('/','FrontendController@home')->name('home');
 
+// Route::get('/email/verify/{id}/{token}', [VerificationTokenController::class, 'verify']);
 // //Facebook Login URL
 // Route::prefix('facebook')->name('facebook.')->group(function(){
 //     Route::get('auth', [FacebookController::class, 'getAccessToken'])->name('login');

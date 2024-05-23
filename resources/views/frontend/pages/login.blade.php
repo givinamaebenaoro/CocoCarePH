@@ -29,12 +29,12 @@
                         <h2>Login</h2>
                         <!-- Form -->
                         <form class="form" method="post" action="{{ route('login.submit') }}">
-                            <div class="col-12 social-login-buttons">
+                            {{-- <div class="col-12 social-login-buttons">
                                 <a href="{{ route('login.redirect', 'facebook') }}" class="btn btn-facebook"><i
                                         class="ti-facebook"></i></a>
                                 <a href="{{ route('login.redirect', 'google') }}" class="btn btn-google"><i
                                         class="ti-google"></i></a>
-                            </div>
+                            </div> --}}
                             @csrf
                             <div class="col-12">
                                 <div class="registerform-group">
@@ -51,7 +51,7 @@
                                     <input type="password" name="password" placeholder=" " required="required"
                                         value="{{ old('password') }}">
                                     <label>Password<span>*</span></label>
-                                    <i class="fas fa-eye toggle-password"></i>
+                                    {{-- <i class="fas fa-eye toggle-password"></i> --}}
                                     @error('password')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -68,7 +68,7 @@
                                         </label>
                                     </div>
                                     @if (Route::has('password.request'))
-                                        <a class="lost-pass" href="{{ route('password.reset') }}">
+                                        <a class="lost-pass" href="{{ route('password.request') }}">
                                             Lost your password?
                                         </a>
                                     @endif
@@ -84,7 +84,7 @@
     <!--/ End Login -->
 @endsection
 @push('script')
-    <script>
+    {{-- <script>
         document.querySelectorAll('.toggle-password').forEach(item => {
             item.addEventListener('click', function() {
                 const input = this.previousElementSibling;
@@ -94,7 +94,7 @@
                 this.classList.toggle('fa-eye-slash');
             });
         });
-    </script>
+    </script> --}}
     @push('styles')
         <style>
             .form-options {

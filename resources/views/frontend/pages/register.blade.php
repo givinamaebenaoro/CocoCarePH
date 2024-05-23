@@ -30,10 +30,10 @@
 
                         <!-- Form -->
                         <form class="form" method="post" action="{{route('register.submit')}}">
-                            <div class="col-12 social-login-buttons">
+                            {{-- <div class="col-12 social-login-buttons">
                                 <a href="{{route('login.redirect','facebook')}}" class="btn btn-facebook"><i class="ti-facebook"></i>   Facebook</a>
                                 <a href="{{ route('login.redirect', 'google') }}" class="btn btn-google"><i class="ti-google"></i>   Google</a>
-                            </div>
+                            </div> --}}
                             @csrf
                             <div class="row">
                                 <div class="col-12">
@@ -58,7 +58,7 @@
                                     <div class="registerform-group">
                                         <input type="password" name="password" placeholder=" " required="required" value="{{old('password')}}">
                                         <label>Your Password<span>*</span></label>
-                                        <i class="fas fa-eye toggle-password"></i>
+                                        {{-- <i class="fas fa-eye toggle-password"></i> --}}
                                         @error('password')
                                         <span class="text-danger">{{$message}}</span>
                                         @enderror
@@ -68,7 +68,7 @@
                                     <div class="registerform-group">
                                         <input type="password" name="password_confirmation" placeholder=" " required="required" value="{{old('password_confirmation')}}">
                                         <label>Confirm Password<span>*</span></label>
-                                        <i class="fas fa-eye toggle-password"></i>
+                                        {{-- <i class="fas fa-eye toggle-password"></i> --}}
                                         @error('password_confirmation')
                                         <span class="text-danger">{{$message}}</span>
                                         @enderror
@@ -91,7 +91,7 @@
     <!--/ End Login -->
 @endsection
 @push('script')
-<script>
+{{-- <script>
     document.querySelectorAll('.toggle-password').forEach(item => {
         item.addEventListener('click', function () {
             const input = this.previousElementSibling;
@@ -101,7 +101,7 @@
             this.classList.toggle('fa-eye-slash');
         });
     });
-</script>
+</script> --}}
 @push('styles')
 <style>
 .register-section {
@@ -155,8 +155,12 @@
 }
 
 .text-danger {
-    color: red;
-    font-size: 0.8em;
+    position: absolute;
+    left: 40%;
+    top: 90%;
+    text-align: center;
+    /* color: red; */
+    font-size: 0.7em;
 }
 
 .login-btn {

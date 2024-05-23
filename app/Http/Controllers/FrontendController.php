@@ -356,19 +356,53 @@ class FrontendController extends Controller
     public function login(){
         return view('frontend.pages.login');
     }
-    public function loginSubmit(Request $request){
-        $data= $request->all();
-        if(Auth::attempt(['email' => $data['email'], 'password' => $data['password'],'status'=>'active'])){
-            Session::put('user',$data['email']);
-            request()->session()->flash('success','Logged in successfully!');
-            return redirect()->route('home');
+    public function loginSubmit(Request $request)
+    {
+        $data = $request->all();
+
+        // Check if the user's email is verified
+        $user = User::where('email', $data['email'])->first();
+
+        if ($user && !$user->hasVerifiedEmail()) {
+            // If email is not verified, show error message
+            request()->session()->flash('error', 'Please verify your email before logging in.');
+            return redirect()->back();
         }
-        else{
-            request()->session()->flash('error','Invalid email and password please try again!');
+
+        // Attempt authentication
+        if (Auth::attempt(['email' => $data['email'], 'password' => $data['password'], 'status' => 'active'])) {
+            Session::put('user', $data['email']);
+            request()->session()->flash('success', 'Logged in successfully!');
+            return redirect()->route('home');
+        } else {
+            request()->session()->flash('error', 'Invalid email and password. Please try again!');
             return redirect()->back();
         }
     }
 
+    public function updatePassword(Request $request)
+    {
+        // Validate the request data
+        $request->validate([
+            'token' => 'required',
+            'email' => 'required|email|exists:users,email',
+            'password' => 'required|string|min:8|confirmed',
+        ]);
+
+        // Retrieve the user by email
+        $user = User::where('email', $request->email)->first();
+
+        // If user exists, update the password
+        if ($user) {
+            $user->password = Hash::make($request->password);
+            $user->setRememberToken(Str::random(60));
+            $user->save();
+
+            return redirect()->route('login')->with('status', 'Password reset successfully');
+        }
+
+        return back()->withErrors(['email' => 'Invalid email address']);
+    }
     public function logout(){
         Session::forget('user');
         Auth::logout();
@@ -379,26 +413,99 @@ class FrontendController extends Controller
     public function register(){
         return view('frontend.pages.register');
     }
-    public function registerSubmit(Request $request){
-        // return $request->all();
-        $this->validate($request,[
-            'name'=>'string|required|min:2',
-            'email'=>'string|required|unique:users,email',
-            'password'=>'required|min:6|confirmed',
+    public function registerSubmit(Request $request)
+{
+    $this->validate($request, [
+        'name' => 'string|required|min:2',
+        'email' => 'string|required|unique:users,email',
+        'password' => 'required|min:6|confirmed',
+    ]);
+
+    $data = $request->all();
+    $user = $this->create($data);
+
+    if ($user) {
+        // Generate a verification token
+        $token = Str::random(60);
+        $expires_at = now()->addHours(24);
+
+        // Store the verification token in the database
+        DB::table('verification_tokens')->insert([
+            'user_id' => $user->id,
+            'token' => $token,
+            'expires_at' => $expires_at,
+            'verified' => false,
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
-        $data=$request->all();
-        // dd($data);
-        $check=$this->create($data);
-        Session::put('user',$data['email']);
-        if($check){
-            request()->session()->flash('success','Registered successfully');
-            return redirect()->route('home');
-        }
-        else{
-            request()->session()->flash('error','Please try again!');
-            return back();
-        }
+
+        // Send the verification email with the token
+        $user->sendEmailVerificationNotification($token);
+
+        request()->session()->flash('success', 'Registered successfully. Please check your email to verify your account.');
+        return redirect()->route('login.form');
+    } else {
+        request()->session()->flash('error', 'Please try again!');
+        return back();
     }
+}
+public function verify(Request $request, $id, $hash)
+{
+    // Find the user
+    $user = User::findOrFail($id);
+
+    // Verify the hash
+    if (!hash_equals($hash, sha1($user->getEmailForVerification()))) {
+        return redirect()->route('login.form')->with('error', 'Invalid verification link.');
+    }
+
+    // Find the verification token
+    $tokenData = DB::table('verification_tokens')
+        ->where('user_id', $id)
+        ->where('expires_at', '>', now())
+        ->first();
+
+    if (!$tokenData) {
+        return redirect()->route('login.form')->with('error', 'Invalid or expired verification token.');
+    }
+
+    // Mark the token as verified
+    DB::table('verification_tokens')
+        ->where('user_id', $id)
+        ->update(['verified' => true]);
+
+    // Update the user status if needed
+    $user->email_verified_at = now();
+    $user->save();
+
+    return redirect()->route('login.form')->with('success', 'Email verified successfully. You can now log in.');
+}
+public function resend(Request $request)
+{
+    if ($request->user()->hasVerifiedEmail()) {
+        return redirect()->route('home')->with('status', 'Your email has already been verified.');
+    }
+
+    // Generate a new verification token
+    $token = Str::random(60);
+    $expires_at = now()->addHours(24);
+
+    // Store the verification token in the database
+    DB::table('verification_tokens')->insert([
+        'user_id' => $request->user()->id,
+        'token' => $token,
+        'expires_at' => $expires_at,
+        'verified' => false,
+        'created_at' => now(),
+        'updated_at' => now(),
+    ]);
+
+    // Send the verification email with the token
+    $request->user()->sendEmailVerificationNotification($token);
+
+    return back()->with('resent', true);
+}
+
     public function create(array $data){
         return User::create([
             'name'=>$data['name'],
