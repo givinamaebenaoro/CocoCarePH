@@ -4,7 +4,7 @@
 
 <div class="card">
     <h5 class="card-header">Edit Post</h5>
-    <div class="card-body">
+  <div class="card-body">
     <form method="post" action="{{route('settings.update')}}">
         @csrf
         {{-- @method('PATCH') --}}
