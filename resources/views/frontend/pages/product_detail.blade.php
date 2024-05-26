@@ -102,7 +102,7 @@
 <!-- Size -->
 @if($product_detail->size)
     <div class="size mt-4">
-        <h4>Size</h4>
+        <h4>Size <span>*choose size</span></h4>
         <ul id="size-options">
             @php
                 $sizes = explode(',', $product_detail->size);
@@ -115,6 +115,10 @@
         </ul>
     </div>
 @endif
+
+<div id="size-warning" style="color: red; display: none;">
+    Please select a size before adding the product to your cart.
+</div>
 <!--/ End Size -->
 
 <!-- Product Buy -->
@@ -495,10 +499,100 @@
 @endsection
 @push('styles')
 	<style>
+
+/* position: relative;
+    font-weight: 500;
+    font-size: 15px;
+    color: #fff;
+    background: #333;
+    display: inline-block;
+    -webkit-transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+    z-index: 5;
+    display: inline-block;
+    padding: 13px 32px;
+    border-radius: 0px;
+    text-transform: uppercase; */
 		/* Rating */
 		.rating_box {
 		display: inline-flex;
 		}
+        .size {
+    margin-top: 16px;
+}
+
+.size h4 {
+    margin-bottom: 8px;
+}
+
+#size-options {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    gap: 8px;
+}
+
+#size-options li {
+    display: inline;
+}
+.shop.single .product-des .size h4 {
+    display: block;
+    text-transform: uppercase;
+    font-size: 16.5px;
+    font-weight: 700;
+    margin-top: 0px;
+}
+.shop.single .product-des .size h4 span {
+    display: flex;
+    position: relative;
+    bottom: 18px;
+    left: 38px;
+    font-size: 9px;
+    text-transform: uppercase;
+    font-weight: 800;
+    margin-top: 0;
+    color: #35910a;
+}
+
+.size-option {
+    position: relative;
+    font-weight: 500;
+    font-size: 15px;
+    color: #011f01;
+    background: #f0f0f0;
+    display: inline-block;
+    -webkit-transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+    z-index: 5;
+    display: inline-block;
+    padding: 13px 32px;
+    border-radius: 0px;
+    text-transform: uppercase;
+}
+
+.size-option:hover {
+    background-color: #007b1f;
+    border-color: #000000;
+}
+
+.size-option.selected {
+    background-color: #007b1f;
+    border-color: #08192b;
+    color: #fff;
+}
+
+#size-warning {
+    color: red;
+    display: none;
+    margin-top: 10px;
+}
+
+    .size-option.selected {
+        font-weight: bold;
+        color: rgb(255, 255, 255);
+    }
 
 		.star-rating {
 		font-size: 0;
@@ -543,6 +637,29 @@
 	</style>
 @endpush
 @push('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const sizeOptions = document.querySelectorAll('.size-option');
+        const sizeWarning = document.getElementById('size-warning');
+        const selectedSizeInput = document.getElementById('selected-size');
+
+        sizeOptions.forEach(button => {
+            button.addEventListener('click', function() {
+                sizeOptions.forEach(btn => btn.classList.remove('selected'));
+                this.classList.add('selected');
+                selectedSizeInput.value = this.getAttribute('data-size');
+                sizeWarning.style.display = 'none';
+            });
+        });
+
+        document.getElementById('product-form').addEventListener('submit', function(event) {
+            if (!selectedSizeInput.value) {
+                event.preventDefault();
+                sizeWarning.style.display = 'block';
+            }
+        });
+    });
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 <!-- JavaScript to handle size selection -->
 <script>
@@ -559,12 +676,7 @@
         });
     });
 </script>
-<style>
-    .size-option.selected {
-        font-weight: bold;
-        color: red;
-    }
-</style>
+
     {{-- <script>
         $('.cart').click(function(){
             var quantity=$('#quantity').val();

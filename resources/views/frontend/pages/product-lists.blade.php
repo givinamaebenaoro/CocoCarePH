@@ -218,7 +218,7 @@
 														{{-- <p>{!!  ($product->summary) !!}</p> --}}
 														</div>
 														<p class="des pt-2">{!!  ($product->summary) !!}</p>
-														<a href="javascript:void(0)" class="btn cart" data-id="{{$product->id}}">Buy Now!</a>
+														{{-- <a href="javascript:void(0)" class="btn cart" data-id="{{$product->id}}">Buy Now!</a> --}}
 													</div>
 												</div>
 											</div>
@@ -408,6 +408,7 @@
             })
         });
 	</script> --}}
+
 	<script>
         $(document).ready(function(){
         /*----------------------------------------------------*/

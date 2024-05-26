@@ -61,7 +61,7 @@
                                         <div>
                                             <label>
                                                 <input name="task[]" type="checkbox" value="task1">
-                                            Use water wisely in the morning: Take shorter showers and turn off the faucet while brushing your teeth. 
+                                            Use water wisely in the morning: Take shorter showers and turn off the faucet while brushing your teeth.
                                             </label>
                                             <label>
                                                 <input name="task[]" type="checkbox" value="task2">
@@ -86,19 +86,19 @@
                                             <label>
                                                 <input name="task[]" type="checkbox" value="task7">
                                             Use your evening to educate yourself and others: Watch documentaries or read articles on environmental issues.
-                                            </label> 
+                                            </label>
                                             <label>
-                                                <input name="task[]" type="checkbox" value="task8">                            
+                                                <input name="task[]" type="checkbox" value="task8">
                                             Use energy-saving habits before bed: Turn off lights, unplug devices, and adjust the thermostat for efficiency.
                                             </label>
                                             <label>
                                                 <input name="task[]" type="checkbox" value="task9">
-                                             Use reusable shopping bags and avoid single-use plastics: Bring your own bags when shopping to reduce  plastic waste.                                                                     
-                                            </label>                                   
+                                             Use reusable shopping bags and avoid single-use plastics: Bring your own bags when shopping to reduce  plastic waste.
+                                            </label>
                                             <label>
-                                                <input name="task[]" type="checkbox" value="task10">                                   
-                                            Use water-saving techniques in the garden: Install drip irrigation systems and collect rainwater for    watering plants.                              
-                                            </label>                                                                         
+                                                <input name="task[]" type="checkbox" value="task10">
+                                            Use water-saving techniques in the garden: Install drip irrigation systems and collect rainwater for    watering plants.
+                                            </label>
                                         </div>
                                 </div>
                             </div>
@@ -171,6 +171,120 @@
 @endsection
 @push('styles')
 <style>
+    /* Eco-Tracker Styles */
+.tracker.section {
+    padding: 60px 0;
+    background-color: #f7f7f7;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.form {
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.tracker-form .form-group {
+    margin-bottom: 20px;
+}
+
+.tracker-form label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.tracker-form label span {
+    color: #e74c3c;
+}
+
+.tracker-form input[type="text"],
+.tracker-form input[type="date"],
+.tracker-form input[type="task_description"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #333;
+    transition: border-color 0.3s;
+}
+
+.tracker-form input[type="text"]:focus,
+.tracker-form input[type="date"]:focus,
+.tracker-form input[type="task_description"]:focus {
+    border-color: #00a651;
+}
+
+.checkbox-label {
+    margin-top: 20px;
+}
+
+.checkbox-label label {
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.checkbox-label input[type="checkbox"] {
+    margin-right: 10px;
+    width: 18px;
+    height: 18px;
+}
+
+.eco-button {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.eco-button .btn {
+    background-color: #00a651;
+    color: #fff;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 4px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.eco-button .btn:disabled {
+    background-color: #aaa;
+    cursor: not-allowed;
+}
+
+.eco-button .btn:hover:not(:disabled) {
+    background-color: #008f3e;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .tracker.section {
+        padding: 30px 0;
+    }
+
+    .form {
+        padding: 20px;
+    }
+
+    .eco-button .btn {
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+}
+
+</style>
+{{-- <style>
     .shop.checkout .single-widget.eco-button .btn {
 	height: 46px;
 	width: 100%;
@@ -180,7 +294,7 @@
 	text-transform: uppercase;
 	color: #fff;
 }
-    
+
 .checkbox-label {
     display: flex;
     flex-direction: column;
@@ -235,7 +349,7 @@
 		.form-select .nice-select::after {
 			top: 14px;
 		}
-	</style>
+	</style> --}}
 @endpush
 @push('scripts')
 	<script src="{{asset('frontend/js/nice-select/js/jquery.nice-select.min.js')}}"></script>
