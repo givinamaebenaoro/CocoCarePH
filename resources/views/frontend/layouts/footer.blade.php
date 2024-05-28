@@ -40,9 +40,9 @@
 							<ul>
 								<li><a href="#">Payment Methods</a></li>
 								<li><a href="#">Money-back</a></li>
-								<li><a href="#">Returns</a></li>
-								<li><a href="#">Shipping</a></li>
-								<li><a href="#">Privacy Policy</a></li>
+								<li><a href="{{route('policy')}}">Returns</a></li>
+								<li><a href="{{route('policy')}}">Shipping</a></li>
+								<li><a href="{{route('policy')}}">Privacy Policy</a></li>
 							</ul>
 						</div>
 						<!-- End Single Widget -->

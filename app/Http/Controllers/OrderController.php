@@ -12,6 +12,8 @@ use Notification;
 use Helper;
 use Illuminate\Support\Str;
 use App\Notifications\StatusNotification;
+use Carbon\Carbon;
+
 
 class OrderController extends Controller
 {
@@ -281,14 +283,21 @@ class OrderController extends Controller
 
 
     // PDF generate
-    public function pdf(Request $request){
-        $order=Order::getAllOrder($request->id);
-        // return $order;
-        $file_name=$order->order_number.'-'.$order->first_name.'.pdf';
-        // return $file_name;
-        $pdf=PDF::loadview('backend.order.pdf',compact('order'));
-        return $pdf->download($file_name);
-    }
+    public function pdf(Request $request)
+{
+    $order = Order::getAllOrder($request->id);
+    
+    // Get the order creation date
+    $orderCreationDate = Carbon::parse($order->created_at)->format('D / m-d-Y');
+    
+    // Get today's date
+    $currentDate = Carbon::now()->format('D / m-d-Y');
+
+    $file_name = $order->order_number . '-' . $order->first_name . '.pdf';
+    
+    $pdf = PDF::loadview('backend.order.pdf', compact('order', 'orderCreationDate', 'currentDate'));
+    return $pdf->download($file_name);
+}
     // Income chart
     public function incomeChart(Request $request){
         $year=\Carbon\Carbon::now()->year;
@@ -315,4 +324,5 @@ class OrderController extends Controller
         }
         return $data;
     }
+    
 }

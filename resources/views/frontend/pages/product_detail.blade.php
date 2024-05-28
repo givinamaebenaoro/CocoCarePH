@@ -262,7 +262,6 @@
 																			$rate=0;
 																			foreach($product_detail->rate as $key=>$rate){
 																				$rate +=$rate
-																			}
 																		@endphp --}}
 																		<h4>{{ceil($product_detail->getReview->avg('rate'))}} <span>(Overall)</span></h4>
 																		<span>Based on {{$product_detail->getReview->count()}} Comments</span>
