@@ -19,106 +19,106 @@
 </div>
 <!-- End Breadcrumbs -->
 
-<!-- Start Eco-Tracker -->
-<section class="tracker section">
-    <div class="container">
-        <form class="form" method="POST" action="{{ route('ecotracker.store') }}">
-            @csrf
-            <div class="row">
-                <div class="col-lg-8 col-12">
-                    <div class="tracker-form">
-                        <!--HTML code -->
-                        <!-- Form -->
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="checkbox-label">
-                                    <div class="row">
-										<div class="col-lg-6 col-12">
-											<div class="form-group">
-												<label>Name<span>*</span></label>
-												<input name="name" id="name" type="text">
-											</div>
-										</div>
-										<div class="col-lg-6 col-12">
-											<div class="form-group">
-												<label>Task Name<span>*</span></label>
-												<input name="task_name" type="text" id="tname" placeholder="Ex. Day 1">
-											</div>
-										</div>
-										<div class="col-lg-6 col-12">
-											<div class="form-group">
-												<label>Task Description <span>*</span></label>
-												<input name="task_description" type="task_description" id="tdescription" placeholder="Ex. Learning Recycling 101">
-											</div>
-										</div>
-										<div class="col-lg-6 col-12">
-											<div class="form-group">
-												<label>Date<span>*</span></label>
-												<input id="data" name="date" type="date" placeholder="Date">
-											</div>
-										</div>
+                                    <!-- Start Eco-Tracker -->
+                                    <section class="tracker section">
+                                        <div class="container">
+                                            <form class="form" method="POST" action="{{ route('ecotracker.store') }}">
+                                                @csrf
+                                                <div class="row">
+                                                    <div class="col-lg-8 col-12">
+                                                        <div class="tracker-form">
+                                                            <!--HTML code -->
+                                                            <!-- Form -->
+                                                            <div class="row">
+                                                                <div class="col-sm-12">
+                                                                    <div class="checkbox-label">
+                                                                        <div class="row">
+                                                                            <div class="col-lg-6 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>Name<span>*</span></label>
+                                                                                    <input name="name" id="name" type="text">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-6 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>Task Name<span>*</span></label>
+                                                                                    <input name="task_name" type="text" id="tname" placeholder="Ex. Day 1">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-6 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>Task Description <span>*</span></label>
+                                                                                    <input name="task_description" type="task_description" id="tdescription" placeholder="Ex. Learning Recycling 101">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-6 col-12">
+                                                                                <div class="form-group">
+                                                                                    <label>Date<span>*</span></label>
+                                                                                    <input id="data" name="date" type="date" placeholder="Date">
+                                                                                </div>
+                                                                            </div>
 
-                                        <div>
-                                            <label>
-                                                <input name="task[]" type="checkbox" value="task1">
-                                            Use water wisely in the morning: Take shorter showers and turn off the faucet while brushing your teeth. 
-                                            </label>
-                                            <label>
-                                                <input name="task[]" type="checkbox" value="task2">
-                                            Use alternative transportation methods: Take public transportation, carpool, or bike to work or school.
-                                            </label>
-                                            <label>
-                                                <input name="task[]" type="checkbox" value="task3">
-                                            Use energy-efficient appliances and lights at work or school: Turn off electronics when not in use.
-                                            </label>
-                                            <label>
-                                                <input name="task[]" type="checkbox" value="task4">
-                                            Use reusable containers and utensils for meals: Opt for locally sourced or plant-based food options.
-                                            </label>
-                                            <label>
-                                                <input name="task[]" type="checkbox" value="task5">
-                                            Use breaks to participate in community clean-ups: Help keep public spaces litter-free.
-                                            </label>
-                                            <label>
-                                                <input name="task[]" type="checkbox" value="task6">
-                                            Use separate bins for recycling and composting at home: Reduce waste and promote recycling.
-                                            </label>
-                                            <label>
-                                                <input name="task[]" type="checkbox" value="task7">
-                                            Use your evening to educate yourself and others: Watch documentaries or read articles on environmental issues.
-                                            </label> 
-                                            <label>
-                                                <input name="task[]" type="checkbox" value="task8">                            
-                                            Use energy-saving habits before bed: Turn off lights, unplug devices, and adjust the thermostat for efficiency.
-                                            </label>
-                                            <label>
-                                                <input name="task[]" type="checkbox" value="task9">
-                                             Use reusable shopping bags and avoid single-use plastics: Bring your own bags when shopping to reduce  plastic waste.                                                                     
-                                            </label>                                   
-                                            <label>
-                                                <input name="task[]" type="checkbox" value="task10">                                   
-                                            Use water-saving techniques in the garden: Install drip irrigation systems and collect rainwater for    watering plants.                              
-                                            </label>                                                                         
+                                                                            <div>
+                                                                                <label>
+                                                                                    <input name="task[]" type="checkbox" value="task1">
+                                                                                Use water wisely in the morning: Take shorter showers and turn off the faucet while brushing your teeth. 
+                                                                                </label>
+                                                                                <label>
+                                                                                    <input name="task[]" type="checkbox" value="task2">
+                                                                                Use alternative transportation methods: Take public transportation, carpool, or bike to work or school.
+                                                                                </label>
+                                                                                <label>
+                                                                                    <input name="task[]" type="checkbox" value="task3">
+                                                                                Use energy-efficient appliances and lights at work or school: Turn off electronics when not in use.
+                                                                                </label>
+                                                                                <label>
+                                                                                    <input name="task[]" type="checkbox" value="task4">
+                                                                                Use reusable containers and utensils for meals: Opt for locally sourced or plant-based food options.
+                                                                                </label>
+                                                                                <label>
+                                                                                    <input name="task[]" type="checkbox" value="task5">
+                                                                                Use breaks to participate in community clean-ups: Help keep public spaces litter-free.
+                                                                                </label>
+                                                                                <label>
+                                                                                    <input name="task[]" type="checkbox" value="task6">
+                                                                                Use separate bins for recycling and composting at home: Reduce waste and promote recycling.
+                                                                                </label>
+                                                                                <label>
+                                                                                    <input name="task[]" type="checkbox" value="task7">
+                                                                                Use your evening to educate yourself and others: Watch documentaries or read articles on environmental issues.
+                                                                                </label> 
+                                                                                <label>
+                                                                                    <input name="task[]" type="checkbox" value="task8">                            
+                                                                                Use energy-saving habits before bed: Turn off lights, unplug devices, and adjust the thermostat for efficiency.
+                                                                                </label>
+                                                                                <label>
+                                                                                    <input name="task[]" type="checkbox" value="task9">
+                                                                                Use reusable shopping bags and avoid single-use plastics: Bring your own bags when shopping to reduce  plastic waste.                                                                     
+                                                                                </label>                                   
+                                                                                <label>
+                                                                                    <input name="task[]" type="checkbox" value="task10">                                   
+                                                                                Use water-saving techniques in the garden: Install drip irrigation systems and collect rainwater for    watering plants.                              
+                                                                                </label>                                                                         
+                                                                            </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!-- Button Widget -->
+                                                            <div class="single-widget eco-button">
+                                                                <div class="content">
+                                                                    <div class="button">
+                                                                        <button type="submit" class="btn" {{ session('form_submitted_today') ? 'disabled' : '' }}>Submit</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!--/ End Button Widget -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
                                         </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Button Widget -->
-                        <div class="single-widget eco-button">
-                            <div class="content">
-                                <div class="button">
-                                    <button type="submit" class="btn" {{ session('form_submitted_today') ? 'disabled' : '' }}>Submit</button>
-                                </div>
-                            </div>
-                        </div>
-                        <!--/ End Button Widget -->
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>
-</section>
-<!--/ End Eco-Tracker -->
+                                    </section>
+                                    <!--/ End Eco-Tracker -->
 
 
 
@@ -131,7 +131,7 @@
                     <!-- Start Single Service -->
                     <div class="single-service">
                         <i class="ti-rocket"></i>
-                        <h4>Free shipping</h4>
+                        <h4>Free Shipping</h4>
                         <p>Orders over ₱100</p>
                     </div>
                     <!-- End Single Service -->
@@ -140,8 +140,8 @@
                     <!-- Start Single Service -->
                     <div class="single-service">
                         <i class="ti-reload"></i>
-                        <h4>Free Return</h4>
-                        <p>Within 30 days Return</p>
+                        <h4>Easy Return</h4>
+                        <p>Within 30 days</p>
                     </div>
                     <!-- End Single Service -->
                 </div>

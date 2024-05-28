@@ -28,26 +28,32 @@
                     <p>At CococarePH, we are committed to sustainable practices and environmental stewardship. We encourage our customers to participate in our coconut product recycling program to help reduce waste and promote the repurposing of natural resources.</p>
                 </div>
             </div>
-         </div>
+        </div>
 
-            <div>
-              <div class="container">
-                 <div class="column">
-                        <div class="section-title">
-                            <h2>How to Recycle</h2>
-                            <p><strong>Eligible Products:</strong></p> <p> <strong>-</strong> All coconut-based products purchased from CococarePH are eligible for recycling.</p>
-                            <p><strong>Recycling Process:</strong></p> <p> <strong>-</strong> Clean the coconut product to remove any residue.</p> 
-                                                                    <p> <strong>-</strong> Package the product securely to prevent damage during shipping.</p>
-                                                                    <p> <strong>-</strong> Label the package with "Recycling Program" clearly indicated.</p>
+                   <div class="col-md-6">
+                        <div class="container">
+                            <div class="column">
+                                <div class="section-title">
+                                    <h2>How to Recycle</h2>
+                                    <p><strong>Eligible Products:</strong></p> <p> <strong>-</strong> All coconut-based products purchased from CococarePH are eligible for recycling.</p>
+                                    <p><strong>Recycling Process:</strong></p> <p> <strong>-</strong> Clean the coconut product to remove any residue.</p> 
+                                                                            <p> <strong>-</strong> Package the product securely to prevent damage during shipping.</p>
+                                                                            <p> <strong>-</strong> Label the package with "Recycling Program" clearly indicated.</p>
+                                </div>
+                            </div>
                         </div>
-                 <div class="column">
-                        <div class="section-title">
-                            <p><strong>Shipping for Recycling:</strong></p> <p> <strong>-</strong> Use either Lalamove or LBC for shipping the recyclable items to our designated recycling center.</p> 
-                                                                        <p> <strong>-</strong> Contact our customer service team for the specific address and any additional instructions.</p>
+                   </div> 
+                   <div class="col-md-6">
+                        <div class="container">
+                        <div class="column">
+                                <div class="section-title">
+                                    <p><strong>Shipping for Recycling:</strong></p> <p> <strong>-</strong> Use either Lalamove or LBC for shipping the recyclable items to our designated recycling center.</p> 
+                                                                                <p> <strong>-</strong> Contact our customer service team for the specific address and any additional instructions.</p>
+                                </div>
                         </div>
-                 </div>
-               </div>
-            </div>
+                        </div>
+                   </div> 
+
             <div class="section-title">
                     <h2>Return Policy</h2>
                     <p>We strive to ensure customer satisfaction with every purchase. If you are not completely satisfied with your product, you may return it under the following conditions:</p>

@@ -570,15 +570,15 @@
 @endif
 <!-- Modal end -->
 
-<!-- Start Shop Services Area -->
-<section class="shop-services section home">
+    <!-- Start Shop Services Area  -->
+    <section class="shop-services section home">
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-md-6 col-12">
                     <!-- Start Single Service -->
                     <div class="single-service">
                         <i class="ti-rocket"></i>
-                        <h4>Free shipping</h4>
+                        <h4>Free Shipping</h4>
                         <p>Orders over ₱100</p>
                     </div>
                     <!-- End Single Service -->
@@ -587,8 +587,8 @@
                     <!-- Start Single Service -->
                     <div class="single-service">
                         <i class="ti-reload"></i>
-                        <h4>Free Return</h4>
-                        <p>Within 30 days Return</p>
+                        <h4>Easy Return</h4>
+                        <p>Within 30 days</p>
                     </div>
                     <!-- End Single Service -->
                 </div>
@@ -613,7 +613,7 @@
             </div>
         </div>
     </section>
-<!-- End Shop Services Area -->
+    <!-- End Shop Services -->
 @endsection
 
 @push('styles')
