@@ -16,19 +16,18 @@
         margin-top: 20px;
       }
       .invoice-right-top h3 {
-        padding-right: 160px;
+        padding-right: 182px;
         margin-top: 5px;
         color: green;
         font-size: 30px!important;
         font-family: serif;
       }
       .invoice-right-top p {
-        padding-right: 100px;
-        margin: 0;
-        line-height: 20px;
-        font-size: 16px;
-        margin-bottom: 3px;
-        padding-right: 280px;
+        padding-right: 182px;
+        margin-top: 5px;
+        line-height: 10px;
+        font-size: 15px;
+        padding-left: 4%
       }
       .invoice-left-top h2 {
         margin-top: 5%;
@@ -87,6 +86,19 @@
       .table td, .table th {
         padding: .30rem;
       }
+
+      .text-right {
+        text-align: right;
+        padding-right: 10px;
+        margin: 10;
+        line-height: 20px;
+        font-size: 16px;
+      }
+      .upper-right img {
+          width: 100px; /* Adjust width as needed */
+          height: auto; /* Maintain aspect ratio */
+          margin-top: 10px; /* Adjust margin top as needed */
+      }
     </style>
     <div class="invoice-description">
       <div class="invoice-left-top float-left">
@@ -100,8 +112,10 @@
         </div>
       </div>
       <div class="invoice-right-top float-right text-right">
-        <h3>Invoice #{{$order->order_number}}</h3>
-        <p>{{ $order->created_at->format('D / m-d-Y') }}</p>
+        <h3>#{{$order->order_number}}</h3>
+        <p>Date Ordered: {{ $orderCreationDate }}</p>
+        <p>Date Today: {{ $currentDate }}</p>
+      </div>
         {{-- <img class="img-responsive" src="data:image/png;base64, {{ base64_encode(QrCode::format('png')->size(150)->generate(route('admin.product.order.show', $order->id )))}}"> --}}
       </div>
       <div class="clearfix"></div>
@@ -179,7 +193,7 @@
     @else
     <h5 class="text-danger">Invalid</h5>
     @endif
-    <div class="thanks mt-3">
+      <div class="thanks mt-3">
         <h4>THANK YOU FOR PURCHASING. <br> HAVE A ECO-LASTIC LIFE!</h4> </br>
       </div>
 </body>

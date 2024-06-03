@@ -72,7 +72,7 @@
                                                 @endphp
                                                 <div id="slider-range" data-min="0" data-max="{{$max}}"></div>
                                                 <div class="product_filter">
-                                                <button type="submit" class="filter_button">Filter</button>
+                                                <button type="submit" class="filter_button">Apply</button>
                                                 <div class="label-input">
                                                     <span>Range:</span>
                                                     <input style="" type="text" id="amount" readonly/>

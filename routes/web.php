@@ -270,6 +270,11 @@ Route::group(['prefix'=>'/user','middleware'=>['user']],function(){
     Route::get('change-password', 'HomeController@changePassword')->name('user.change.password.form');
     Route::post('change-password', 'HomeController@changPasswordStore')->name('change.password');
 
+    // FAQS
+    Route::get('/faqs', function () {
+        // Your logic for FAQs page goes here
+        return view('frontend.pages.faqs');
+    })->name('faqs'); 
 });
 
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
