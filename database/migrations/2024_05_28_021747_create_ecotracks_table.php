@@ -16,14 +16,12 @@ class CreateEcotracksTable extends Migration
         Schema::create('ecotracks', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id')->default(1);
-            $table->string('name')->nullable();
-            $table->string('task_name')->nullable()->default('No task name provided');
-            $table->text('task_description')->nullable();
-            $table->date('date')->nullable()->default(now());
             $table->text('tasks')->nullable();
             $table->integer('answer_count')->nullable()->default(0);
             $table->date('last_answered_date')->nullable();
-            $table->enum('status',['new','complete','failed','cancel'])->default('new');
+            $table->integer('consecutive_days')->default(0); // Number of consecutive days completed
+            $table->date('last_completed_date')->nullable(); // Last date a task was completed
+            $table->enum('status',['new','complete','failed'])->default('new');
             $table->timestamps();
         });
     }

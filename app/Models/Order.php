@@ -5,7 +5,21 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-    protected $fillable=['user_id','order_number','sub_total','quantity','delivery_charge','status','total_amount','first_name','last_name','country','post_code','address1','address2','phone','email','payment_method','payment_status','shipping_id','coupon'];
+    protected $fillable=['user_id','order_number','sub_total','quantity','delivery_charge','status','total_amount','recipient_name',
+    'phone_number',
+    'country',
+    'region',
+    'city',
+    'barangay',
+    'street_building',
+    'unit_floor',
+    'additional_info',
+    'address_category',
+    'default_shipping',
+    'default_billing','payment_method',
+    'payment_status',
+    'shipping_id',
+    'coupon'];
 
     public function cart_info(){
         return $this->hasMany('App\Models\Cart','order_id','id');
@@ -47,6 +61,6 @@ class Order extends Model
         $data = Order::where('status', 'cancel')->count();
         return $data;
     }
-    
+
 
 }

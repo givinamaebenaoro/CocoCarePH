@@ -15,6 +15,7 @@ use App\Models\PostTag;
 use App\Models\Product;
 use App\Models\Voucher;
 use App\Models\Category;
+use App\Models\Checkout;
 use Illuminate\Support\Str;
 use App\Models\PostCategory;
 use Illuminate\Http\Request;

@@ -22,13 +22,13 @@
             <tbody>
                 <tr class="@if($ecotrackers->read_at) border-left-success @else bg-light border-left-warning @endif">
                     <td scope="row">{{$ecotrackers->id}}</td>
-                    <td>{{$ecotrackers->name}}</td>
+                    <td>{{Auth::user()->name}}</td>
                     <td>{{$ecotrackers->created_at->format('F d, Y h:i A')}}</td>
                     <td>{{$ecotrackers->answer_count}}</td>
-                    <td>{{$ecotrackers->last_answered_date}}</td>
+                    <td>{{$ecotrackers->last_completed_date}}</td>
                     <td>{{$ecotrackers->status}}</td>
                     <td>
-                        <a href="{{route('tracker.show', $ecotrackers->id)}}" class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="view" data-placement="bottom"><i class="fas fa-eye"></i></a>
+                        <a href="{{route('tracker.edit',$ecotrackers->id)}}" class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit" data-placement="bottom"><i class="fas fa-edit"></i></a>
                         <form method="POST" action="{{route('tracker.destroy', [$ecotrackers->id])}}">
                             @csrf
                             @method('delete')
@@ -45,7 +45,7 @@
                                 <h4 class="text-center pb-4">ECO-TRACK INFORMATION</h4>
                                     <tr class="">
                                         <td>Name</td>
-                                        <td> : {{$ecotrackers->name}}</td>
+                                        <td> : {{ Auth::user()->name }}</td>
                                     </tr>
                                     <tr>
                                         <td>Date</td>
@@ -57,7 +57,7 @@
                                     </tr>
                                     <tr>
                                         <td>Last Answered Date</td>
-                                        <td> : {{$ecotrackers->last_answered_date}}</td>
+                                        <td> : {{$ecotrackers->last_completed_date}}</td>
                                     </tr>
                                 </table>
                             </div>

@@ -3,6 +3,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	@include('frontend.layouts.head')
+    @yield('extra-css')
 </head>
 <body class="js">
     <link rel="icon" type="image/png" href="/images/trial3.png">

@@ -93,29 +93,34 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user=User::findOrFail($id);
+        $user = User::findOrFail($id);
         $this->validate($request,
         [
-            'name'=>'string|required|max:30',
-            'email'=>'string|required',
-            'role'=>'required|in:admin,user',
-            'status'=>'required|in:active,inactive',
-            'photo'=>'nullable|string',
+            'name' => 'string|required|max:30',
+            'email' => 'string|required',
+            'role' => 'required|in:admin,user',
+            'status' => 'required|in:active,inactive',
+            'photo' => 'nullable|string',
         ]);
-        // dd($request->all());
-        $data=$request->all();
-        // dd($data);
-        
-        $status=$user->fill($data)->save();
-        if($status){
-            request()->session()->flash('success','Successfully updated');
-        }
-        else{
-            request()->session()->flash('error','Error occured while updating');
+
+        $data = $request->all();
+
+        $user->name = $data['name'];
+        $user->email = $data['email'];
+        $user->role = $data['role'];
+        $user->status = $data['status'];
+        $user->photo = $data['photo'];
+
+        $status = $user->save();
+
+        if ($status) {
+            $request->session()->flash('success', 'Successfully updated');
+        } else {
+            $request->session()->flash('error', 'Error occurred while updating');
         }
         return redirect()->route('users.index');
-
     }
+
 
     /**
      * Remove the specified resource from storage.

@@ -2,9 +2,11 @@
 
 namespace App;
 
+use App\ShippingAddress;
+use App\Models\UserProgress;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -41,4 +43,18 @@ class User extends Authenticatable implements MustVerifyEmail
     public function orders(){
         return $this->hasMany('App\Models\Order');
     }
+    public function progress()
+    {
+        return $this->hasMany(UserProgress::class);
+    }
+    public function shippingAddresses()
+    {
+        return $this->hasMany(ShippingAddress::class);
+    }
+
+    public function defaultShippingAddress()
+    {
+        return $this->shippingAddresses()->where('default_shipping', true)->first();
+    }
+
 }

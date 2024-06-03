@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 use Auth;
-use Illuminate\Http\Request;
+use Helper;
+use App\Models\Cart;
 use App\Models\Product;
 use App\Models\Wishlist;
-use App\Models\Cart;
+use App\ShippingAddress;
 use Illuminate\Support\Str;
-use Helper;
+use Illuminate\Http\Request;
+
 class CartController extends Controller
 {
     protected $product=null;
@@ -184,6 +186,33 @@ class CartController extends Controller
         }
     }
 
+
+    public function checkout(Request $request) {
+        $user = Auth::user();
+
+        // Ensure to check the correct relationship or field that indicates if the user has a shipping address
+        if ($user->shippingAddresses()->exists()) {
+            $shippingAddresses = $user->shippingAddresses;
+            return view('frontend.pages.checkout', compact('shippingAddresses'));
+        } else {
+            return redirect()->route('frontend.pages.shipping-address');
+        }
+    }
+
+
+
+
+    public function completeTask(Request $request)
+    {
+        $user = Auth::user();
+        $tasksCompleted = $request->input('task');
+        // Update the user's task completion status
+        foreach ($tasksCompleted as $task) {
+            $user->{$task . '_completed'} = true;
+        }
+        $user->save();
+        // Redirect or return response
+    }
     // public function addToCart(Request $request){
     //     // return $request->all();
     //     if(Auth::check()){
@@ -264,39 +293,26 @@ class CartController extends Controller
     //     session()->put('cart',$cart);
     //     return redirect()->back()->with('success','Successfully remove item');
     // }
+    // public function checkout(Request $request){
+    //     // $cart=session('cart');
+    //     // $cart_index=\Str::random(10);
+    //     // $sub_total=0;
+    //     // foreach($cart as $cart_item){
+    //     //     $sub_total+=$cart_item['amount'];
+    //     //     $data=array(
+    //     //         'cart_id'=>$cart_index,
+    //     //         'user_id'=>$request->user()->id,
+    //     //         'product_id'=>$cart_item['id'],
+    //     //         'quantity'=>$cart_item['quantity'],
+    //     //         'amount'=>$cart_item['amount'],
+    //     //         'status'=>'new',
+    //     //         'price'=>$cart_item['price'],
+    //     //     );
 
-    public function checkout(Request $request){
-        // $cart=session('cart');
-        // $cart_index=\Str::random(10);
-        // $sub_total=0;
-        // foreach($cart as $cart_item){
-        //     $sub_total+=$cart_item['amount'];
-        //     $data=array(
-        //         'cart_id'=>$cart_index,
-        //         'user_id'=>$request->user()->id,
-        //         'product_id'=>$cart_item['id'],
-        //         'quantity'=>$cart_item['quantity'],
-        //         'amount'=>$cart_item['amount'],
-        //         'status'=>'new',
-        //         'price'=>$cart_item['price'],
-        //     );
-
-        //     $cart=new Cart();
-        //     $cart->fill($data);
-        //     $cart->save();
-        // }
-        return view('frontend.pages.checkout');
-    }
-
-    public function completeTask(Request $request)
-    {
-        $user = Auth::user();
-        $tasksCompleted = $request->input('task');
-        // Update the user's task completion status
-        foreach ($tasksCompleted as $task) {
-            $user->{$task . '_completed'} = true;
-        }
-        $user->save();
-        // Redirect or return response
-    }
+    //     //     $cart=new Cart();
+    //     //     $cart->fill($data);
+    //     //     $cart->save();
+    //     // }
+    //     return view('frontend.pages.checkout');
+    // }
 }

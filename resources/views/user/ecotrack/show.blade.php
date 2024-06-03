@@ -19,10 +19,10 @@
             <tbody>
                 <tr class="@if($ecotrackers->read_at) border-left-success @else bg-light border-left-warning @endif">
                     <td scope="row">{{$ecotrackers->id}}</td>
-                    <td>{{$ecotrackers->name}}</td>
+                    <td>{{ Auth::user()->name }}</td>
                     <td>{{$ecotrackers->created_at->format('F d, Y h:i A')}}</td>
                     <td>{{$ecotrackers->answer_count}}</td>
-                    <td>{{$ecotrackers->last_answered_date}}</td>
+                    <td>{{$ecotrackers->last_completed_date}}</td>
                     <td>{{$ecotrackers->status}}</td>
                 </tr>
             </tbody>
@@ -34,7 +34,7 @@
                                 <h4 class="text-center pb-4">ECO-TRACK INFORMATION</h4>
                                     <tr class="">
                                         <td>Name</td>
-                                        <td> : {{$ecotrackers->name}}</td>
+                                        <td> : {{ Auth::user()->name }}</td>
                                     </tr>
                                     <tr>
                                         <td>Date</td>
@@ -46,7 +46,7 @@
                                     </tr>
                                     <tr>
                                         <td>Last Answered Date</td>
-                                        <td> : {{$ecotrackers->last_answered_date}}</td>
+                                        <td> : {{$ecotrackers->last_completed_date}}</td>
                                     </tr>
                                 </table>
                             </div>

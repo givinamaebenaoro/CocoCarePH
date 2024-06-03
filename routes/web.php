@@ -2,9 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EcoController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\GoogleController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\FacebookController;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\ShippingAddressController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\VerificationTokenController;
 /*
@@ -71,17 +74,40 @@ Route::post('/add-to-cart','CartController@singleAddToCart')->name('single-add-t
 Route::get('cart-delete/{id}','CartController@cartDelete')->name('cart-delete');
 Route::post('cart-update','CartController@cartUpdate')->name('cart.update');
 
+//Shipping Section
+Route::get('/checkout/shipping-address', [ShippingAddressController::class, 'create'])->name('frontend.pages.shipping-address');
+Route::post('/shipping-address', [ShippingAddressController::class, 'store'])->name('shipping.address.store');
+Route::get('/shipping-address/{shippingAddress}/edit', [ShippingAddressController::class, 'edit'])->name('frontend.pages.edit-shipping-address');
+Route::get('/back-to-checkout', [ShippingAddressController::class, 'backToCheckout'])->name('backToCheckout');
+
+Route::put('/shipping-address/{shippingAddress}', [ShippingAddressController::class, 'update'])->name('shipping.address.update');
+// web.php (Routes file)
+Route::delete('/shipping-address/{shippingAddress}', [ShippingAddressController::class, 'destroy'])->name('frontend.pages.shipping-address.destroy');
+
+
+
+
+
+Route::get('/shipping-address/regions', [ShippingAddressController::class, 'getRegions']);
+Route::get('/shipping-address/regions/{regionCode}/provinces', [ShippingAddressController::class, 'getProvinces']);
+Route::get('/shipping-address/provinces/{provinceCode}/cities-municipalities', [ShippingAddressController::class, 'getCitiesMunicipalities']);
+// Route::get('/checkout/shipping/address', [CheckoutController::class, 'shippingAddress'])->name('frontend.pages.shipping.address');
+
 // Eco-Track
 //TODAYYYYYYY
 Route::post('/ecotracker/tracker','EcoController@store')->name('ecotracker.store')->middleware('user');
 Route::post('/ecotracker/tracker', [EcoController::class, 'store'])->name('ecotracker.store')->middleware('user');
+Route::get('/ecotracker/tracker', [EcoController::class, 'showEcotracker'])->name('ecotracker')->middleware('user');
 
 //Sales Report
 Route::get('/sales','SalesController@index')->name('sales');
+Route::get('/sales/pdf', 'SalesController@generatePdf')->name('sales.pdf');
+Route::get('/sales/test', 'SalesController@test')->name('test');
 Route::get('sales/csv', 'SalesController@csv')->name('sales.csv');
 Route::get('/sales/csv', 'SalesController@generateCSV')->name('sales.csv');
 
-
+// Route::post('/storeCheckout', 'CheckoutController@storeCheckout')->name('storeCheckout');
+// Route::get('/checkout', 'FrontendController@showCheckout')->name('checkout');
 
 
 Route::post('/cart/order', 'CartController@completeTask')->name('cart.order');
@@ -120,7 +146,7 @@ Route::get('blog-tag/{slug}','FrontendController@blogByTag')->name('blog.tag');
 
 // EcoTracker
 Route::get('/ecotracker','FrontendController@ecotracker')->name('ecotracker');
-
+Route::get('/ecotracker','EcoController@showEcotracker')->name('ecotracker');
 
 // NewsLetter
 Route::post('/subscribe','FrontendController@subscribe')->name('subscribe');
@@ -154,6 +180,7 @@ Route::group(['prefix'=>'/admin','middleware'=>['auth','admin']],function(){
     Route::resource('banner','BannerController');
     //Track
     Route::resource('/tracker','EcoController');
+    Route::get('/ecotracker/tracker/{id}','EcoController@show')->name('ecotracker.show');
     // Brand
     Route::resource('brand','BrandController');
     // Profile

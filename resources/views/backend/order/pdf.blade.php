@@ -91,12 +91,12 @@
     <div class="invoice-description">
       <div class="invoice-left-top float-left">
         <h2>Invoice to</h2>
-        <h3>{{$order->first_name}} {{$order->last_name}}</h3>
+        <h3>{{$order->recipient_name}}</h3>
         <div class="address">
           <p><strong>Country: </strong>{{$order->country}}</p>
-          <p><strong>Address: </strong>{{ $order->address1 }} OR {{ $order->address2}}</p>
-          <p><strong>Phone:</strong> {{ $order->phone }}</p>
-          <p><strong>Email:</strong> {{ $order->email }}</p>
+          <p><strong>Address: </strong> {{$order->additional_info}} {{$order->unit_floor}}, {{$order->street_building}}, {{$order->barangay}}, {{$order->city}}, {{$order->region}}, {{$order->country}}</p>
+          <p><strong>Phone:</strong> {{ $order->phone_number }}</p>
+          <p><strong>Email:</strong> {{ Auth::user()->email }}</p>
         </div>
       </div>
       <div class="invoice-right-top float-right text-right">

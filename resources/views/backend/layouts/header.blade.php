@@ -10,7 +10,7 @@
     <ul class="navbar-nav ml-auto">
 
       <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-      <li class="nav-item dropdown no-arrow d-sm-none">
+      {{-- <li class="nav-item dropdown no-arrow d-sm-none">
         <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-search fa-fw"></i>
         </a>
@@ -27,7 +27,7 @@
             </div>
           </form>
         </div>
-      </li>
+      </li> --}}
 
       {{-- Home page --}}
       <li class="nav-item dropdown no-arrow mx-1">
