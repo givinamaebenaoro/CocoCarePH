@@ -116,8 +116,8 @@
                 <tr>
                     <td>{{$counter}}</td>
                     <td>{{$order->order_number}}</td>
-                    <td>{{$order->first_name}} {{$order->last_name}}</td>
-                    <td>{{$order->email}}</td>
+                    <td>{{$order->recipient_name}}</td>
+                    <td>{{$order->phone_number}}</td>
                     <td>{{$order->quantity}}</td>
                     <td>₱{{number_format($order->total_amount,2)}}</td>
                     <td>

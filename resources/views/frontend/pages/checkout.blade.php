@@ -119,7 +119,7 @@
                         <div class="single-widget get-button">
                             <div class="content">
                                 <div class="button">
-                                    <button type="submit" class="btn">Proceed to Checkout</button>
+                                    <button type="submit" class="btn">Placed Order</button>
                                 </div>
                             </div>
                         </div>

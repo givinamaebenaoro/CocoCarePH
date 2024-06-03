@@ -14,7 +14,7 @@
             <th>#</th>
             <th>Order No.</th>
             <th>Name</th>
-            <th>Email</th>
+            <th>Phone Number</th>
             <th>Qty.</th>
             <th>Charge</th>
             <th>Total</th>
@@ -25,8 +25,8 @@
         <tr>
             <td>{{$order->id}}</td>
             <td>{{$order->order_number}}</td>
-            <td>{{$order->first_name}} {{$order->last_name}}</td>
-            <td>{{$order->email}}</td>
+            <td>{{$order->recipient_name}}</td>
+            <td>{{$order->phone_number}}</td>
             <td>{{$order->quantity}}</td>
             <td>₱{{$order->shipping->price}}</td>
             <td>₱{{number_format($order->total_amount,2)}}</td>
@@ -113,27 +113,23 @@
               <table class="table">
                     <tr class="">
                         <td>Full Name</td>
-                        <td> : {{$order->first_name}} {{$order->last_name}}</td>
+                        <td> : {{$order->recipient_name}}</td>
                     </tr>
                     <tr>
                         <td>Email</td>
-                        <td> : {{$order->email}}</td>
+                        <td> : {{ Auth::user()->email }}</td>
                     </tr>
                     <tr>
                         <td>Phone No.</td>
-                        <td> : {{$order->phone}}</td>
+                        <td> : {{$order->phone_number}}</td>
                     </tr>
                     <tr>
                         <td>Address</td>
-                        <td> : {{$order->address1}}, {{$order->address2}}</td>
+                        <td> : {{$order->additional_info}} {{$order->unit_floor}}, {{$order->street_building}}, {{$order->barangay}}, {{$order->city}}, {{$order->region}}, {{$order->country}}</td>
                     </tr>
                     <tr>
                         <td>Country</td>
                         <td> : {{$order->country}}</td>
-                    </tr>
-                    <tr>
-                        <td>Post Code</td>
-                        <td> : {{$order->post_code}}</td>
                     </tr>
               </table>
             </div>

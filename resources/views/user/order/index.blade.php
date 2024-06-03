@@ -20,7 +20,7 @@
               <th>#</th>
               <th>Order No.</th>
               <th>Name</th>
-              <th>Email</th>
+              <th>Phone Number</th>
               <th>Qty.</th>
               <th>Charge</th>
               <th>Total</th>
@@ -36,8 +36,8 @@
                 <tr>
                     <td>{{$counter}}</td>
                     <td>{{$order->order_number}}</td>
-                    <td>{{$order->first_name}} {{$order->last_name}}</td>
-                    <td>{{$order->email}}</td>
+                    <td>{{$order->recipient_name}}</td>
+                    <td>{{$order->phone_number}}</td>
                     <td>{{$order->quantity}}</td>
                     <td>₱{{$order->shipping->price}}</td>
                     <td>₱{{number_format($order->total_amount,2)}}</td>
