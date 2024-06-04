@@ -1229,6 +1229,7 @@ Version:1.0
 }
 .header.shop .list-main li a {
 	color: #333;
+    font-size: 12px;
 }
 .header.shop .list-main li a:hover{
 	color:#fff;
