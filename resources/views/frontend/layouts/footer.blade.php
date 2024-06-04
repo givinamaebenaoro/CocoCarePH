@@ -15,7 +15,7 @@
 								$settings=DB::table('settings')->get();
 							@endphp
 							<p class="text">@foreach($settings as $data) {!! isset($data) ? preg_replace('/<p[^>]*>(.*?)<\/p[^>]*>/i', '$1', $data->short_des) : '' !!} @endforeach</p>
-							<p class="call">Got Question? Call us 24/7<span><a href="tel:123456789">@foreach($settings as $data) {{$data->phone}} @endforeach</a></span></p>
+							<p class="call">Got Question? Email us 24/7<span><a href="tel:123456789">@foreach($settings as $data) {{$data->email}} @endforeach</a></span></p>
 						</div>
 						<!-- End Single Widget -->
 					</div>
@@ -28,7 +28,6 @@
 								<li><a href="{{ route('faqs') }}">FAQs</a></li>
 								<li><a href="{{route('policy')}}">Terms & Conditions</a></li>
 								<li><a href="{{route('contact')}}">Contact Us</a></li>
-								<li><a href="#">Help</a></li>
 							</ul>
 						</div>
 						<!-- End Single Widget -->
@@ -38,8 +37,8 @@
 						<div class="single-footer links">
 							<h4>Customer Service</h4>
 							<ul>
-								<li><a href="#">Payment Methods</a></li>
-								<li><a href="#">Money-back</a></li>
+								<li><a href="{{route('policy')}}">Payment Methods</a></li>
+								<li><a href="{{route('policy')}}">Money-back</a></li>
 								<li><a href="{{route('policy')}}">Returns</a></li>
 								<li><a href="{{route('policy')}}">Shipping</a></li>
 								<li><a href="{{route('policy')}}">Privacy Policy</a></li>
@@ -56,7 +55,6 @@
 								<ul>
 									<li>@foreach($settings as $data) {{$data->address}} @endforeach</li>
 									<li>@foreach($settings as $data) {{$data->email}} @endforeach</li>
-									<li>@foreach($settings as $data) {{$data->phone}} @endforeach</li>
 								</ul>
 							</div>
 					</div>
