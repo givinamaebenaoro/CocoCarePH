@@ -28,7 +28,7 @@
 
                                         <li><i class="ti-user"></i> <a href="{{route('admin')}}"  target="_blank">Dashboard</a></li>
                                     @else
-                                    <li><i class="fa fa-truck"></i> <a href="{{route('cart')}}">Cart</a><i class="fa fa-truck"></i> <a href="{{route('order.track')}}">Track Order</a><i class="ti-user"></i> <a href="{{route('user')}}"  target="_blank">Dashboard</a>
+                                    <li><i class="fa fa-truck"></i> <a href="{{route('cart')}}">Add to Cart</a><i class="fa fa-truck"></i> <a href="{{route('order.track')}}">Track Order</a><i class="ti-user"></i> <a href="{{route('user')}}"  target="_blank">Dashboard</a>
                                     @endif
                                     <i class="ti-power-off"></i> <a href="{{route('user.logout')}}">Logout</a></li>
 
