@@ -50,9 +50,9 @@
                                                 {{ $address->street_building }}, {{ $address->city }}, {{ $address->region }}, {{ $address->country }}
                                             </div>
                                         </label>
-                                        <a href="{{ route('frontend.pages.edit-shipping-address', $address->id) }}" class="btn btn-primary btn-sm float-left mr-1 edit-button" data-toggle="tooltip" title="edit" data-placement="bottom">
+                                        {{-- <a href="{{ route('frontend.pages.edit-shipping-address', $address->id) }}" class="btn btn-primary btn-sm float-left mr-1 edit-button" data-toggle="tooltip" title="edit" data-placement="bottom">
                                             <i class="fas fa-edit"></i>
-                                        </a>
+                                        </a> --}}
                                     </div>
                                     @endforeach
                                 </div>
