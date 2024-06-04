@@ -41,7 +41,7 @@
 					<div class="col-lg-6 col-12">
 						<div class="about-img overlay">
 							<div class="button">
-								<a href="https://www.youtube.com/watch?v=eZfeW9WDwmA" class="video video-popup mfp-iframe"><i class="fa fa-play"></i></a>
+								<a href="https://www.youtube.com/watch?v=lHgBJT1_x9A" class="video video-popup mfp-iframe"><i class="fa fa-play"></i></a>
 							</div>
 							<img src="@foreach($settings as $data) {{$data->photo}} @endforeach" alt="@foreach($settings as $data) {{$data->photo}} @endforeach">
 						</div>
