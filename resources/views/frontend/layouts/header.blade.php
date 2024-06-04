@@ -24,16 +24,18 @@
                                 {{-- <li><i class="ti-alarm-clock"></i> <a href="#">Daily deal</a></li> --}}
                                 @auth
                                     @if(Auth::user()->role=='admin')
-                                    <li><i class="fa fa-truck"></i> <a href="{{route('order.track')}}">Track Order</a></li>
-
-                                        <li><i class="ti-user"></i> <a href="{{route('admin')}}"  target="_blank">Dashboard</a></li>
+                                    <li><i class="fa fa-truck"></i><a href="{{route('cart')}}">Add to Cart</a>
+                                        <i class="ti-user"></i> <a href="{{route('admin')}}"  target="_blank">Dashboard</a>
+                                        <i class="fa fa-truck"></i> <a href="{{route('order.track')}}">Track Order</a>
                                     @else
-                                    <li><i class="fa fa-truck"></i> <a href="{{route('order.track')}}">Track Order</a><i class="fa fa-truck"></i> <a href="{{route('cart')}}">Add to llCart</a><i class="ti-user"></i> <a href="{{route('user')}}"  target="_blank">Dashboard</a>
+                                    <li> <i class="fa fa-truck"></i><a href="{{route('cart')}}">Add to Cart</a>
+                                         <i class="fa fa-truck"></i> <a href="{{route('order.track')}}">Track Order</a>
+                                         <i class="ti-user"></i> <a href="{{route('user')}}"  target="_blank">Dashboard</a>
                                     @endif
                                     <i class="ti-power-off"></i> <a href="{{route('user.logout')}}">Logout</a></li>
 
                                 @else
-                                    <li><i class="fa fa-sign-in"></i><a href="{{route('login.form')}}">Login /</a> <a href="{{route('register.form')}}">Register</a></li>
+                                    <i class="fa fa-sign-in"></i><a href="{{route('login.form')}}">Login /</a> <a href="{{route('register.form')}}">Register</a></li>
                                 @endauth
                             </ul>
                         </div>
