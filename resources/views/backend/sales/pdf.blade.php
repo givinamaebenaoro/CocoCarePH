@@ -116,7 +116,7 @@ tr:hover {
                     @php $totalDelivered += $order->total_amount; @endphp
                     <tr>
                         <td>{{ $order->order_number }}</td>
-                        <td>{{ $order->first_name }} {{ $order->last_name }}</td>
+                        <td>{{ $order->recipient_name }}</td>
                         <td>{{ date('F j, Y h:i A', strtotime($order->created_at)) }}</td>
                         <td>P {{ number_format($order->total_amount, 2) }}</td>
                     </tr>
