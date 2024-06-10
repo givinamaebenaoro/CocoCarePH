@@ -89,6 +89,10 @@
               <option value="11US">11 US</option>
               <option value="12US">12 US</option>
               <option value="13US">13 US</option>
+              <option value="30ML">30 ml</option>
+              <option value="50ML">50 ml</option>
+              <option value="1L">1 L</option>
+              <option value="1.5L">1.5 L</option>
           </select>
         </div>
 

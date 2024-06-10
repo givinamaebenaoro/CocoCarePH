@@ -45,5 +45,16 @@ class Product extends Model
     public function brand(){
         return $this->hasOne(Brand::class,'id','brand_id');
     }
+// Relationships
+public function category() {
+    return $this->belongsTo(Category::class, 'cat_id');
+}
 
+public function childCategory() {
+    return $this->belongsTo(Category::class, 'child_cat_id');
+}
+
+// // public function brand() {
+// //     return $this->belongsTo(Brand::class, 'brand_id');
+// }
 }

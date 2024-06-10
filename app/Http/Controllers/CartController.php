@@ -9,6 +9,7 @@ use App\Models\Wishlist;
 use App\ShippingAddress;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CartController extends Controller
 {
@@ -149,55 +150,115 @@ class CartController extends Controller
     }
 
     public function cartUpdate(Request $request){
-        // dd($request->all());
-        if($request->quant){
-            $error = array();
-            $success = '';
-            // return $request->quant;
-            foreach ($request->quant as $k=>$quant) {
-                // return $k;
-                $id = $request->qty_id[$k];
-                // return $id;
-                $cart = Cart::find($id);
-                // return $cart;
-                if($quant > 0 && $cart) {
-                    // return $quant;
+        $cart = Cart::find($request->id);
 
-                    if($cart->product->stock < $quant){
-                        request()->session()->flash('error','Out of stock');
-                        return back();
-                    }
-                    $cart->quantity = ($cart->product->stock > $quant) ? $quant  : $cart->product->stock;
-                    // return $cart;
+    if ($cart) {
+        $quantity = $request->quantity;
 
-                    if ($cart->product->stock <=0) continue;
-                    $after_price=($cart->product->price-($cart->product->price*$cart->product->discount)/100);
-                    $cart->amount = $after_price * $quant;
-                    // return $cart->price;
-                    $cart->save();
-                    $success = 'Cart updated successfully!';
-                }else{
-                    $error[] = 'Cart Invalid!';
-                }
+        if ($quantity > 0) {
+            if ($cart->product->stock < $quantity) {
+                return response()->json(['status' => false, 'message' => 'Out of stock']);
             }
-            return back()->with($error)->with('success', $success);
-        }else{
-            return back()->with('Cart Invalid!');
+
+            $cart->quantity = min($quantity, $cart->product->stock);
+
+            $after_price = $cart->product->price - ($cart->product->price * $cart->product->discount / 100);
+            $cart->amount = $after_price * $quantity;
+            $cart->save();
+
+            $total_price = Helper::totalCartPrice();
+            $cart_single_price = $cart->amount;
+
+            return response()->json([
+                'status' => true,
+                'total_price' => number_format($total_price, 2),
+                'cart_single_price' => number_format($cart_single_price, 2),
+                'order_subtotal' => number_format($total_price, 2)
+            ]);
         }
+    }
+
+    return response()->json(['status' => false, 'message' => 'Invalid quantity']);
+        // // dd($request->all());
+        // if($request->quant){
+        //     $error = array();
+        //     $success = '';
+        //     // return $request->quant;
+        //     foreach ($request->quant as $k=>$quant) {
+        //         // return $k;
+        //         $id = $request->qty_id[$k];
+        //         // return $id;
+        //         $cart = Cart::find($id);
+        //         // return $cart;
+        //         if($quant > 0 && $cart) {
+        //             // return $quant;
+
+        //             if($cart->product->stock < $quant){
+        //                 request()->session()->flash('error','Out of stock');
+        //                 return back();
+        //             }
+        //             $cart->quantity = ($cart->product->stock > $quant) ? $quant  : $cart->product->stock;
+        //             // return $cart;
+
+        //             if ($cart->product->stock <=0) continue;
+        //             $after_price=($cart->product->price-($cart->product->price*$cart->product->discount)/100);
+        //             $cart->amount = $after_price * $quant;
+        //             // return $cart->price;
+        //             $cart->save();
+        //             $success = 'Cart updated successfully!';
+        //         }else{
+        //             $error[] = 'Cart Invalid!';
+        //         }
+        //     }
+        //     return back()->with($error)->with('success', $success);
+        // }else{
+        //     return back()->with('Cart Invalid!');
+        // }
     }
 
 
     public function checkout(Request $request) {
         $user = Auth::user();
 
-        // Ensure to check the correct relationship or field that indicates if the user has a shipping address
-        if ($user->shippingAddresses()->exists()) {
-            $shippingAddresses = $user->shippingAddresses;
-            return view('frontend.pages.checkout', compact('shippingAddresses'));
-        } else {
+        // Check if the user has a shipping address
+        if (!$user->shippingAddresses()->exists()) {
             return redirect()->route('frontend.pages.shipping-address');
         }
+
+        $shippingAddresses = $user->shippingAddresses;
+
+        try {
+            // Process the order within a transaction
+            DB::transaction(function () use ($request, $user) {
+                // Assume you have a cart model or similar to get the user's cart items
+                $cartItems = Cart::where('user_id', $user->id)->get();
+
+                foreach ($cartItems as $item) {
+                    $product = Product::find($item->product_id);
+
+                    // Check if enough stock is available
+                    if ($product->stock < $item->quantity) {
+                        throw new \Exception('Not enough stock for product: ' . $product->title);
+                    }
+
+                    // Subtract the stock
+                    $product->stock -= $item->quantity;
+                    $product->save();
+                }
+
+                // Create the order here
+                // Order::create([...]);
+            });
+
+            return view('frontend.pages.checkout', compact('shippingAddresses'));
+        } catch (\Exception $e) {
+            // Handle the exception and redirect back with a warning message
+            return redirect()->back()->with('warning', $e->getMessage());
+        }
     }
+
+
+
 
 
 

@@ -20,7 +20,9 @@
             <tr>
               <th>#</th>
               <th>Title</th>
-              <th>Price</th>
+              <th>Base Price</th>
+              <th>Weight</th>
+              <th>Price per KG</th>
               <th>Status</th>
               <th>Action</th>
             </tr>
@@ -30,7 +32,9 @@
                 <tr>
                     <td>{{$shipping->id}}</td>
                     <td>{{$shipping->type}}</td>
-                    <td>₱{{$shipping->price}}</td>
+                    <td>{{$shipping->base_price}}</td>
+                    <td>{{$shipping->weight}}</td>
+                    <td>₱{{$shipping->price_per_kg}}</td>
                     <td>
                         @if($shipping->status=='active')
                             <span class="badge badge-success">{{$shipping->status}}</span>

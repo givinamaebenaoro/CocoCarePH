@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use GuzzleHttp\Client;
-use Illuminate\Http\Request;
 use App\ShippingAddress;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 
 class ShippingAddressController extends Controller
@@ -102,36 +103,46 @@ class ShippingAddressController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, ShippingAddress $shippingAddress)
-    {
-        $request->validate([
-            'recipient_name' => 'required|string|max:255',
-            'phone_number' => 'required|string|max:20',
-            'country' => 'required|string|max:255',
-            'region' => 'required|string|max:255',
-            'city' => 'required|string|max:255',
-            'barangay' => 'required|string|max:255',
-            'street_building' => 'required|string|max:255',
-            'unit_floor' => 'required|string|max:255',
-            'additional_info' => 'nullable|string|max:255',
-            'address_category' => 'required|in:home,office',
-            'default_shipping' => 'required|boolean',
-            'default_billing' => 'required|boolean',
-        ]);
+{
+    Log::info('Update request data:', $request->all());
 
-        $user = Auth::user();
+    $request->validate([
+        'recipient_name' => 'required|string|max:255',
+        'phone_number' => 'required|string|max:20',
+        'country' => 'required|string|max:255',
+        'region' => 'required|string|max:255',
+        'city' => 'required|string|max:255',
+        'barangay' => 'required|string|max:255',
+        'street_building' => 'required|string|max:255',
+        'unit_floor' => 'required|string|max:255',
+        'additional_info' => 'nullable|string|max:255',
+        'address_category' => 'required|in:home,office',
+        'default_shipping' => 'required|boolean',
+        'default_billing' => 'required|boolean',
+    ]);
 
-        // Ensure only one default shipping and billing address
-        if ($request->default_shipping) {
-            $user->shippingAddresses()->update(['default_shipping' => false]);
-        }
-        if ($request->default_billing) {
-            $user->shippingAddresses()->update(['default_billing' => false]);
-        }
+    $user = Auth::user();
 
-        $shippingAddress->update($request->all());
-
-        return redirect()->route('checkout')->with('success', 'Shipping Address saved successfully!');
+    // Ensure only one default shipping and billing address
+    if ($request->default_shipping) {
+        $user->shippingAddresses()->update(['default_shipping' => false]);
     }
+    if ($request->default_billing) {
+        $user->shippingAddresses()->update(['default_billing' => false]);
+    }
+
+    $status = $shippingAddress->update($request->all());
+
+    Log::info('Updated shipping address:', $shippingAddress->toArray());
+    Log::info('Update status:', ['status' => $status]);
+
+    if ($status) {
+        return redirect()->route('checkout')->with('success', 'Shipping Address updated successfully!');
+    } else {
+        return redirect()->route('checkout')->with('error', 'Error occurred while updating shipping address');
+    }
+}
+
 
     /**
      * Remove the specified shipping address from storage.

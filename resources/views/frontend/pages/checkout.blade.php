@@ -22,6 +22,8 @@
     <!-- End Breadcrumbs -->
 
 <!-- Start Checkout -->
+
+
 <section class="shop checkout section">
     <div class="container">
         <form class="form" method="POST" action="{{ route('cart.order') }}">
@@ -36,11 +38,11 @@
                         <p>Just a few more steps to complete your purchase securely!</p>
                         @if($shippingAddresses->isNotEmpty())
                         <div class="form-group">
-                            <label for="shipping_address" style=" font-weight:bold">Select Shipping Address  *</label>
+                            <label for="shipping_address" style="font-weight:bold">Select Shipping Address *</label>
                             <div class="shipping-address-buttons">
                                 @foreach($shippingAddresses as $address)
                                     <div class="shipping-address-button">
-                                        <input type="radio" name="shipping_address_id" id="shipping_address_{{ $address->id }}" value="{{ $address->id }}" required>
+                                        <input type="radio" name="shipping_address_id" id="shipping_address_{{ $address->id }}" value="{{ $address->id }}" required {{ $shippingAddresses->count() == 1 ? 'checked' : '' }}>
                                         <label for="shipping_address_{{ $address->id }}">
                                             <div class="address-header">
                                                 <span class="recipient-name">{{ $address->recipient_name }}</span>
@@ -50,13 +52,13 @@
                                                 {{ $address->street_building }}, {{ $address->city }}, {{ $address->region }}, {{ $address->country }}
                                             </div>
                                         </label>
-                                        {{-- <a href="{{ route('frontend.pages.edit-shipping-address', $address->id) }}" class="btn btn-primary btn-sm float-left mr-1 edit-button" data-toggle="tooltip" title="edit" data-placement="bottom">
-                                            <i class="fas fa-edit"></i>
-                                        </a> --}}
+                                        <a href="{{ route('frontend.pages.edit-shipping-address', $address->id) }}" class="btn btn-primary btn-sm float-left mr-1 edit-button" data-toggle="tooltip" title="edit" data-placement="bottom">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
                                     </div>
-                                    @endforeach
-                                </div>
+                                @endforeach
                             </div>
+                        </div>
                         @else
                             <p>No shipping addresses found. <a href="{{ route('frontend.pages.shipping-address') }}">Add a shipping address</a></p>
                         @endif
@@ -72,26 +74,67 @@
                                     <li class="order_subtotal" data-price="{{ Helper::totalCartPrice() }}">Cart Subtotal<span>₱{{ number_format(Helper::totalCartPrice(), 2) }}</span></li>
                                     <li class="shipping">
                                         Shipping Cost
-                                        @if(count(Helper::shipping()) > 0 && Helper::cartCount() > 0)
-                                            <select name="shipping" class="nice-select" required>
-                                                <option value="">Select your address</option>
-                                                @foreach(Helper::shipping() as $shipping)
-                                                    <option value="{{ $shipping->id }}" class="shippingOption" data-price="{{ $shipping->price }}">{{ $shipping->type }}: ₱{{ $shipping->price }}</option>
-                                                @endforeach
-                                            </select>
-                                        @else
-                                            <span>Free</span>
-                                        @endif
+                                        @php
+                                            $quantity = Helper::cartCount();
+                                            $shipping_cost = 0;
+                                            $region = $shippingAddresses->isNotEmpty() ? $shippingAddresses->first()->region : null;
+                                            $luzonRegions = [
+                                                'National Capital Region (NCR)',
+                                                'Cordillera Administrative Region (CAR)',
+                                                'Region I (Ilocos Region)',
+                                                'Region II (Cagayan Valley)',
+                                                'Region III (Central Luzon)',
+                                                'Region IV-A (CALABARZON)',
+                                                'Region IV-B (MIMAROPA)',
+                                                'Region V (Bicol Region)'
+                                            ];
+
+                                            $visayasRegions = [
+                                                'Region VI (Western Visayas)',
+                                                'Region VII (Central Visayas)',
+                                                'Region VIII (Eastern Visayas)'
+                                            ];
+
+                                            $mindanaoRegions = [
+                                                'Region IX (Zamboanga Peninsula)',
+                                                'Region X (Northern Mindanao)',
+                                                'Region XI (Davao Region)',
+                                                'Region XII (SOCCSKSARGEN)',
+                                                'Region XIII (Caraga)',
+                                                'Bangsamoro Autonomous Region in Muslim Mindanao (BARMM)'
+                                            ];
+
+                                            if(in_array($region, $luzonRegions)) {
+                                                $shipping_cost = 37;
+                                                if($quantity > 20) {
+                                                    $shipping_cost += ceil(($quantity - 20) / 3) * 50;
+                                                }
+                                            } elseif(in_array($region, $visayasRegions)) {
+                                                $shipping_cost = 75;
+                                                if($quantity > 20) {
+                                                    $shipping_cost += ceil(($quantity - 20) / 3) * 75;
+                                                }
+                                            } elseif(in_array($region, $mindanaoRegions)) {
+                                                $shipping_cost = 112;
+                                                if($quantity > 20) {
+                                                    $shipping_cost += ceil(($quantity - 20) / 3) * 105;
+                                                }
+                                            }
+                                        @endphp
+                                        <span>₱{{ number_format($shipping_cost, 2) }}</span>
                                     </li>
                                     @if(session('coupon'))
                                         <li class="coupon_price" data-price="{{ session('coupon')['value'] }}">You Save<span>₱{{ number_format(session('coupon')['value'], 2) }}</span></li>
                                     @endif
                                     @php
-                                        $total_amount = Helper::totalCartPrice();
+                                        $subtotal = Helper::totalCartPrice();
+                                        $vat = $subtotal * 0.12; // Assuming VAT is 12%
+                                        $total_amount = $subtotal + $shipping_cost + $vat;
                                         if(session('coupon')){
-                                            $total_amount = $total_amount - session('coupon')['value'];
+                                            $total_amount -= session('coupon')['value'];
                                         }
                                     @endphp
+                                    <li class="vat_price" data-price="{{ $vat }}">VAT (12%)<span>₱{{ number_format($vat, 2) }}</span></li>
                                     <li class="last" id="order_total_price">Total<span>₱{{ number_format($total_amount, 2) }}</span></li>
                                 </ul>
                             </div>
@@ -99,17 +142,13 @@
                         <!--/ End Order Widget -->
                         <!-- Order Widget -->
                         <div class="single-widget">
-                            <h2>Payment Methods</h2>
+                            <h2>Payment Method</h2>
                             <div class="content">
-                                <div class="checkbox">
-                                    {{-- <label class="checkbox-inline" for="1"><input name="updates" id="1" type="checkbox"> Check Payments</label> --}}
-                                    <div class="form-group">
-                                        <input name="payment_method" type="radio" value="cod" required> <label> Cash On Delivery</label><br>
-                                        <!-- <input name="payment_method" type="radio" value="paypal"> <label> PayPal</label><br> -->
-                                    </div>
-                                </div>
+                                <p><strong>Cash On Delivery</strong></p>
+                                <input type="hidden" name="payment_method" value="cod">
                             </div>
                         </div>
+
                         <!--/ End Order Widget -->
                         <!-- Payment Method Widget -->
                         <div class="single-widget payement">
@@ -119,7 +158,7 @@
                         <div class="single-widget get-button">
                             <div class="content">
                                 <div class="button">
-                                    <button type="submit" class="btn">Placed Order</button>
+                                    <button type="submit" class="btn">Place Order</button>
                                 </div>
                             </div>
                         </div>
@@ -138,6 +177,16 @@
 @endsection
 @push('styles')
 	<style>
+
+    .single-widget strong {
+        float: left; /* Float the widget to the right */
+        clear: both; /* Clear floats to avoid wrapping issues */
+        /* width: ; Set the width to adjust as needed */
+        margin-top: 5px; /* Adjust margin-top as needed */
+        margin-bottom: 10px;
+        margin-left: 30px;
+    }
+
         /* Container styles */
         .shop.checkout.section {
             padding: 20px 0;
@@ -202,7 +251,7 @@
         .shipping-address-button:focus-within,.address-details,
         .shipping-address-button input:checked + label,
         .shipping-address-button input:checked + label + a {
-            background-color: #2e4b01;
+            /* background-color: #2e4b01; */
             padding: 10px;
             color:#fff;
             /* border: 1px solid rgb(8, 79, 66); */

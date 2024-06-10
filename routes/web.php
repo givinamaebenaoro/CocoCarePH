@@ -73,6 +73,8 @@ Route::get('/add-to-cart/{slug}','CartController@addToCart')->name('add-to-cart'
 Route::post('/add-to-cart','CartController@singleAddToCart')->name('single-add-to-cart')->middleware('user');
 Route::get('cart-delete/{id}','CartController@cartDelete')->name('cart-delete');
 Route::post('cart-update','CartController@cartUpdate')->name('cart.update');
+Route::post('/cart/update/ajax', [CartController::class, 'updateCart'])->name('cart.update.ajax');
+
 
 //Shipping Section
 Route::get('/checkout/shipping-address', [ShippingAddressController::class, 'create'])->name('frontend.pages.shipping-address');
@@ -274,7 +276,7 @@ Route::group(['prefix'=>'/user','middleware'=>['user']],function(){
     Route::get('/faqs', function () {
         // Your logic for FAQs page goes here
         return view('frontend.pages.faqs');
-    })->name('faqs'); 
+    })->name('faqs');
 });
 
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {

@@ -6,22 +6,40 @@
     <h5 class="card-header">Edit Shipping</h5>
     <div class="card-body">
       <form method="post" action="{{route('shipping.update',$shipping->id)}}">
-        @csrf 
+        @csrf
         @method('PATCH')
+
         <div class="form-group">
           <label for="inputTitle" class="col-form-label">Type <span class="text-danger">*</span></label>
         <input id="inputTitle" type="text" name="type" placeholder="Enter type"  value="{{$shipping->type}}" class="form-control">
         @error('title')
         <span class="text-danger">{{$message}}</span>
         @enderror
-        </div>     
+        </div>
+
+        <div class="form-group">
+          <label for="inputTitle" class="col-form-label">Base Price <span class="text-danger">*</span></label>
+        <input id="inputTitle" type="text" name="base_price" placeholder="Enter base price"  value="{{$shipping->base_price}}" class="form-control">
+        @error('base_price')
+        <span class="text-danger">{{$message}}</span>
+        @enderror
+        </div>
+
+        <div class="form-group">
+            <label for="inputTitle" class="col-form-label">Weight <span class="text-danger">*</span></label>
+          <input id="inputTitle" type="text" name="weight" placeholder="Enter weight"  value="{{$shipping->weight}}" class="form-control">
+          @error('weight')
+          <span class="text-danger">{{$message}}</span>
+          @enderror
+          </div>
+
         <div class="form-group">
           <label for="price" class="col-form-label">Price <span class="text-danger">*</span></label>
-        <input id="price" type="number" name="price" placeholder="Enter price"  value="{{$shipping->price}}" class="form-control">
+        <input id="price" type="number" name="price" placeholder="Enter price"  value="{{$shipping->price_per_kg}}" class="form-control">
         @error('price')
         <span class="text-danger">{{$message}}</span>
         @enderror
-        </div>        
+        </div>
         <div class="form-group">
           <label for="status" class="col-form-label">Status <span class="text-danger">*</span></label>
           <select name="status" class="form-control">

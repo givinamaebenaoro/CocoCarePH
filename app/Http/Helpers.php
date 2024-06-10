@@ -9,6 +9,7 @@ use App\Models\Shipping;
 use App\Models\Cart;
 // use Auth;
 class Helper{
+
     public static function messageList()
     {
         return Message::whereNull('read_at')->orderBy('created_at', 'desc')->get();
@@ -28,7 +29,7 @@ class Helper{
             ?>
 
             <li>
-            <a href="javascript:void(0);">Category<i class="ti-angle-down"></i></a>
+            <a href="javascript:void(0);">Products<i class="ti-angle-down"></i></a>
                 <ul class="dropdown border-0 shadow">
                 <?php
                     foreach($menu as $cat_info){
@@ -116,6 +117,7 @@ class Helper{
             return 0;
         }
     }
+
     // Wishlist Count
     public static function wishlistCount($user_id=''){
 

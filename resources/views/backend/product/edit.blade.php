@@ -92,6 +92,10 @@
               <option value="XL"  @if( in_array( "XL",$data ) ) selected @endif>Extra Large</option>
               <option value="2XL"  @if( in_array( "2XL",$data ) ) selected @endif>Double Extra Large</option>
               <option value="FS"  @if( in_array( "FS",$data ) ) selected @endif>Free Size</option>
+              <option value="30ML"  @if( in_array( "30ML",$data ) ) selected @endif>30 ml</option>
+              <option value="50ML"  @if( in_array( "50ML",$data ) ) selected @endif>50 ml</option>
+              <option value="1L"  @if( in_array( "1L",$data ) ) selected @endif>1 L</option>
+              <option value="1.5L"  @if( in_array( "1.5L",$data ) ) selected @endif>1.5 L</option>
               @endforeach
           </select>
         </div>

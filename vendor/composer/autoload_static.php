@@ -606,6 +606,7 @@ class ComposerStaticInit0fe02967618b6ee54572c79b43d09b09
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\CouponController' => __DIR__ . '/../..' . '/app/Http/Controllers/CouponController.php',
         'App\\Http\\Controllers\\EcoController' => __DIR__ . '/../..' . '/app/Http/Controllers/EcoController.php',
+        'App\\Http\\Controllers\\FAQController' => __DIR__ . '/../..' . '/app/Http/Controllers/FAQController.php',
         'App\\Http\\Controllers\\FacebookController' => __DIR__ . '/../..' . '/app/Http/Controllers/FacebookController.php',
         'App\\Http\\Controllers\\FrontendController' => __DIR__ . '/../..' . '/app/Http/Controllers/FrontendController.php',
         'App\\Http\\Controllers\\GoogleController' => __DIR__ . '/../..' . '/app/Http/Controllers/GoogleController.php',

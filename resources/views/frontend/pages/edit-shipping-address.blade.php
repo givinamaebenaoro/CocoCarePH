@@ -84,7 +84,7 @@
                 </select>
             </div>
         </div>
-            <button type="submit" class="primary">UPDATE ADDRESS</button>
+            {{-- <button type="submit" class="primary">UPDATE ADDRESS</button> --}}
         </form>
         <form method="POST" action="{{ route('frontend.pages.shipping-address.destroy', $shippingAddress->id) }}" class="d-inline delete-address-form">
             @csrf

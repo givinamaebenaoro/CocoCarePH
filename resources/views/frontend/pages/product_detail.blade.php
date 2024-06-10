@@ -102,19 +102,22 @@
 <!-- Size -->
 @if($product_detail->size)
     <div class="size mt-4">
-        <h4>Size <span>*choose size</span></h4>
-        <ul id="size-options">
-            @php
-                $sizes = explode(',', $product_detail->size);
-            @endphp
-            @foreach($sizes as $size)
-                <li>
-                    <button type="button" class="btn btn-link one size-option" data-size="{{ $size }}">{{ $size }}</button>
-                </li>
-            @endforeach
-        </ul>
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownSizeButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Select Size
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownSizeButton">
+                @php
+                    $sizes = explode(',', $product_detail->size);
+                @endphp
+                @foreach($sizes as $size)
+                    <a class="dropdown-item size-option" href="#" data-size="{{ $size }}">{{ $size }}</a>
+                @endforeach
+            </div>
+        </div>
     </div>
 @endif
+
 
 <div id="size-warning" style="color: red; display: none;">
     Please select a size before adding the product to your cart.
@@ -156,17 +159,18 @@
     @if($product_detail->sub_cat_info)
     <p class="cat mt-1">Sub Category :<a href="{{route('product-sub-cat',[$product_detail->cat_info['slug'],$product_detail->sub_cat_info['slug']])}}">{{$product_detail->sub_cat_info['title']}}</a></p>
     @endif
-    <p class="availability"> Stock:
+    <p class="availability">Stock:
         @if($product_detail->stock > 0)
             @if($product_detail->stock < 5)
-                <span class="badge badge-warning">Low in stock</span>
+                <span class="badge badge-warning">Low in stock ({{ $product_detail->stock }} left)</span>
             @else
-                <span class="badge badge-success">Available</span>
+                <span class="badge badge-success">Available ({{ $product_detail->stock }} in stock)</span>
             @endif
         @else
             <span class="badge badge-danger">Out of stock</span>
         @endif
     </p>
+
 </div>
 <!--/ End Product Buy -->
 										</div>

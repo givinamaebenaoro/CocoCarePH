@@ -46,100 +46,105 @@ class OrderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        $this->validate($request, [
-            'shipping_address_id' => 'required|exists:shipping_addresses,id',
-            'payment_method' => 'required|in:cod,paypal,cardpay',
-        ]);
+{
+    $this->validate($request, [
+        'shipping_address_id' => 'required|exists:shipping_addresses,id',
+        'payment_method' => 'required|in:cod,paypal,cardpay',
+    ]);
 
-        $cart = Cart::where('user_id', auth()->user()->id)->where('order_id', null)->first();
+    $cart = Cart::where('user_id', auth()->user()->id)->where('order_id', null)->first();
 
-        if (empty($cart)) {
-            request()->session()->flash('error', 'Cart is Empty!');
-            return back();
-        }
-
-        // Retrieve the shipping address details
-        $shippingAddress = ShippingAddress::find($request->shipping_address_id);
-
-        if (!$shippingAddress) {
-            request()->session()->flash('error', 'Invalid shipping address!');
-            return back();
-        }
-
-        // Retrieve the shipping details
-        $shipping = Shipping::find($request->shipping);
-
-        if (!$shipping) {
-            request()->session()->flash('error', 'Invalid shipping method!');
-            return back();
-        }
-
-        $order_data = $request->all();
-        $order_data['order_number'] = 'ORD-' . strtoupper(Str::random(10));
-        $order_data['user_id'] = auth()->user()->id;
-        $order_data['shipping_id'] = $shipping->id; // Store the shipping ID
-        $order_data['recipient_name'] = $shippingAddress->recipient_name;
-        $order_data['phone_number'] = $shippingAddress->phone_number;
-        $order_data['country'] = $shippingAddress->country;
-        $order_data['region'] = $shippingAddress->region;
-        $order_data['city'] = $shippingAddress->city;
-        $order_data['barangay'] = $shippingAddress->barangay;
-        $order_data['street_building'] = $shippingAddress->street_building;
-        $order_data['unit_floor'] = $shippingAddress->unit_floor;
-        $order_data['additional_info'] = $shippingAddress->additional_info;
-        $order_data['address_category'] = $shippingAddress->address_category;
-        $order_data['default_shipping'] = $shippingAddress->default_shipping;
-        $order_data['default_billing'] = $shippingAddress->default_billing;
-
-        $shippingPrice = $shipping->price; // Retrieve the shipping price
-        $order_data['sub_total'] = Helper::totalCartPrice();
-        $order_data['quantity'] = Helper::cartCount();
-        $order_data['total_amount'] = $order_data['sub_total'] + $shippingPrice - (session('coupon')['value'] ?? 0);
-
-        if (session('coupon')) {
-            $order_data['coupon'] = session('coupon')['value'];
-        }
-
-        if ($request->payment_method == 'paypal' || $request->payment_method == 'cardpay') {
-            $order_data['payment_status'] = 'paid';
-        } else {
-            $order_data['payment_status'] = 'unpaid';
-        }
-
-        $order = new Order();
-        $order->fill($order_data);
-        $status = $order->save();
-
-        if ($status) {
-            // Associate the order with the cart items
-            Cart::where('user_id', auth()->user()->id)->where('order_id', null)->update(['order_id' => $order->id]);
-
-            // Send notification to admin
-            $users = User::where('role', 'admin')->first();
-            $details = [
-                'title' => 'New Order Received',
-                'actionURL' => route('order.show', $order->id),
-                'fas' => 'fa-file-alt'
-            ];
-            Notification::send($users, new StatusNotification($details));
-
-            // Clear session data
-            session()->forget('cart');
-            session()->forget('coupon');
-
-            request()->session()->flash('success', 'Your product order has been placed. Thank you for shopping with us.');
-
-            if ($request->payment_method == 'paypal') {
-                return redirect()->route('payment')->with(['id' => $order->id]);
-            } else {
-                return redirect()->route('home');
-            }
-        } else {
-            request()->session()->flash('error', 'There was an issue processing your order. Please try again.');
-            return back();
-        }
+    if (empty($cart)) {
+        request()->session()->flash('error', 'Cart is Empty!');
+        return back();
     }
+
+    // Retrieve the shipping address details
+    $shippingAddress = ShippingAddress::find($request->shipping_address_id);
+
+    if (!$shippingAddress) {
+        request()->session()->flash('error', 'Invalid shipping address!');
+        return back();
+    }
+
+    // Retrieve the shipping details
+    // $shipping = Shipping::find($request->shipping);
+
+    // if (!$shipping) {
+    //     request()->session()->flash('error', 'Invalid shipping method!');
+    //     return back();
+    // }
+
+    $order_data = $request->all();
+    $order_data['order_number'] = 'ORD-' . strtoupper(Str::random(10));
+    $order_data['user_id'] = auth()->user()->id;
+    // $order_data['shipping_id'] = $shipping->id; // Store the shipping ID
+    $order_data['recipient_name'] = $shippingAddress->recipient_name;
+    $order_data['phone_number'] = $shippingAddress->phone_number;
+    $order_data['country'] = $shippingAddress->country;
+    $order_data['region'] = $shippingAddress->region;
+    $order_data['city'] = $shippingAddress->city;
+    $order_data['barangay'] = $shippingAddress->barangay;
+    $order_data['street_building'] = $shippingAddress->street_building;
+    $order_data['unit_floor'] = $shippingAddress->unit_floor;
+    $order_data['additional_info'] = $shippingAddress->additional_info;
+    $order_data['address_category'] = $shippingAddress->address_category;
+    $order_data['default_shipping'] = $shippingAddress->default_shipping;
+    $order_data['default_billing'] = $shippingAddress->default_billing;
+
+    // $shippingPrice = $shipping->price; // Retrieve the shipping price
+    $subTotal = Helper::totalCartPrice();
+    $vatRate = 0.12;
+    $vatAmount = $subTotal * $vatRate;
+    $order_data['sub_total'] = $subTotal;
+    $order_data['quantity'] = Helper::cartCount();
+    $order_data['vat_amount'] = $vatAmount;
+    $order_data['total_amount'] = $subTotal + $vatAmount - (session('coupon')['value'] ?? 0);
+
+    if (session('coupon')) {
+        $order_data['coupon'] = session('coupon')['value'];
+    }
+
+    if ($request->payment_method == 'paypal' || $request->payment_method == 'cardpay') {
+        $order_data['payment_status'] = 'paid';
+    } else {
+        $order_data['payment_status'] = 'unpaid';
+    }
+
+    $order = new Order();
+    $order->fill($order_data);
+    $status = $order->save();
+
+    if ($status) {
+        // Associate the order with the cart items
+        Cart::where('user_id', auth()->user()->id)->where('order_id', null)->update(['order_id' => $order->id]);
+
+        // Send notification to admin
+        $users = User::where('role', 'admin')->first();
+        $details = [
+            'title' => 'New Order Received',
+            'actionURL' => route('order.show', $order->id),
+            'fas' => 'fa-file-alt'
+        ];
+        Notification::send($users, new StatusNotification($details));
+
+        // Clear session data
+        session()->forget('cart');
+        session()->forget('coupon');
+
+        request()->session()->flash('success', 'Your product order has been placed. Thank you for shopping with us.');
+
+        if ($request->payment_method == 'paypal') {
+            return redirect()->route('payment')->with(['id' => $order->id]);
+        } else {
+            return redirect()->route('home');
+        }
+    } else {
+        request()->session()->flash('error', 'There was an issue processing your order. Please try again.');
+        return back();
+    }
+}
+
 
 
 
@@ -267,15 +272,15 @@ class OrderController extends Controller
     public function pdf(Request $request)
 {
     $order = Order::getAllOrder($request->id);
-    
+
     // Get the order creation date
     $orderCreationDate = Carbon::parse($order->created_at)->format('D / m-d-Y');
-    
+
     // Get today's date
     $currentDate = Carbon::now()->format('D / m-d-Y');
 
     $file_name = $order->order_number . '-' . $order->first_name . '.pdf';
-    
+
     $pdf = PDF::loadview('backend.order.pdf', compact('order', 'orderCreationDate', 'currentDate'));
     return $pdf->download($file_name);
 }
@@ -305,7 +310,7 @@ class OrderController extends Controller
         }
         return $data;
     }
-    
+
 }
 // $cart=Cart::get();
         // // return $cart;
