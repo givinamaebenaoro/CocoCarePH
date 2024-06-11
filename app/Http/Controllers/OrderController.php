@@ -6,14 +6,15 @@ use PDF;
 use Helper;
 use App\User;
 use Notification;
+use Carbon\Carbon;
 use App\Models\Cart;
 use App\Models\Order;
+use App\Models\Product;
 use App\Models\Shipping;
 use App\ShippingAddress;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Notifications\StatusNotification;
-use Carbon\Carbon;
 
 
 class OrderController extends Controller
@@ -45,7 +46,7 @@ class OrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+public function store(Request $request)
 {
     $this->validate($request, [
         'shipping_address_id' => 'required|exists:shipping_addresses,id',
@@ -67,18 +68,14 @@ class OrderController extends Controller
         return back();
     }
 
-    // Retrieve the shipping details
-    // $shipping = Shipping::find($request->shipping);
-
-    // if (!$shipping) {
-    //     request()->session()->flash('error', 'Invalid shipping method!');
-    //     return back();
-    // }
-
     $order_data = $request->all();
     $order_data['order_number'] = 'ORD-' . strtoupper(Str::random(10));
     $order_data['user_id'] = auth()->user()->id;
-    // $order_data['shipping_id'] = $shipping->id; // Store the shipping ID
+    // Assuming you want to get the product ID from the first cart item
+    $firstCartItem = $cart->product;
+    if ($firstCartItem) {
+        $order_data['product_id'] = $firstCartItem->id;
+    }
     $order_data['recipient_name'] = $shippingAddress->recipient_name;
     $order_data['phone_number'] = $shippingAddress->phone_number;
     $order_data['country'] = $shippingAddress->country;
@@ -92,7 +89,6 @@ class OrderController extends Controller
     $order_data['default_shipping'] = $shippingAddress->default_shipping;
     $order_data['default_billing'] = $shippingAddress->default_billing;
 
-    // $shippingPrice = $shipping->price; // Retrieve the shipping price
     $subTotal = Helper::totalCartPrice();
     $vatRate = 0.12;
     $vatAmount = $subTotal * $vatRate;
@@ -119,6 +115,16 @@ class OrderController extends Controller
         // Associate the order with the cart items
         Cart::where('user_id', auth()->user()->id)->where('order_id', null)->update(['order_id' => $order->id]);
 
+        // Update product stock
+        $cartItems = Cart::where('user_id', auth()->user()->id)->where('order_id', $order->id)->get();
+        foreach ($cartItems as $cartItem) {
+            $product = $cartItem->product;
+            if ($product) {
+                $product->stock -= $cartItem->quantity;
+                $product->save();
+            }
+        }
+
         // Send notification to admin
         $users = User::where('role', 'admin')->first();
         $details = [
@@ -144,6 +150,8 @@ class OrderController extends Controller
         return back();
     }
 }
+
+
 
 
 
@@ -183,29 +191,32 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $order=Order::find($id);
-        $this->validate($request,[
-            'status'=>'required|in:new,process,delivered,cancel'
+        $order = Order::find($id);
+        $this->validate($request, [
+            'status' => 'required|in:new,process,delivered,cancel'
         ]);
-        $data=$request->all();
-        // return $request->status;
-        if($request->status=='delivered'){
-            foreach($order->cart as $cart){
-                $product=$cart->product;
-                // return $product;
-                $product->stock -=$cart->quantity;
+        $data = $request->all();
+
+        // If the order status is changed to 'cancel', increase the stock back
+        if ($request->status == 'cancel' && $order->status != 'cancel') {
+            foreach ($order->cart as $cart) {
+                $product = $cart->product;
+                $product->stock += $cart->quantity;
                 $product->save();
             }
         }
-        $status=$order->fill($data)->save();
-        if($status){
-            request()->session()->flash('success','Successfully updated order');
+
+        // Update the order status
+        $status = $order->fill($data)->save();
+        if ($status) {
+            request()->session()->flash('success', 'Successfully updated order');
+        } else {
+            request()->session()->flash('error', 'Error while updating order');
         }
-        else{
-            request()->session()->flash('error','Error while updating order');
-        }
+
         return redirect()->route('order.index');
     }
+
 
     /**
      * Remove the specified resource from storage.

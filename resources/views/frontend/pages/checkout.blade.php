@@ -24,6 +24,7 @@
 <!-- Start Checkout -->
 
 
+
 <section class="shop checkout section">
     <div class="container">
         <form class="form" method="POST" action="{{ route('cart.order') }}">
@@ -104,7 +105,16 @@
                                                 'Bangsamoro Autonomous Region in Muslim Mindanao (BARMM)'
                                             ];
 
-                                            if(in_array($region, $luzonRegions)) {
+                                            if($region == 'National Capital Region (NCR)' || $region == 'Region IV-A (CALABARZON)') {
+                                                if ($quantity <= 25) {
+                                                    $shipping_cost = 0; // Free shipping for NCR and CALABARZON if quantity is 25 or less
+                                                } else {
+                                                    $shipping_cost = 37;
+                                                    if($quantity > 25) {
+                                                        $shipping_cost += ceil(($quantity - 25) / 3) * 50;
+                                                    }
+                                                }
+                                            } elseif(in_array($region, $luzonRegions)) {
                                                 $shipping_cost = 37;
                                                 if($quantity > 20) {
                                                     $shipping_cost += ceil(($quantity - 20) / 3) * 50;
@@ -120,9 +130,16 @@
                                                     $shipping_cost += ceil(($quantity - 20) / 3) * 105;
                                                 }
                                             }
+
+                                            // If the quantity exceeds 100, halve the shipping cost
+                                            if($quantity >= 100) {
+                                                $shipping_cost /= 2;
+                                            }
                                         @endphp
                                         <span>₱{{ number_format($shipping_cost, 2) }}</span>
                                     </li>
+
+
                                     @if(session('coupon'))
                                         <li class="coupon_price" data-price="{{ session('coupon')['value'] }}">You Save<span>₱{{ number_format(session('coupon')['value'], 2) }}</span></li>
                                     @endif

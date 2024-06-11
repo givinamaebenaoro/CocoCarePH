@@ -34,19 +34,29 @@ class CartController extends Controller
             return back();
         }
 
-        // Check if product already in cart
+        // Check if product is already in cart
         $already_cart = Cart::where('user_id', auth()->user()->id)
                             ->where('order_id', null)
                             ->where('product_id', $product->id)
                             ->where('size', $request->size)
                             ->first();
 
+        // Remove product from cart if it is sold out or has 0 quantity
+        if ($already_cart && ($product->stock <= 0)) {
+            $already_cart->delete();
+            request()->session()->flash('error', 'Product removed from cart due to insufficient stock');
+            return back();
+        }
+
+        // If the product is already in the cart and has sufficient stock
         if ($already_cart) {
-            $already_cart->quantity = $already_cart->quantity + 1;
-            $already_cart->amount = $product->price + $already_cart->amount;
+            $already_cart->quantity += 1;
+            $already_cart->amount += $product->price;
 
             // Check stock availability
-            if ($already_cart->product->stock < $already_cart->quantity || $already_cart->product->stock <= 0) {
+            if ($product->stock < $already_cart->quantity || $product->stock <= 0) {
+                $already_cart->quantity -= 1;
+                $already_cart->amount -= $product->price;
                 return back()->with('error', 'Stock not sufficient!');
             }
 
@@ -62,7 +72,7 @@ class CartController extends Controller
             $cart->amount = $cart->price * $cart->quantity;
 
             // Check stock availability
-            if ($cart->product->stock < $cart->quantity || $cart->product->stock <= 0) {
+            if ($product->stock < $cart->quantity || $product->stock <= 0) {
                 return back()->with('error', 'Stock not sufficient!');
             }
 
@@ -75,6 +85,7 @@ class CartController extends Controller
         request()->session()->flash('success', 'Product has been added to cart');
         return back();
     }
+
 
     public function singleAddToCart(Request $request) {
         // Validate request
@@ -216,46 +227,30 @@ class CartController extends Controller
         // }
     }
 
-
     public function checkout(Request $request) {
         $user = Auth::user();
 
-        // Check if the user has a shipping address
-        if (!$user->shippingAddresses()->exists()) {
+        // Check if the user has shipping addresses
+        if ($user->shippingAddresses()->exists()) {
+            $shippingAddresses = $user->shippingAddresses;
+
+            // Check if the product is in stock
+            $productId = $request->input('product_id'); // Assuming you pass the product ID in the request
+            $product = Product::find($productId);
+
+            if ($product && $product->stock > 0) {
+                // Proceed with checkout
+                return view('frontend.pages.checkout', compact('shippingAddresses', 'vatAmount'));
+            } else {
+                // Redirect back with an error message
+                return redirect()->back()->withErrors(['product_stock' => 'The product is already sold.']);
+            }
+        } else {
             return redirect()->route('frontend.pages.shipping-address');
         }
-
-        $shippingAddresses = $user->shippingAddresses;
-
-        try {
-            // Process the order within a transaction
-            DB::transaction(function () use ($request, $user) {
-                // Assume you have a cart model or similar to get the user's cart items
-                $cartItems = Cart::where('user_id', $user->id)->get();
-
-                foreach ($cartItems as $item) {
-                    $product = Product::find($item->product_id);
-
-                    // Check if enough stock is available
-                    if ($product->stock < $item->quantity) {
-                        throw new \Exception('Not enough stock for product: ' . $product->title);
-                    }
-
-                    // Subtract the stock
-                    $product->stock -= $item->quantity;
-                    $product->save();
-                }
-
-                // Create the order here
-                // Order::create([...]);
-            });
-
-            return view('frontend.pages.checkout', compact('shippingAddresses'));
-        } catch (\Exception $e) {
-            // Handle the exception and redirect back with a warning message
-            return redirect()->back()->with('warning', $e->getMessage());
-        }
     }
+
+
 
 
 

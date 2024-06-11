@@ -57,6 +57,7 @@ return array(
     'App\\Http\\Middleware\\TrustProxies' => $baseDir . '/app/Http/Middleware/TrustProxies.php',
     'App\\Http\\Middleware\\User' => $baseDir . '/app/Http/Middleware/User.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
+    'App\\Inventory' => $baseDir . '/app/Inventory.php',
     'App\\Mail\\PHPMailerService' => $baseDir . '/app/Mail/PHPMailerService.php',
     'App\\Mail\\VerifyEmail' => $baseDir . '/app/Mail/VerifyEmail.php',
     'App\\Models\\Banner' => $baseDir . '/app/Models/Banner.php',

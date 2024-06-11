@@ -22,7 +22,7 @@
               <th>Name</th>
               <th>Phone Number</th>
               <th>Qty.</th>
-              <th>Charge</th>
+              {{-- <th>Charge</th> --}}
               <th>Total</th>
               <th>Status</th>
               <th>Action</th>
@@ -39,7 +39,7 @@
                     <td>{{$order->recipient_name}}</td>
                     <td>{{$order->phone_number}}</td>
                     <td>{{$order->quantity}}</td>
-                    <td>₱{{$order->shipping->price}}</td>
+                    {{-- <td>₱{{$order->shipping->price}}</td> --}}
                     <td>₱{{number_format($order->total_amount,2)}}</td>
                     <td>
                         @if($order->status=='new')
