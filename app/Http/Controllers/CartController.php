@@ -227,30 +227,18 @@ class CartController extends Controller
         // }
     }
 
+
     public function checkout(Request $request) {
         $user = Auth::user();
 
-        // Check if the user has shipping addresses
+        // Ensure to check the correct relationship or field that indicates if the user has a shipping address
         if ($user->shippingAddresses()->exists()) {
             $shippingAddresses = $user->shippingAddresses;
-
-            // Check if the product is in stock
-            $productId = $request->input('product_id'); // Assuming you pass the product ID in the request
-            $product = Product::find($productId);
-
-            if ($product && $product->stock > 0) {
-                // Proceed with checkout
-                return view('frontend.pages.checkout', compact('shippingAddresses', 'vatAmount'));
-            } else {
-                // Redirect back with an error message
-                return redirect()->back()->withErrors(['product_stock' => 'The product is already sold.']);
-            }
+            return view('frontend.pages.checkout', compact('shippingAddresses', 'vatAmount'));
         } else {
             return redirect()->route('frontend.pages.shipping-address');
         }
     }
-
-
 
 
 
