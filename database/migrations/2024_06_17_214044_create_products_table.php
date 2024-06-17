@@ -30,6 +30,8 @@ class CreateProductsTable extends Migration
             $table->unsignedBigInteger('cat_id')->nullable();
             $table->unsignedBigInteger('child_cat_id')->nullable();
             $table->unsignedBigInteger('brand_id')->nullable();
+            $table->date('expiration_date')->nullable(); // Add expiration date
+            $table->date('manufactured_date')->nullable(); // Add manufactured date
             $table->foreign('brand_id')->references('id')->on('brands')->onDelete('SET NULL');
             $table->foreign('cat_id')->references('id')->on('categories')->onDelete('SET NULL');
             $table->foreign('child_cat_id')->references('id')->on('categories')->onDelete('SET NULL');

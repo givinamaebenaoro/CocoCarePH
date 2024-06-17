@@ -108,6 +108,21 @@
              @endforeach
           </select>
         </div>
+        <div class="form-group">
+            <label for="expiration_date">Expiration Date <span class="text-danger">*</span></label>
+            <input id="expiration_date" type="date" name="expiration_date" placeholder="Enter expiration date" value="{{ old('expiration_date', $product->expiration_date ?? '') }}" class="form-control">
+            @error('expiration_date')
+            <span class="text-danger">{{ $message }}</span>
+            @enderror
+        </div>
+
+        <div class="form-group">
+            <label for="manufactured_date">Manufactured Date <span class="text-danger">*</span></label>
+            <input id="manufactured_date" type="date" name="manufactured_date" placeholder="Enter manufactured date" value="{{ old('manufactured_date', $product->manufactured_date ?? '') }}" class="form-control">
+            @error('manufactured_date')
+            <span class="text-danger">{{ $message }}</span>
+            @enderror
+        </div>
 
         <div class="form-group">
           <label for="condition">Condition</label>

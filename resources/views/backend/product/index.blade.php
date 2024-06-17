@@ -27,6 +27,8 @@
               <th>Size</th>
               <th>Condition</th>
               <th>Brand</th>
+              <th>Manufactured Date</th>
+              <th>Expiration Date</th>
               <th>Stock</th>
               <th>Photo</th>
               <th>Status</th>
@@ -51,6 +53,8 @@
                     <td>{{$product->size}}</td>
                     <td>{{$product->condition}}</td>
                     <td>{{ isset($product->brand->title) ? ucfirst($product->brand->title) : '' }}</td>
+                    <td>{{$product->manufactured_date}}</td>
+                    <td>{{$product->expiration_date}}</td>
                     <td>
                       @if($product->stock > 0)
                       <span class="badge badge-primary">{{$product->stock}}</span>

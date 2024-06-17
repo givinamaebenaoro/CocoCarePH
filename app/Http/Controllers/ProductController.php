@@ -58,6 +58,8 @@ class ProductController extends Controller
             'is_featured'=>'sometimes|in:1',
             'status'=>'required|in:active,inactive',
             'condition'=>'required|in:default,new,hot',
+            'expiration_date' => 'required|date|after:today', // Validation rule for expiration date
+            'manufactured_date' => 'required|date|before_or_equal:today', // Validation rule for manufactured date
             'price'=>'required|numeric',
             'discount'=>'nullable|numeric'
         ]);
@@ -142,6 +144,8 @@ class ProductController extends Controller
             'brand_id'=>'nullable|exists:brands,id',
             'status'=>'required|in:active,inactive',
             'condition'=>'required|in:default,new,hot',
+            'expiration_date' => 'required|date|after:today', // Validation rule for expiration date
+            'manufactured_date' => 'required|date|before_or_equal:today', // Validation rule for manufactured date
             'price'=>'required|numeric',
             'discount'=>'nullable|numeric'
         ]);
@@ -176,7 +180,7 @@ class ProductController extends Controller
     {
         $product=Product::findOrFail($id);
         $status=$product->delete();
-        
+
         if($status){
             request()->session()->flash('success','Product deleted');
         }
